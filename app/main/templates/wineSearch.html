@@ -1,0 +1,55 @@
+<ion-view view-title="Recherche de vin">
+	<ion-nav-buttons side="right">
+      <button class="button button-icon button-clear ion-plus-round" ng-click="editWine(-1)">
+      </button>
+    </ion-nav-buttons>
+  <ion-content>
+		
+
+	<div class="item item-input-inset">
+	    <label class="item-input-wrapper">
+		    <input type="text" placeholder="Rechercher un vin" ng-model="search.query" />
+		</label>
+			<button class="button button-small icon ion-search" ng-click="search.submit(search.query)"/>
+	</div>
+
+
+	<ion-list>
+	  <ion-item ng-repeat="wine in search.result" on-tap="addToCellar(wine.id)">
+	    <div class="winAttributes">
+			<span class="wineItemLine name">
+				{{wine.name}}
+			</span>
+			<span class="wineItemLine appellation">
+				{{wine.appellation}}
+			</span>
+			<div class="wineItemLine detail">
+				<span>
+					{{wine.region.regionName}}
+				</span>
+				<span class="secondItem">
+					{{wine.color.colorName}}
+				</span>
+			</div>
+			<div class="wineItemLine detail">
+				<span>
+					{{wine.year}}
+				</span>
+			</div>
+		</div>
+	  </ion-item>
+
+	  <ion-item ng-show="!search.result">
+			Rechercher un vin dans notre base de données
+	  </ion-item>
+	  <ion-item ng-show="search.result.length == 0">
+	  		Aucun élément trouvé pour : {{search.query}}
+	  </ion-item>
+	  <ion-item href="#/app/form/-1" class="item item-icon-left" ng-show="search.result">
+			<i class="icon ion-plus-round"></i>
+			Si le vin n'existe pas ajoutez le
+	  </ion-item>
+	</ion-list>
+				
+  </ion-content>
+</ion-view>

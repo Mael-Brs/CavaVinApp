@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <!-- ionic meta tags -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- custom meta tags -->
+    <meta name="format-detection" content="telephone=no"> <!-- no auto telephone linking -->
+
+    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- can be saved to home screen on ios -->
+    <title>CavaVin</title>
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css main/styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="main/styles/list.css">
+    <link rel="stylesheet" href="main/styles/main.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="CavaVin">
+
+    
+    <!-- the current view will be rendered in the <ion-nav-view> directive -->
+    <ion-nav-view></ion-nav-view>
+
+    <!-- will be a 404 during development -->
+    <script src="cordova.js"></script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ionic/release/js/ionic.js"></script>
+    <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+    <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/messageformat/messageformat.js"></script>
+    <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+    <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/app.js -->
+    <!-- inject:js -->
+    <script src="app.js"></script>
+    <script src="main/services/year.service.js"></script>
+    <script src="main/services/wine-in-cellar.service.js"></script>
+    <script src="main/services/wine-in-cellar.search.service.js"></script>
+    <script src="main/services/wine.service.js"></script>
+    <script src="main/services/wine.search.service.js"></script>
+    <script src="main/services/region.service.js"></script>
+    <script src="main/services/region.search.service.js"></script>
+    <script src="main/main.js"></script>
+    <script src="main/services/login-service.js"></script>
+    <script src="main/services/color.service.js"></script>
+    <script src="main/services/color.search.service.js"></script>
+    <script src="main/services/cellar.service.js"></script>
+    <script src="main/services/cellar.search.service.js"></script>
+    <script src="main/jhipster/services/user/user.service.js"></script>
+    <script src="main/jhipster/services/profiles/profile.service.js"></script>
+    <script src="main/jhipster/services/profiles/page-ribbon.directive.js"></script>
+    <script src="main/jhipster/services/auth/sessions.service.js"></script>
+    <script src="main/jhipster/services/auth/register.service.js"></script>
+    <script src="main/jhipster/services/auth/principal.service.js"></script>
+    <script src="main/jhipster/services/auth/password-reset-init.service.js"></script>
+    <script src="main/jhipster/services/auth/password-reset-finish.service.js"></script>
+    <script src="main/jhipster/services/auth/password.service.js"></script>
+    <script src="main/jhipster/services/auth/has-authority.directive.js"></script>
+    <script src="main/jhipster/services/auth/has-any-authority.directive.js"></script>
+    <script src="main/jhipster/services/auth/auth.session.service.js"></script>
+    <script src="main/jhipster/services/auth/auth.service.js"></script>
+    <script src="main/jhipster/services/auth/activate.service.js"></script>
+    <script src="main/jhipster/services/auth/account.service.js"></script>
+    <script src="main/jhipster/components/util/truncate-words.filter.js"></script>
+    <script src="main/jhipster/components/util/truncate-characters.filter.js"></script>
+    <script src="main/jhipster/components/util/sort-by.directive.js"></script>
+    <script src="main/jhipster/components/util/sort.directive.js"></script>
+    <script src="main/jhipster/components/util/parse-links.service.js"></script>
+    <script src="main/jhipster/components/util/pagination-util.service.js"></script>
+    <script src="main/jhipster/components/util/jhi-item-count.directive.js"></script>
+    <script src="main/jhipster/components/util/date-util.service.js"></script>
+    <script src="main/jhipster/components/util/data-util.service.js"></script>
+    <script src="main/jhipster/components/util/capitalize.filter.js"></script>
+    <script src="main/jhipster/components/util/base64.service.js"></script>
+    <script src="main/jhipster/components/language/language.service.js"></script>
+    <script src="main/jhipster/components/language/language.filter.js"></script>
+    <script src="main/jhipster/components/language/language.controller.js"></script>
+    <script src="main/jhipster/components/language/language.constants.js"></script>
+    <script src="main/jhipster/components/form/show-validation.directive.js"></script>
+    <script src="main/jhipster/components/form/pagination.constants.js"></script>
+    <script src="main/jhipster/components/form/minbytes.directive.js"></script>
+    <script src="main/jhipster/components/form/maxbytes.directive.js"></script>
+    <script src="main/jhipster/components/alert/alert-error.directive.js"></script>
+    <script src="main/jhipster/components/alert/alert.service.js"></script>
+    <script src="main/jhipster/components/alert/alert.directive.js"></script>
+    <script src="main/jhipster/blocks/interceptor/notification.interceptor.js"></script>
+    <script src="main/jhipster/blocks/interceptor/errorhandler.interceptor.js"></script>
+    <script src="main/jhipster/blocks/interceptor/auth-expired.interceptor.js"></script>
+    <script src="main/jhipster/blocks/interceptor/auth.session.interceptor.js"></script>
+    <script src="main/jhipster/blocks/handlers/translation.handler.js"></script>
+    <script src="main/jhipster/blocks/handlers/state.handler.js"></script>
+    <script src="main/jhipster/blocks/config/uib-pagination.config.js"></script>
+    <script src="main/jhipster/blocks/config/uib-pager.config.js"></script>
+    <script src="main/jhipster/blocks/config/translation-storage.provider.js"></script>
+    <script src="main/jhipster/blocks/config/translation.config.js"></script>
+    <script src="main/jhipster/blocks/config/localstorage.config.js"></script>
+    <script src="main/jhipster/blocks/config/http.config.js"></script>
+    <script src="main/jhipster/blocks/config/compile.config.js"></script>
+    <script src="main/jhipster/blocks/config/alert.config.js"></script>
+    <script src="main/jhipster/app.constants.js"></script>
+    <script src="main/jhipster/admin/admin.state.js"></script>
+    <script src="main/jhipster/account/settings/settings.state.js"></script>
+    <script src="main/jhipster/account/settings/settings.controller.js"></script>
+    <script src="main/jhipster/account/sessions/sessions.state.js"></script>
+    <script src="main/jhipster/account/sessions/sessions.controller.js"></script>
+    <script src="main/jhipster/account/reset/request/reset.request.state.js"></script>
+    <script src="main/jhipster/account/reset/request/reset.request.controller.js"></script>
+    <script src="main/jhipster/account/reset/finish/reset.finish.state.js"></script>
+    <script src="main/jhipster/account/reset/finish/reset.finish.controller.js"></script>
+    <script src="main/jhipster/account/register/register.state.js"></script>
+    <script src="main/jhipster/account/register/register.controller.js"></script>
+    <script src="main/jhipster/account/password/password-strength-bar.directive.js"></script>
+    <script src="main/jhipster/account/password/password.state.js"></script>
+    <script src="main/jhipster/account/password/password.controller.js"></script>
+    <script src="main/jhipster/account/activate/activate.state.js"></script>
+    <script src="main/jhipster/account/activate/activate.controller.js"></script>
+    <script src="main/jhipster/account/account.state.js"></script>
+    <script src="main/controllers/wineSearch-ctrl.js"></script>
+    <script src="main/controllers/menu-ctrl.js"></script>
+    <script src="main/controllers/login-ctrl.js"></script>
+    <script src="main/controllers/list-ctrl.js"></script>
+    <script src="main/controllers/home-ctrl.js"></script>
+    <script src="main/controllers/form-ctrl.js"></script>
+    <script src="main/controllers/addToCellar-ctrl.js"></script>
+    <script src="main/constants/config-const.js"></script>
+    <script src="i18n/angular-locale_fr.js"></script>
+    <script src="i18n/angular-locale_en.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+  </body>
+</html>

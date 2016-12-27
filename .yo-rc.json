@@ -1,0 +1,58 @@
+{
+  "generator-m-ionic": {
+    "answers": {
+      "appName": "ionic-jhipster",
+      "appId": "comp.company.project",
+      "ionicCss": false,
+      "bowerPackages": [
+        "angular-resource#^1.5.5",
+        "ngstorage#^0.3.10",
+        "angular-cookies#^1.5.5",
+        "angular-aria#1.5.2",
+        "ngInfiniteScroll#1.2.2",
+        "angular-bootstrap#1.2.5",
+        "angular-cache-buster#0.4.3",
+        "angular-sanitize#1.5.2",
+        "angular-aria#1.5.2"
+      ],
+      "platforms": [],
+      "plugins": [],
+      "appModule": "ionic-jhipster",
+      "ecosystems": []
+    }
+  },
+  "generator-jhipster": {
+    "jhipsterVersion": "3.9.1",
+    "baseName": "CavaVin",
+    "packageName": "com.mbras.cave",
+    "packageFolder": "com/mbras/cave",
+    "serverPort": "8080",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "buildTool": "maven",
+    "enableSocialSignIn": false,
+    "rememberMeKey": "d2a979876a000744060f8caceec20e6cfc69fde8",
+    "useSass": false,
+    "applicationType": "monolith",
+    "testFrameworks": [
+      "gatling",
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "serviceDiscoveryType": false,
+    "jhipsterHome": "../CavaVinWS"
+  }
+}

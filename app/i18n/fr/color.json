@@ -1,0 +1,22 @@
+{
+    "cavaVinApp": {
+        "color" : {
+            "home": {
+                "title": "Colors",
+                "createLabel": "Créer un nouveau Color",
+                "createOrEditLabel": "Créer ou éditer un Color",
+                "search": "Recherche pour Color"
+            },
+            "created": "Un nouveau Color a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Color avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Color avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Color {{ id }} ?"
+            },
+            "detail": {
+                "title": "Color"
+            },
+            "colorName": "Color Name"
+        }
+    }
+}

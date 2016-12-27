@@ -1,0 +1,68 @@
+<ion-view view-title="Ma cave">
+	<ion-nav-buttons side="right">
+      <button class="button button-icon button-clear ion-plus-round" ng-click="addWine()">
+      </button>
+    </ion-nav-buttons>
+  <ion-content>
+		
+			<a class="button button-full button-small" ng-click="showForm=!showForm">
+			    Tri et recherche
+			    <span class="icon-right ion-chevron-down" />
+			</a>	
+
+			<div id="searchSort" class="item row" ng-show="showForm">
+				<div class="item-input-inset">
+				    <label class="item-input-wrapper">
+					    <i class="icon ion-search"></i>
+					    <input type="text" placeholder="Chercher un vin" ng-model="searchWine"/>
+					</label>
+				</div>
+			</div>
+			<div id="sort" class="item row" ng-show="showForm">
+				<div class="col">
+					<label class="item-input item-select">
+			          <div class="input-label">
+			            Trier par
+			          </div>
+			
+						<select ng-model="sortColor">
+					        <option value="appellation">Appellation</option> 
+		  					<option value="domaine">Domaine</option>
+		  					<option value="annee">Année</option>
+		  					<option value="region.nom">Région</option>
+		  					<option value="color.name">Color</option>
+		  					<option value="quantity">Quantité</option>
+						</select>
+					</label>
+				</div>
+				<div class="col">
+					<div class="item-input-inset">
+						<i ng-click="sortReverse=!sortReverse" ng-show="!sortReverse" class="button button-icon button-small icon ion-arrow-up-c"></i><i ng-click="sortReverse=!sortReverse" ng-show="sortReverse" class="button button-icon button-small icon ion-arrow-down-c"></i>
+					</div>
+				</div>
+			</div>
+				
+		<ion-list>
+		  <ion-item ng-repeat="data in wines | orderBy:sortColor:sortReverse | filter:searchWine">
+		    <div class="winAttributes">
+				<span class="year">{{data.year}}</span>
+				<span class="badge badge-assertive quantity">{{data.quantity}}</span>
+				<span class="wineItemLine name">{{data.wine.name}}</span>
+				
+				<span class="wineItemLine appellation">{{data.wine.appellation}}</span>
+				
+				<div class="wineItemLine detail">
+					<span>{{data.wine.region.regionName}}</span>
+					<span class="color">{{data.wine.color.colorName}}</span>
+				</div>
+				<div class="wineItemLine detail">
+					<span class="secondItem">{{data.wine.maxKeep}}</span>
+				</div>
+			</div>
+		    <ion-option-button class="button-positive" ng-click="editWine(data.id)">Edit</ion-option-button>
+		    <ion-option-button class="button-assertive" ng-click="removeWine(data.id)">Delete</ion-option-button>
+		  </ion-item>
+		</ion-list>
+			
+  </ion-content>
+</ion-view>

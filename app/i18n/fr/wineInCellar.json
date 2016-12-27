@@ -1,0 +1,25 @@
+{
+    "cavaVinApp": {
+        "wineInCellar" : {
+            "home": {
+                "title": "WineInCellars",
+                "createLabel": "Créer un nouveau Wine In Cellar",
+                "createOrEditLabel": "Créer ou éditer un Wine In Cellar",
+                "search": "Recherche pour Wine In Cellar"
+            },
+            "created": "Un nouveau Wine In Cellar a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Wine In Cellar avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Wine In Cellar avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Wine In Cellar {{ id }} ?"
+            },
+            "detail": {
+                "title": "Wine In Cellar"
+            },
+            "price": "Price",
+            "quantity": "Quantity",
+            "cellar": "Cellar",
+            "wine": "Wine"
+        }
+    }
+}

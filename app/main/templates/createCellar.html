@@ -1,0 +1,16 @@
+<ion-view view-title="{{'global.menu.account.register' | translate}}">
+    <ion-content>
+		<div class="list" >
+
+            <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation>		
+
+					<label class="item item-input">
+                    <span class="input-label" translate="global.form.cellarCapacity">Cellar capacity</span>
+                    <input type="number" class="form-control" placeholder="{{'global.form.cellarCapacity.placeholder' | translate}}"
+                           ng-model="vm.cellar.capacity" required>
+                </label>
+                <button type="submit" ng-disabled="form.$invalid" class="button button-full button-positive" translate="register.form.button">Save</button>
+            </form>
+        </div>
+	</ion-content>
+</ion-view>

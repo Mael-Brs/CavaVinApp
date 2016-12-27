@@ -1,0 +1,28 @@
+{
+    "cavaVinApp": {
+        "wine" : {
+            "home": {
+                "title": "Wines",
+                "createLabel": "Create a new Wine",
+                "createOrEditLabel": "Create or edit a Wine",
+                "search": "Search for Wine"
+            },
+            "created": "A new Wine is created with identifier {{ param }}",
+            "updated": "A Wine is updated with identifier {{ param }}",
+            "deleted": "A Wine is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Wine {{ id }}?"
+            },
+            "detail": {
+                "title": "Wine"
+            },
+            "name": "Name",
+            "appellation": "Appellation",
+            "domaine": "Domaine",
+            "year": "Year",
+            "maxKeep": "Max Keep",
+            "region": "Region",
+            "color": "Color"
+        }
+    }
+}

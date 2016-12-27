@@ -1,0 +1,47 @@
+<ion-view view-title="Ajouter à la cave">
+  <ion-content>
+  	<div class="card list">
+		<label class="item" >
+			<span>Nom : </span>
+			<span>{{userWine.wine.name}}</span>
+		</label>
+
+		<label class="item" >
+			<span>Appellation : </span>
+			<span>{{userWine.wine.appellation}}</span>
+		</label>
+
+		<label class="item" >
+			<span>Année : </span>
+			<span>{{userWine.wine.year}}</span>
+		</label>
+
+		<label class="item" >
+			<span>Région : </span>
+			<span>{{userWine.wine.region.regionName}}</span>
+		</label>
+
+		<label class="item" >
+			<span>Couleur : </span>
+			<span>{{userWine.wine.color.colorName}}</span>
+		</label>
+  	</div>
+  	<form name="$parent.form">
+  	<div class="list">
+  		<label class="item item-input" >
+			<span class="input-label">Quantité</span>
+			<input type="text" ng-model="userWine.quantity" required>
+		</label>
+
+		<label class="item item-input" >
+			<span class="input-label">Prix</span>
+			<input type="number" step="0.01" ng-model="userWine.price">
+		</label>
+
+	  <button type="button" ng-click="submit()" ng-disabled="form.$invalid || userWine.wine.region === undefined || userWine.wine.color === undefined" class="button button-block button-positive">Ajouter</button>
+	</div>
+
+   </form>
+
+  </ion-content>
+</ion-view>
