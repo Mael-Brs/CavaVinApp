@@ -26,12 +26,13 @@
 			          </div>
 			
 						<select ng-model="sortColor">
-					        <option value="appellation">Appellation</option> 
-		  					<option value="domaine">Domaine</option>
-		  					<option value="annee">Année</option>
-		  					<option value="region.nom">Région</option>
-		  					<option value="color.name">Color</option>
-		  					<option value="quantity">Quantité</option>
+					        <option value="vintage.wine.name">Nom</option> 
+					        <option value="vintage.wine.appellation">Appellation</option> 
+		  					<option value="vintage.wine.producer">Domaine</option>
+		  					<option value="vintage.year.number">Année</option>
+		  					<option value="vintage.wine.region.nom">Région</option>
+		  					<option value="vintage.wine.color.name">Couleur</option>
+		  					<option value="vintage.quantity">Quantité</option>
 						</select>
 					</label>
 				</div>
@@ -45,18 +46,16 @@
 		<ion-list>
 		  <ion-item ng-repeat="data in wines | orderBy:sortColor:sortReverse | filter:searchWine">
 		    <div class="winAttributes">
-				<span class="year">{{data.year}}</span>
-				<span class="badge badge-assertive quantity">{{data.quantity}}</span>
-				<span class="wineItemLine name">{{data.wine.name}}</span>
-				
-				<span class="wineItemLine appellation">{{data.wine.appellation}}</span>
-				
+				<span class="year">{{data.vintage.year.number}}</span>
+				<span class="badge badge-assertive quantity">{{data.vintage.quantity}}</span>
+				<span class="wineItemLine name">{{data.vintage.wine.name}}</span>
+				<span class="wineItemLine appellation">{{data.vintage.wine.appellation}}</span>
 				<div class="wineItemLine detail">
-					<span>{{data.wine.region.regionName}}</span>
-					<span class="color">{{data.wine.color.colorName}}</span>
+					<span>{{data.vintage.wine.region.regionName}}</span>
+					<span class="color">{{data.vintage.wine.color.colorName}}</span>
 				</div>
 				<div class="wineItemLine detail">
-					<span class="secondItem">{{data.wine.maxKeep}}</span>
+					<span class="secondItem">{{data.vintage.wine.maxKeep}}</span>
 				</div>
 			</div>
 		    <ion-option-button class="button-positive" ng-click="editWine(data.id)">Edit</ion-option-button>

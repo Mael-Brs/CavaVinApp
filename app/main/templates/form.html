@@ -5,53 +5,66 @@
   	<div class="list">
 		<label class="item item-input" ng-class="{'has-error': form.appellation.$invalid }">
 			<span class="input-label">Nom</span>
-			<input type="text" ng-model="userWine.wine.name" required>
+			<input type="text" ng-model="userWine.vintage.wine.name" required>
 		</label>
 
 		<label class="item item-input" >
 			<span class="input-label">Appellation</span>
-			<input type="text" ng-model="userWine.wine.appellation">
+			<input type="text" ng-model="userWine.vintage.wine.appellation">
 		</label>
 
-		<label class="item item-input" >
-			<span class="input-label">Année</span>
-			<input type="text" ng-model="userWine.wine.year">
+		<label class="item item-input" ng-class="{'has-error': form.produceur.$invalid }">
+			<span class="input-label">Producteur</span>
+			<input type="text" ng-model="userWine.vintage.wine.producer" required>
+		</label>
+
+		<label class="item item-input item-select">
+			<div class="input-label">
+			  Année
+			</div>
+			<select ng-model="userWine.vintage.year.number" ng-options="year as year.number for year in years track by year.id">
+			</select>
 		</label>
 
 		<label class="item item-input item-select">
 			<div class="input-label">
 			  Région
 			</div>
-			<select ng-model="userWine.wine.region" ng-options="region as region.regionName for region in regions track by region.id">
+			<select ng-model="userWine.vintage.wine.region" ng-options="region as region.regionName for region in regions track by region.id">
 			</select>
 		</label>
 
 		<label class="item item-input" ng-show="userWine.wine.region.regionName=='Autre'">
 			<span class="input-label">Autre</span>
-    		<input type="text" placeholder="Nom région" ng-model="newRegion.regionName" ng-required="userWine.wine.region.regionName=='Autre'" />
+    		<input type="text" placeholder="Nom région" ng-model="newRegion.regionName" ng-required="userWine.vintage.wine.region.regionName=='Autre'" />
   		</label>
 
   		<label class="item item-input item-select">
 			<div class="input-label">
 			  Couleur
 			</div>
-			<select ng-model="userWine.wine.color" ng-options="color as color.colorName for color in colors track by color.id">
+			<select ng-model="userWine.vintage.wine.color" ng-options="color as color.colorName for color in colors track by color.id">
 			</select>
 		</label>
 
 		<label class="item item-input" ng-show="userWine.wine.color.colorName=='Autre'">
 			<span class="input-label">Autre</span>
-    		<input type="text" placeholder="Nom couleur" ng-model="newColor.colorName" ng-required="userWine.wine.color.colorName=='Autre'" />
+    		<input type="text" placeholder="Nom couleur" ng-model="newColor.colorName" ng-required="userWine.vintage.wine.color.colorName=='Autre'" />
   		</label>
 
   		<label class="item item-input" >
 			<span class="input-label">Quantité</span>
-			<input type="text" ng-model="userWine.quantity" required>
+			<input type="number" ng-model="userWine.quantity" required>
 		</label>
 
 		<label class="item item-input" >
 			<span class="input-label">Prix</span>
 			<input type="number" step="0.01" ng-model="userWine.price">
+		</label>
+
+		<label class="item item-input" >
+			<span class="input-label">Commentaires</span>
+			<input type="text" ng-model="userWine.comments" required>
 		</label>
 
 	  <button type="button" ng-click="submit()" ng-disabled="form.$invalid || userWine.wine.region === undefined || userWine.wine.color === undefined" class="button button-block button-positive">Créer</button>

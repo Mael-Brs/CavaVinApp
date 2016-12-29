@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('FormCtrl',['$log', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', function ($log, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams) {
+.controller('FormCtrl',['$log', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams','Year', function ($log, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year) {
 
   var activeWineId;
   var account;
@@ -34,6 +34,7 @@ angular
 
     loadRegions();
     loadColors();
+    loadYears();
 
     if (activeWineId == -1){
       $scope.userWine = {
@@ -84,6 +85,10 @@ angular
     }
   };
 
+  function loadYears(){
+    $scope.years = Year.query();
+  };
+
   function addRegion(region){
     Region.save(region, function(value,responseHeaders,status) {
         $scope.userWine.wine.region = value;
@@ -107,6 +112,7 @@ angular
         addColor($scope.newColor);
       } else {
         var newWine = new Wine($scope.userWine.wine);
+        //TODO add Vintage
         var newWineInCellar = new WineInCellar($scope.userWine);
 
         newWine.$save(function(value,responseHeaders,status) {
