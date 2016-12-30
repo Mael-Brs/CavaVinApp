@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('FormCtrl',['$log', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams','Year', function ($log, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year) {
+.controller('FormCtrl',['$log', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams','Year','Vintage', function ($log, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage) {
 
   var activeWineId;
   var account;
@@ -111,14 +111,17 @@ angular
       } else if($scope.userWine.wine.color.colorName === "Autre"){
         addColor($scope.newColor);
       } else {
-        var newWine = new Wine($scope.userWine.wine);
-        //TODO add Vintage
+        var newWine = new Wine($scope.userWine.vintage.wine);
+        var newVintage = new Vintage($scope.userWine.vintage.wine)
         var newWineInCellar = new WineInCellar($scope.userWine);
 
         newWine.$save(function(value,responseHeaders,status) {
-            newWineInCellar.wine = newWine;
-            newWineInCellar.$save(function(value,responseHeaders,status) {
-                inputInit();
+            newVintage.wine = newWine;
+            newVintage.$save(function(value,responseHeaders,status) {
+              newWineInCellar.vintage = newVintage;
+              newWineInCellar.$save(function(value,responseHeaders,status) {
+                  inputInit();
+              });
             });
         });
       }

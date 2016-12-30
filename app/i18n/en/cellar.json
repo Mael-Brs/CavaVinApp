@@ -1,23 +1,21 @@
 {
-    "cavaVinApp": {
-        "cellar" : {
-            "home": {
-                "title": "Cellars",
-                "createLabel": "Create a new Cellar",
-                "createOrEditLabel": "Create or edit a Cellar",
-                "search": "Search for Cellar"
-            },
-            "created": "A new Cellar is created with identifier {{ param }}",
-            "updated": "A Cellar is updated with identifier {{ param }}",
-            "deleted": "A Cellar is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Cellar {{ id }}?"
-            },
-            "detail": {
-                "title": "Cellar"
-            },
-            "capacity": "Capacity",
-            "user": "User"
-        }
+    "cellar" : {
+        "home": {
+            "title": "Cellars",
+            "createLabel": "Create a new Cellar",
+            "createOrEditLabel": "Create or edit a Cellar",
+            "search": "Search for Cellar"
+        },
+        "created": "A new Cellar is created with identifier {{ param }}",
+        "updated": "A Cellar is updated with identifier {{ param }}",
+        "deleted": "A Cellar is deleted with identifier {{ param }}",
+        "delete": {
+            "question": "Are you sure you want to delete Cellar {{ id }}?"
+        },
+        "detail": {
+            "title": "Cellar"
+        },
+        "capacity": "Capacity",
+        "user": "User"
     }
 }
