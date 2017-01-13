@@ -3,27 +3,27 @@
   	<div class="card list">
 		<label class="item" >
 			<span>Nom : </span>
-			<span>{{userWine.wine.name}}</span>
+			<span>{{userWine.vintage.wine.name}}</span>
 		</label>
 
 		<label class="item" >
 			<span>Appellation : </span>
-			<span>{{userWine.wine.appellation}}</span>
+			<span>{{userWine.vintage.wine.appellation}}</span>
 		</label>
 
 		<label class="item" >
 			<span>Année : </span>
-			<span>{{userWine.wine.year}}</span>
+			<span>{{userWine.vintage.year.number}}</span>
 		</label>
 
 		<label class="item" >
 			<span>Région : </span>
-			<span>{{userWine.wine.region.regionName}}</span>
+			<span>{{userWine.vintage.wine.region.regionName}}</span>
 		</label>
 
 		<label class="item" >
 			<span>Couleur : </span>
-			<span>{{userWine.wine.color.colorName}}</span>
+			<span>{{userWine.vintage.wine.color.colorName}}</span>
 		</label>
   	</div>
   	<form name="$parent.form">
@@ -38,7 +38,7 @@
 			<input type="number" step="0.01" ng-model="userWine.price">
 		</label>
 
-	  <button type="button" ng-click="submit()" ng-disabled="form.$invalid || userWine.wine.region === undefined || userWine.wine.color === undefined" class="button button-block button-positive">Ajouter</button>
+	  <button type="button" ng-click="submit()" ng-disabled="form.$invalid || !userWine.quantity || !userWine.price" class="button button-block button-positive">Ajouter</button>
 	</div>
 
    </form>

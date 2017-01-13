@@ -1,21 +1,21 @@
 <ion-view view-title="Recherche de vin">
 	<ion-nav-buttons side="right">
-      <button class="button button-icon button-clear ion-plus-round" ng-click="editWine(-1)">
+      <button class="button button-icon button-clear ion-plus-round" ng-click="vm.editWine(-1)">
       </button>
     </ion-nav-buttons>
-  <ion-content>
-		
+
+  <ion-content>	
 
 	<div class="item item-input-inset">
 	    <label class="item-input-wrapper">
-		    <input type="text" placeholder="Rechercher un vin" ng-model="search.query" />
+		    <input type="text" placeholder="Rechercher un vin" ng-model="vm.query" />
 		</label>
-			<button class="button button-small icon ion-search" ng-click="search.submit(search.query)"/>
+			<button class="button button-small icon ion-search" ng-click="vm.submit(vm.query)"/>
 	</div>
 
 
 	<ion-list>
-	  <ion-item ng-repeat="wine in search.result" on-tap="addToCellar(wine.id)">
+	  <ion-item ng-repeat="wine in vm.result" on-tap="vm.selectVintage(wine.id)">
 	    <div class="winAttributes">
 			<span class="wineItemLine name">
 				{{wine.name}}
@@ -39,15 +39,15 @@
 		</div>
 	  </ion-item>
 
-	  <ion-item ng-show="!search.result">
+	  <ion-item ng-show="!vm.result">
 			Rechercher un vin dans notre base de données
 	  </ion-item>
-	  <ion-item ng-show="search.result.length == 0">
-	  		Aucun élément trouvé pour : {{search.query}}
+	  <ion-item ng-show="vm.result.length == 0">
+	  		Aucun élément trouvé pour : {{vm.query}}
 	  </ion-item>
-	  <ion-item href="#/app/form/-1" class="item item-icon-left" ng-show="search.result">
+	  <ion-item href="#/app/form/-1" class="item item-icon-left" ng-show="vm.result">
 			<i class="icon ion-plus-round"></i>
-			Si le vin n'existe pas ajoutez le
+			Nouveau vin
 	  </ion-item>
 	</ion-list>
 				

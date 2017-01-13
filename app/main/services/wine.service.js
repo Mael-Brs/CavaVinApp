@@ -7,7 +7,7 @@
     Wine.$inject = ['$resource'];
 
     function Wine ($resource) {
-        var resourceUrl =  'api/wines/:id';
+        var resourceUrl =  'api/wines/:id/:subResource';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -20,7 +20,12 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'vintages' : {  // The `comments` action definition:
+                params: {subResource: 'vintages'},
+                method: 'GET', 
+                isArray: true
+            }
         });
     }
 })();

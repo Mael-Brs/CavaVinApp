@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('addToCellarCtrl',['$log', '$scope', '$state', 'Wine', 'WineInCellar', 'User', 'Principal', '$stateParams', function ($log, $scope, $state, Wine, WineInCellar,User, Principal, $stateParams) {
+.controller('addToCellarCtrl',['$log', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', function ($log, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams) {
 
   var activeWineId;
   var account;
@@ -10,14 +10,14 @@ angular
   $scope.userWine = {};
 
   $scope.$on('$ionicView.enter', function(e) { 
-    activeWineId = $stateParams.wineId;
+    activeWineId = $stateParams.vintageId;
     inputInit();
   });
 
   Principal.identity().then(function(account) {
     account = account;
     cellar = User.cellars({login:account.login},function(result){
-      $scope.userWine.cellar = result;
+      $scope.userWine.cellarId = result.id;
     });
   });
       
@@ -28,11 +28,13 @@ angular
         id : "",
         quantity: "",
         price:"",
-        cellar:cellar
+        vintage:null,
+        cellarId:cellar.id,
+        comments:null
       };
 
-      Wine.get({id:activeWineId},function(result){
-        $scope.userWine.wine = result;
+      Vintage.get({id:activeWineId},function(result){
+        $scope.userWine.vintage = result;
       });
 
     } 

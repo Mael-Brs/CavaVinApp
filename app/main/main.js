@@ -140,7 +140,7 @@ angular.module('main', [
             views: {
                 'pageContent': {
                     templateUrl: 'main/templates/wineSearch.html',
-                    controller: 'wineSearchCtrl'
+                    controller: 'WineSearchCtrl as vm'
                 }
             },
             resolve: {
@@ -151,7 +151,7 @@ angular.module('main', [
         })
         .state('addToCellar', {
             parent: 'app',
-            url: '/addToCellar/:wineId',
+            url: '/addToCellar/:vintageId',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -163,6 +163,25 @@ angular.module('main', [
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    return $translate.refresh();
+                }]
+            }
+        })
+        .state('selectVintage', {
+            parent: 'app',
+            url: '/selectVintage/:wineId',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            views: {
+                'pageContent': {
+                    templateUrl: 'main/templates/selectVintage.html',
+                    controller: 'SelectVintage as vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('selectVintage');
                     return $translate.refresh();
                 }]
             }

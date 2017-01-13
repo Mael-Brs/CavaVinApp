@@ -1,0 +1,9 @@
+{
+    "selectVintage": {
+        "title": "Millésime",
+        "select": "Selectionner",
+        "modal": {
+        	"title": "Ajouter un millésime"
+        }
+    }
+}

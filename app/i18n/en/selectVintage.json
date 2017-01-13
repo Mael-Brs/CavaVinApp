@@ -1,0 +1,9 @@
+{
+    "selectVintage": {
+        "title": "Vintage",
+        "select": "Select",
+        "modal": {
+        	"title": "Add vintage"
+        }
+    }
+}

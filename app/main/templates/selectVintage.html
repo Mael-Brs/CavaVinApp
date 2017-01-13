@@ -1,0 +1,24 @@
+<ion-view view-title="{{'selectVintage.title' | translate}}">
+    <ion-content class="padding">
+		<ion-list>
+            <form name="form" role="form" novalidate ng-submit="vm.select()" show-validation>		
+            <ion-item class="item-input item-select">
+				<label >
+                    <div class="input-label">
+                      Année
+                    </div>
+                    <select ng-model="vm.selectedVintage" ng-options="vintage as vintage.year.number for vintage in vm.vintages track by vintage.id">
+                        <option value=""></option>
+                    </select>
+                </label>
+                </ion-item>
+
+                <button type="submit" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.select">Select</button>
+            </form>
+            <ion-item ng-click="vm.openCreateVintage()" class="item item-icon-left">
+                <i class="icon ion-plus-round"></i>
+                Nouveau millésime
+            </ion-item>
+        </ion-list>
+	</ion-content>
+</ion-view>

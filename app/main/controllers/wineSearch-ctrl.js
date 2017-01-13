@@ -1,13 +1,17 @@
 'use strict';
 angular
 .module('main')
-.controller('wineSearchCtrl',['$log', '$scope', '$state', 'Principal', 'WineSearch','Cellar', 'User', function ($log, $scope, $state, Principal, WineSearch,Cellar,User) {
+.controller('WineSearchCtrl', WineSearchCtrl);
 
+WineSearchCtrl.$inject = ['$log', '$scope', '$state', 'Principal', 'WineSearch','Cellar', 'User', '$ionicModal'];
+
+function WineSearchCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,User, $ionicModal) {
+  var vm = this;
   var account;
   var cellar;
-  $scope.search = {};
-  $scope.search.submit = submit;
-
+  vm.submit = submit;
+/*  vm.openModal = openModal;
+*/
   Principal.identity().then(function(account) {
     account = account;
     cellar = User.cellars({login:account.login},function(cellar){
@@ -18,17 +22,32 @@ angular
   function submit (query) {
     if (typeof query != 'undefined') {
       WineSearch.query({query: query}, function(result) {
-          $scope.search.result = result;
+          vm.result = result;
       });
     }
   };
 
-  $scope.addToCellar = function(id){
+  /*$ionicModal.fromTemplateUrl('main/templates/selectVintage.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+  }).then(function(modal) {
+      vm.modal = modal;
+  });
+
+  function openModal(){
+      vm.modal.show();
+  }*/
+
+  vm.addToCellar = function(id){
     $state.go('addToCellar',{wineId:id});
   };
   
-  $scope.editWine = function(id){
+  vm.editWine = function(id){
     $state.go('form',{wineId:id});
   };
 
-}]);
+  vm.selectVintage = function(id){
+    $state.go('selectVintage',{wineId:id});
+  }
+
+};
