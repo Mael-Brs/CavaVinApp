@@ -43,7 +43,7 @@ angular
   $scope.submit = function() {
     if (!$scope.form.$invalid) {
       var newWineInCellar = new WineInCellar($scope.userWine);
-      newWineInCellar.$save(function(value,responseHeaders,status) {
+      newWineInCellar.$save(function() {
           $state.go('list');
       });
 

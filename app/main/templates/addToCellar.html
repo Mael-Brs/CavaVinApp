@@ -33,6 +33,17 @@
   	</div>
   	<form name="$parent.form">
   	<div class="list">
+
+  		<label class="item item-input" >
+			<span class="input-label">Garde minimale</span>
+			<input type="number" step="1" ng-model="userWine.minKeep">
+		</label>
+
+		<label class="item item-input" >
+			<span class="input-label">Garde maximale</span>
+			<input type="number" step="1" ng-model="userWine.maxKeep">
+		</label>
+
   		<label class="item item-input" >
 			<span class="input-label">Quantité</span>
 			<input type="text" ng-model="userWine.quantity" required>
