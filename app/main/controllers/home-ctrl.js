@@ -2,9 +2,9 @@
 angular.module('main')
     .controller('HomeCtrl', HomeCtrl);
 
-    HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User'];
+    HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService'];
 
-    function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User) {
+    function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService) {
         var vm = this;
         vm.account = null;
         vm.isAuthenticated = null;
@@ -26,6 +26,9 @@ angular.module('main')
                 if (account){
                     User.cellars({login:account.login},function(cellar){
                         vm.cellar = cellar;
+                        if(vm.cellar){
+                            CacheService.setActiveCellar(cellar);
+                        }
                     });
                 }
             });

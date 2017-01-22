@@ -102,11 +102,12 @@ angular.module('main', [
             views: {
                 'pageContent': {
                   templateUrl: 'main/templates/list.html',
-                  controller:'ListCtrl'
+                  controller:'ListCtrl as vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('list');
                     return $translate.refresh();
                 }]
             }
@@ -151,7 +152,7 @@ angular.module('main', [
         })
         .state('addToCellar', {
             parent: 'app',
-            url: '/addToCellar/:vintageId',
+            url: '/addToCellar/:wineId',
             data: {
                 authorities: ['ROLE_USER']
             },

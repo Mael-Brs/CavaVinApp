@@ -1,0 +1,61 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title" translate="list.modal.details.title">Details vin</h1>
+        <button class="button button-clear button-primary" ng-click="vm.modal.hide()" translate="entity.action.cancel">Cancel</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+		
+        <div class="card list">
+            <label class="item" >
+                <span>Nom : </span>
+                <span>{{vm.selected.vintage.wine.name}}</span>
+            </label>
+
+            <label class="item" >
+                <span>Producteur : </span>
+                <span>{{vm.selected.vintage.wine.producer}}</span>
+            </label>
+
+            <label class="item" >
+                <span>Appellation : </span>
+                <span>{{vm.selected.vintage.wine.appellation}}</span>
+            </label>
+
+            <label class="item" >
+                <span>Région : </span>
+                <span>{{vm.selected.vintage.wine.region.regionName}}</span>
+            </label>
+
+            <label class="item" >
+                <span>Couleur : </span>
+                <span>{{vm.selected.vintage.wine.color.colorName}}</span>
+            </label>
+
+            <label class="item" >
+                <span>Année : </span>
+                <span>{{vm.selected.vintage.year.number}}</span>
+            </label>
+
+             <label class="item" >
+                <span>Garde maximale : </span>
+                <span>{{vm.selected.vintage.maxKeep.number}}</span>
+            </label>
+
+             <label class="item" >
+                <span>Quantité : </span>
+                <span>{{vm.selected.quantity}}</span>
+            </label>
+
+             <label class="item" >
+                <span>Prix : </span>
+                <span>{{vm.selected.price}}</span>
+            </label>
+
+             <label class="item" >
+                <span>Commentaires : </span>
+                <span>{{vm.selected.comments}}</span>
+            </label>
+        </div>
+        
+	</ion-content>
+</ion-modal-view>

@@ -7,6 +7,11 @@
 		</label>
 
 		<label class="item" >
+            <span>Producteur : </span>
+            <span>{{userWine.vintage.wine.producer}}</span>
+        </label>
+
+		<label class="item" >
 			<span>Appellation : </span>
 			<span>{{userWine.vintage.wine.appellation}}</span>
 		</label>
@@ -36,6 +41,11 @@
 		<label class="item item-input" >
 			<span class="input-label">Prix</span>
 			<input type="number" step="0.01" ng-model="userWine.price">
+		</label>
+
+		<label class="item item-input" >
+			<span class="input-label">Commentaires</span>
+			<input type="text" ng-model="userWine.comments">
 		</label>
 
 	  <button type="button" ng-click="submit()" ng-disabled="form.$invalid || !userWine.quantity || !userWine.price" class="button button-block button-positive">Ajouter</button>

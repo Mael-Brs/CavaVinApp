@@ -1,7 +1,23 @@
 <ion-view view-title="{{'selectVintage.title' | translate}}">
     <ion-content class="padding">
 		<ion-list>
-            <form name="form" role="form" novalidate ng-submit="vm.select()" show-validation>		
+            <form name="form" role="form" novalidate ng-submit="vm.select()" show-validation>
+            <div class="card list">
+                <label class="item" >
+                    <span>Nom : </span>
+                    <span>{{vm.wine.name}}</span>
+                </label>
+
+                <label class="item" >
+                    <span>Appellation : </span>
+                    <span>{{vm.wine.appellation}}</span>
+                </label>
+
+                <label class="item" >
+                    <span>Région : </span>
+                    <span>{{vm.wine.region.regionName}}</span>
+                </label>
+            </div>	
             <ion-item class="item-input item-select">
 				<label >
                     <div class="input-label">

@@ -64,7 +64,7 @@
 
 		<label class="item item-input" >
 			<span class="input-label">Commentaires</span>
-			<input type="text" ng-model="userWine.comments" required>
+			<input type="text" ng-model="userWine.comments">
 		</label>
 
 	  <button type="button" ng-click="submit()" ng-disabled="form.$invalid || userWine.wine.region === undefined || userWine.wine.color === undefined" class="button button-block button-positive">Créer</button>

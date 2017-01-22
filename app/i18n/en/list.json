@@ -1,0 +1,11 @@
+{
+    "list": {
+        "title": "Vintage",
+        "select": "Select",
+        "modal": {
+        	"details":{
+        		"title": "Wine in cellar details"
+        	}
+        }
+    }
+}

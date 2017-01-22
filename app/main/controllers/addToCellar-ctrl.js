@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('addToCellarCtrl',['$log', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', function ($log, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams) {
+.controller('addToCellarCtrl',['$log', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', function ($log, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService) {
 
   var activeWineId;
   var account;
@@ -10,7 +10,7 @@ angular
   $scope.userWine = {};
 
   $scope.$on('$ionicView.enter', function(e) { 
-    activeWineId = $stateParams.vintageId;
+    activeWineId = $stateParams.wineId;
     inputInit();
   });
 
@@ -23,21 +23,20 @@ angular
       
   /**********Functions**********/
   function inputInit(){
-    if (typeof activeWineId != 'undefined'){
+    if (activeWineId == -1){
       $scope.userWine = {
         id : "",
         quantity: "",
         price:"",
         vintage:null,
-        cellarId:cellar.id,
         comments:null
       };
 
-      Vintage.get({id:activeWineId},function(result){
-        $scope.userWine.vintage = result;
-      });
+      $scope.userWine.vintage = CacheService.getSelectedVintage();
 
-    } 
+    } else {
+      $scope.userWine = WineInCellar.get({id:activeWineId});
+    }
   };
 
 

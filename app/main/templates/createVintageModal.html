@@ -14,6 +14,13 @@
                     <select ng-model="vm.selectedYear" ng-options="year as year.number for year in vm.years track by year.id">
                     </select>
                 </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                      Garde max
+                    </div>
+                    <select ng-model="vm.maxKeep" ng-options="year as year.number for year in vm.years track by year.id">
+                    </select>
+                </label>
                 <button type="submit" ng-disabled="form.$invalid || !vm.selectedYear" class="button button-full button-positive" translate="entity.action.save">Save</button>
             </ion-item>
             </form>
