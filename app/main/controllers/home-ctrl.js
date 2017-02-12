@@ -17,6 +17,9 @@ angular.module('main')
             getAccount();
         });
 
+        vm.totalWine = 17;
+        vm.wineNbByRegion = [{region:"Bordeaux", sum:6},{region:"Languedoc", sum:10}];
+        vm.wineNbByColor = [{color:"Blanc", sum:6},{color:"Rouge", sum:10}];
         getAccount();
 
         function getAccount() {

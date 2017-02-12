@@ -13,15 +13,14 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   vm.sortColor = 'appellation'; // set the default sort color
   vm.sortReverse = false;
   vm.openModal = openModal;
-  var account;
   var cellar;
 
-  $scope.$on('$ionicView.enter', function(e) { 
+  $scope.$on('$ionicView.enter', function() { 
     cellar = CacheService.getActiveCellar();
     if(!cellar){
       Principal.identity().then(function(account) {
         account = account;
-        cellar = User.cellars({login:account.login},function(cellar){
+        cellar = User.cellars({login:account.login},function(){
           loadAll();
         });
       });
@@ -34,9 +33,9 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
     Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
       vm.wines = wineInCellars;
     });
-  };
+  }
   
-  vm.addWine = function(id){
+  vm.addWine = function(){
     $state.go('wineSearch');
   };
 
@@ -71,4 +70,4 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
         vm.modal.show();
     }
   
-};
+}

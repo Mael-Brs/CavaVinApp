@@ -18,7 +18,7 @@ function SelectVintage ($log, $scope, $state, Vintage, Wine, User, $stateParams,
 	function select(){
 		CacheService.setSelectedVintage(vm.selectedVintage);
 		$state.go('addToCellar',{wineId:-1});
-	};
+	}
 
 	function createVintage(){
 		var newVintage = new Vintage({year:vm.selectedYear, maxKeep:vm.maxKeep, wine:{id:vm.wineId}});
@@ -27,7 +27,7 @@ function SelectVintage ($log, $scope, $state, Vintage, Wine, User, $stateParams,
 			vm.vintages = Wine.vintages({id:vm.wineId});
 		});
 
-	};
+	}
 
 	$ionicModal.fromTemplateUrl('main/templates/createVintageModal.html', {
   		scope: $scope,
@@ -40,4 +40,4 @@ function SelectVintage ($log, $scope, $state, Vintage, Wine, User, $stateParams,
       vm.modal.show();
   }
 
-};
+}

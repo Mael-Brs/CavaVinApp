@@ -6,16 +6,38 @@
                     <div class="item item-divider">
                         <span translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}"> Welcome, {{vm.account.login}}!</span>
                     </div>
-                    <div class="item item-text-wrap">
-                        <div translate="home.cellar.undefined" translate-compile ng-if="!vm.cellar">
+                    <div class="item item-text-wrap" ng-if="!vm.cellar">
+                        <div translate="home.cellar.undefined" translate-compile >
                             <a class="alert-link" href="" ng-click="vm.openModal()" >Create your CavaVin</a>
                         </div>
-                        
                     </div>
-                    <ion-item>
-                      Nb bouteille
-                      <ion-badge item-right>260k</ion-badge>
-                    </ion-item>
+                    <div ng-if="vm.cellar">
+                        <div class="item item-text-wrap">
+                          <span class="badge badge-assertive">{{vm.totalWine}}</span>
+                          Bouteilles
+                        </div>
+
+                        <div class="item item-divider">
+                            Bouteilles par region
+                        </div>
+                        <div class="item item-text-wrap" ng-repeat="stat in vm.wineNbByRegion | orderBy:'sum' : true">
+                            <span  class="badge badge-assertive">
+                                {{stat.sum/vm.totalWine*100 | number:0}} %
+                            </span>
+                                {{stat.region}}
+                        </div>
+
+                        <div class="item item-divider">
+                            Bouteilles par couleur
+                        </div>
+
+                        <div class="item item-text-wrap" ng-repeat="stat in vm.wineNbByColor | orderBy:'sum' : true">
+                            <span  class="badge badge-assertive">
+                                {{stat.sum/vm.totalWine*100 | number:0}} %
+                            </span>
+                                {{stat.color}}
+                        </div>
+                    </div>
                 </div> 
                 <div ng-switch-when="false">
                     <div class="item item-divider">
