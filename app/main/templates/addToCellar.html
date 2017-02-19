@@ -3,66 +3,64 @@
   	<div class="card list">
 		<label class="item" >
 			<span>Nom : </span>
-			<span>{{userWine.vintage.wine.name}}</span>
+			<span>{{vm.userWine.vintage.wine.name}}</span>
 		</label>
 
 		<label class="item" >
             <span>Producteur : </span>
-            <span>{{userWine.vintage.wine.producer}}</span>
+            <span>{{vm.userWine.vintage.wine.producer}}</span>
         </label>
 
 		<label class="item" >
 			<span>Appellation : </span>
-			<span>{{userWine.vintage.wine.appellation}}</span>
+			<span>{{vm.userWine.vintage.wine.appellation}}</span>
 		</label>
 
 		<label class="item" >
 			<span>Année : </span>
-			<span>{{userWine.vintage.year.number}}</span>
+			<span>{{vm.userWine.vintage.year.number}}</span>
 		</label>
 
 		<label class="item" >
 			<span>Région : </span>
-			<span>{{userWine.vintage.wine.region.regionName}}</span>
+			<span>{{vm.userWine.vintage.wine.region.regionName}}</span>
 		</label>
 
 		<label class="item" >
 			<span>Couleur : </span>
-			<span>{{userWine.vintage.wine.color.colorName}}</span>
+			<span>{{vm.userWine.vintage.wine.color.colorName}}</span>
 		</label>
   	</div>
   	<form name="$parent.form">
-  	<div class="list">
+	  	<div class="list">
 
-  		<label class="item item-input" >
-			<span class="input-label">Garde minimale</span>
-			<input type="number" step="1" ng-model="userWine.minKeep">
-		</label>
+	  		<label class="item item-input" >
+				<span class="input-label">Garde minimale</span>
+				<input type="number" step="1" ng-model="vm.userWine.minKeep">
+			</label>
 
-		<label class="item item-input" >
-			<span class="input-label">Garde maximale</span>
-			<input type="number" step="1" ng-model="userWine.maxKeep">
-		</label>
+			<label class="item item-input" >
+				<span class="input-label">Garde maximale</span>
+				<input type="number" step="1" ng-model="vm.userWine.maxKeep">
+			</label>
 
-  		<label class="item item-input" >
-			<span class="input-label">Quantité</span>
-			<input type="text" ng-model="userWine.quantity" required>
-		</label>
+	  		<label class="item item-input" >
+				<span class="input-label">Quantité</span>
+				<input type="text" ng-model="vm.userWine.quantity" required>
+			</label>
 
-		<label class="item item-input" >
-			<span class="input-label">Prix</span>
-			<input type="number" step="0.01" ng-model="userWine.price">
-		</label>
+			<label class="item item-input" >
+				<span class="input-label">Prix</span>
+				<input type="number" step="0.01" ng-model="vm.userWine.price">
+			</label>
 
-		<label class="item item-input" >
-			<span class="input-label">Commentaires</span>
-			<input type="text" ng-model="userWine.comments">
-		</label>
+			<label class="item item-input" >
+				<span class="input-label">Commentaires</span>
+				<input type="text" ng-model="vm.userWine.comments">
+			</label>
 
-	  <button type="button" ng-click="submit()" ng-disabled="form.$invalid || !userWine.quantity || !userWine.price" class="button button-block button-positive">Ajouter</button>
-	</div>
-
+			<button type="button" ng-click="vm.submit()" ng-disabled="form.$invalid || !vm.userWine.quantity || !vm.userWine.price" class="button button-block button-positive">Ajouter</button>
+		</div>
    </form>
-
   </ion-content>
 </ion-view>

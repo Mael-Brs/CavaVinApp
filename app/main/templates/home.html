@@ -1,8 +1,8 @@
 <ion-view view-title="{{'global.menu.home' | translate}}">
     <ion-content>
-        <div class="card">
-            <div ng-switch="vm.isAuthenticated()">
-                <div ng-switch-when="true">
+        <div ng-switch="vm.isAuthenticated()">
+            <div ng-switch-when="true">
+                <div class="card">
                     <div class="item item-divider">
                         <span translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}"> Welcome, {{vm.account.login}}!</span>
                     </div>
@@ -13,33 +13,32 @@
                     </div>
                     <div ng-if="vm.cellar">
                         <div class="item item-text-wrap">
-                          <span class="badge badge-assertive">{{vm.totalWine}}</span>
-                          Bouteilles
-                        </div>
-
-                        <div class="item item-divider">
-                            Bouteilles par region
-                        </div>
-                        <div class="item item-text-wrap" ng-repeat="stat in vm.wineNbByRegion | orderBy:'sum' : true">
-                            <span  class="badge badge-assertive">
-                                {{stat.sum/vm.totalWine*100 | number:0}} %
-                            </span>
-                                {{stat.region}}
-                        </div>
-
-                        <div class="item item-divider">
-                            Bouteilles par couleur
-                        </div>
-
-                        <div class="item item-text-wrap" ng-repeat="stat in vm.wineNbByColor | orderBy:'sum' : true">
-                            <span  class="badge badge-assertive">
-                                {{stat.sum/vm.totalWine*100 | number:0}} %
-                            </span>
-                                {{stat.color}}
+                          <span class="badge badge-assertive">{{vm.sum}}</span>
+                          Vin dans votre cave
                         </div>
                     </div>
-                </div> 
-                <div ng-switch-when="false">
+                </div>
+                <div class="list card">
+                    <div class="item item-divider">
+                        <span > Voulez vous ?</span>
+                    </div>
+                    <a href="#/app/wineSearch" class="item item-icon-left">
+                        <i class="icon ion-plus-round"></i>
+                        Ajouter un vin
+                    </a>
+                    <a href="#/app/list" class="item item-icon-left">
+                        <i class="icon ion-clipboard"></i>
+                        Voir vos vins
+                    </a>
+                    <a href="#/app/cellarDetails" class="item item-icon-left">
+                        <i class="icon ion-stats-bars"></i>
+                        Voir les infos de votre cave
+                    </a>
+
+                </div>
+            </div> 
+            <div ng-switch-when="false">
+                <div class="card">
                     <div class="item item-divider">
                         <span translate="home.title">Welcome to your CavaVin !</span>
                     </div>
@@ -53,7 +52,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <img width="100%" src="main/assets/images/hipster2x.png"> -->
             </div>
         </div>
     </ion-content>

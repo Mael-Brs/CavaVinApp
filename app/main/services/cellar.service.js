@@ -21,8 +21,22 @@
                 }
             },
             'update': { method:'PUT' },
-            'wineInCellars' : {  // The `comments` action definition:
+            'wineInCellars' : {  // Get all the wine for the specified id of cellar
                 params: {subResource: 'wine-in-cellars'},
+                method: 'GET', 
+                isArray: true
+            },
+            'sumOfWine' : {  // Get the total number of wine in cellar
+                params: {subResource: 'sum-of-wine'},
+                method: 'GET'
+            },
+            'wineByRegion' : {  // Get the total number of wine in cellar
+                params: {subResource: 'wine-by-region'},
+                method: 'GET', 
+                isArray: true
+            },
+            'wineByColor' : {  // Get the total number of wine in cellar
+                params: {subResource: 'wine-by-color'},
                 method: 'GET', 
                 isArray: true
             }

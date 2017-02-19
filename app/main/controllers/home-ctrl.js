@@ -2,9 +2,9 @@
 angular.module('main')
     .controller('HomeCtrl', HomeCtrl);
 
-    HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService'];
+    HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService', 'Cellar'];
 
-    function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService) {
+    function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar) {
         var vm = this;
         vm.account = null;
         vm.isAuthenticated = null;
@@ -17,9 +17,6 @@ angular.module('main')
             getAccount();
         });
 
-        vm.totalWine = 17;
-        vm.wineNbByRegion = [{region:"Bordeaux", sum:6},{region:"Languedoc", sum:10}];
-        vm.wineNbByColor = [{color:"Blanc", sum:6},{color:"Rouge", sum:10}];
         getAccount();
 
         function getAccount() {
@@ -30,12 +27,14 @@ angular.module('main')
                     User.cellars({login:account.login},function(cellar){
                         vm.cellar = cellar;
                         if(vm.cellar){
+                            vm.sum = cellar.sumOfWine != null ? cellar.sumOfWine : 0;
                             CacheService.setActiveCellar(cellar);
                         }
                     });
                 }
             });
         }
+
         function register () {
             $state.go('register');
         }

@@ -4,10 +4,12 @@ angular
 .module('main')
 .controller('addToCellarCtrl',['$log', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', function ($log, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService) {
 
+  var vm = this;
+  vm.submit = submit;
+  vm.userWine = {};
   var activeWineId;
   var account;
   var cellar;
-  $scope.userWine = {};
 
   $scope.$on('$ionicView.enter', function(e) { 
     activeWineId = $stateParams.wineId;
@@ -17,37 +19,38 @@ angular
   Principal.identity().then(function(account) {
     account = account;
     cellar = User.cellars({login:account.login},function(result){
-      $scope.userWine.cellarId = result.id;
+      vm.userWine.cellarId = result.id;
     });
   });
       
   /**********Functions**********/
   function inputInit(){
     if (activeWineId == -1){
-      $scope.userWine = {
+      vm.userWine = {
         id : "",
         quantity: "",
         price:"",
         vintage:null,
-        comments:null
+        comments:null,
+        cellarId:cellar.id
       };
 
-      $scope.userWine.vintage = CacheService.getSelectedVintage();
+      vm.userWine.vintage = CacheService.getSelectedVintage();
 
     } else {
-      $scope.userWine = WineInCellar.get({id:activeWineId});
+      vm.userWine = WineInCellar.get({id:activeWineId});
+      vm.cellarId = cellar.id;
     }
-  };
+  }
 
-
-  $scope.submit = function() {
+   function submit() {
     if (!$scope.form.$invalid) {
-      var newWineInCellar = new WineInCellar($scope.userWine);
+      var newWineInCellar = new WineInCellar(vm.userWine);
       newWineInCellar.$save(function() {
           $state.go('list');
       });
 
     }
-  };
+  }
 
 }]);

@@ -3,11 +3,12 @@
 angular
 .module('main')
 .controller('FormCtrl',['$log', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams','Year','Vintage', function ($log, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage) {
-
+  var vm = this;
   var activeWineId;
   var account;
   var cellar;
-  $scope.userWine = {};
+  vm.userWine = {};
+  vm.submit = submit;
 
   $scope.$on('$ionicView.enter', function(e) { 
     activeWineId = $stateParams.wineId;
@@ -17,17 +18,17 @@ angular
   Principal.identity().then(function(account) {
     account = account;
     cellar = User.cellars({login:account.login},function(result){
-      $scope.userWine.cellar = result;
+      vm.userWine.cellarId = result.id;
     });
   });
       
   //-------Functions-------------\\
   function inputInit(){
-    $scope.newColor = {
+    vm.newColor = {
       id:"",
       name:""
     };
-    $scope.newRegion ={
+    vm.newRegion ={
       id:"",
       nom:""
     };
@@ -37,7 +38,7 @@ angular
     loadYears();
 
     if (activeWineId == -1){
-      $scope.userWine = {
+      vm.userWine = {
         id : "",
         wine:{
           name : "",
@@ -54,66 +55,68 @@ angular
         },
         quantity: "",
         price:"",
-        cellar:cellar
+        maxKeep:null,
+        minKeep:null,
+        cellarId:cellar.id
       };
 
     } else if (activeWineId != -1){
       WineInCellar.get({id:activeWineId}, function successCallback(result) {
-          $scope.userWine = result;
+          vm.userWine = result;
       }, function errorCallback(response) {
       
       });
     }
 
-  };
+  }
 
   function loadRegions() {
-    if (typeof $scope.regions === 'undefined'){
+    if (typeof vm.regions === 'undefined'){
       Region.query(function(result){
-        $scope.regions = result;
-        $scope.regions.push({id:"-1",regionName:"Autre"});
+        vm.regions = result;
+        vm.regions.push({id:"-1",regionName:"Autre"});
       });
     }
-  };
+  }
   
   function loadColors(){
-    if(typeof $scope.colors === 'undefined'){
+    if(typeof vm.colors === 'undefined'){
       Color.query(function(result){
-        $scope.colors = result;
-        $scope.colors.push({id:"-1", colorName:"Autre"});
+        vm.colors = result;
+        vm.colors.push({id:"-1", colorName:"Autre"});
       });
     }
-  };
+  }
 
   function loadYears(){
-    $scope.years = Year.query();
-  };
+    vm.years = Year.query();
+  }
 
   function addRegion(region){
     Region.save(region, function(value,responseHeaders,status) {
-        $scope.userWine.wine.region = value;
-        $scope.submit();
+        vm.userWine.vintage.wine.region = value;
+        submit();
     });
-  };
+  }
 
   function addColor(color){
     Color.save(color, function(value,responseHeaders,status) {
-        $scope.userWine.wine.color = value;
-        $scope.submit();
+        vm.userWine.vintage.wine.color = value;
+        submit();
     });
-  };
+  }
 
 
-  $scope.submit = function() {
+   function submit() {
     if (!$scope.form.$invalid) {
-      if($scope.userWine.wine.region.regionName === "Autre"){         
-        addRegion($scope.newRegion);
-      } else if($scope.userWine.wine.color.colorName === "Autre"){
-        addColor($scope.newColor);
+      if(vm.userWine.vintage.wine.region.regionName === "Autre"){         
+        addRegion(vm.newRegion);
+      } else if(vm.userWine.vintage.wine.color.colorName === "Autre"){
+        addColor(vm.newColor);
       } else {
-        var newWine = new Wine($scope.userWine.vintage.wine);
-        var newVintage = new Vintage($scope.userWine.vintage.wine)
-        var newWineInCellar = new WineInCellar($scope.userWine);
+        var newWine = new Wine(vm.userWine.vintage.wine);
+        var newVintage = new Vintage(vm.userWine.vintage.wine)
+        var newWineInCellar = new WineInCellar(vm.userWine);
 
         newWine.$save(function(value,responseHeaders,status) {
             newVintage.wine = newWine;
@@ -126,6 +129,6 @@ angular
         });
       }
     }
-  };
+  }
 
 }]);

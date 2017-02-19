@@ -3,15 +3,15 @@
       <button class="button button-icon button-clear ion-plus-round" ng-click="vm.addWine()">
       </button>
     </ion-nav-buttons>
-  <ion-content>
+  	<ion-content>
 		
 		<a class="button button-full button-small" ng-click="vm.showForm=!vm.showForm">
 		    Tri et recherche
 		    <span class="icon-right ion-chevron-down" />
 		</a>	
 
-		<div id="searchSort" class="item row" ng-show="vm.showForm">
-			<div class="item-input-inset">
+		<div id="searchSort" ng-show="vm.showForm">
+			<div class="item item-input-inset">
 			    <label class="item-input-wrapper">
 				    <i class="icon ion-search"></i>
 				    <input type="text" placeholder="Chercher un vin" ng-model="vm.searchWine"/>

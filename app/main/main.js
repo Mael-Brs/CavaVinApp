@@ -74,16 +74,16 @@ angular.module('main', [
                 }]
             }
         })
-        .state('dashboard', {
+        .state('cellarDetails', {
             parent: 'app',
-            url: '/dashboard',
+            url: '/cellarDetails',
             data: {
                 authorities: ['ROLE_USER']
             },
             views: {
               'pageContent': {
-                templateUrl: 'main/templates/dashboard.html',
-                controller:'dashboardController'
+                templateUrl: 'main/templates/cellarDetails.html',
+                controller:'CellarDetailsCtrl as vm'
               }
             },
             resolve: {
@@ -122,7 +122,7 @@ angular.module('main', [
             views: {
                 'pageContent': {
                     templateUrl: 'main/templates/form.html',
-                    controller: 'FormCtrl'
+                    controller: 'FormCtrl as vm'
                 }
             },
             resolve: {
@@ -159,7 +159,7 @@ angular.module('main', [
             views: {
                 'pageContent': {
                     templateUrl: 'main/templates/addToCellar.html',
-                    controller: 'addToCellarCtrl'
+                    controller: 'addToCellarCtrl as vm'
                 }
             },
             resolve: {
