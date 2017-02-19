@@ -10,16 +10,9 @@
 	padding:0px 0px 0px 0px;
 }
 
-#sort select {
-	position:relative;
-	padding-left:0px;
-	padding-right:25px;
-}
-
-#sort .item-input-inset {
-	padding:10px 0px 10px 0px;
-	vertical-align: middle;
-	margin-left: -5px;
+.button-sort {
+	padding-right : 10px;
+	float:right;
 }
 
 span.icon-right.ion-chevron-down{
