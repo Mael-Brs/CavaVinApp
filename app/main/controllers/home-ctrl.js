@@ -13,11 +13,26 @@ angular.module('main')
         vm.register = register;
         vm.cellar;
         vm.openModal = openModal;
+        vm.save = saveCellar;
+
         $rootScope.$on('authenticationSuccess', function() {
             getAccount();
         });
 
-        getAccount();
+        $scope.$on('$ionicView.enter', function() { 
+            getCellarDetails();
+        });
+
+        function getCellarDetails() {
+            vm.cellar = CacheService.get('activeCellar');
+            if(vm.cellar){
+                vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
+                vm.wineByRegion = vm.cellar.wineByRegion;
+                vm.wineByColor = vm.cellar.wineByColor;
+            } else {
+                getAccount();
+            }
+        }
 
         function getAccount() {
             Principal.identity().then(function(account) {
@@ -27,8 +42,8 @@ angular.module('main')
                     User.cellars({login:account.login},function(cellar){
                         vm.cellar = cellar;
                         if(vm.cellar){
-                            vm.sum = cellar.sumOfWine != null ? cellar.sumOfWine : 0;
-                            CacheService.setActiveCellar(cellar);
+                            vm.sum = cellar.sumOfWine !== null ? cellar.sumOfWine : 0;
+                            CacheService.put('activeCellar',cellar);
                         }
                     });
                 }
@@ -66,4 +81,4 @@ angular.module('main')
          function onSaveError () {
             vm.error = 'ERROR';
         }
-    };
+    }

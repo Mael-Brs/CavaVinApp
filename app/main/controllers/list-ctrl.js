@@ -16,7 +16,8 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   var cellar;
 
   $scope.$on('$ionicView.enter', function() { 
-    cellar = CacheService.getActiveCellar();
+    cellar = CacheService.get('activeCellar');
+    // TODO Use cache in get function
     if(!cellar){
       Principal.identity().then(function(account) {
         account = account;
@@ -30,9 +31,13 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   });
 
   function loadAll() {
-    Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
-      vm.wines = wineInCellars;
-    });
+    vm.wines = CacheService.get('wineInCellars');
+    if(!vm.wines){
+      Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
+        vm.wines = wineInCellars;
+        CacheService.put('wineInCellars', wineInCellars);
+      });
+    }
   }
   
   vm.addWine = function(){

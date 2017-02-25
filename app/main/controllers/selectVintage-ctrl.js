@@ -13,10 +13,10 @@ function SelectVintage ($log, $scope, $state, Vintage, Wine, User, $stateParams,
 	vm.createVintage = createVintage;
 	vm.years = Year.query();
 	vm.openCreateVintage = openCreateVintage;
-	vm.wine = CacheService.getSelectedWine();
+	vm.wine = CacheService.get('selectedWine');
 
 	function select(){
-		CacheService.setSelectedVintage(vm.selectedVintage);
+		CacheService.put('selectedVintage', vm.selectedVintage);
 		$state.go('addToCellar',{wineId:-1});
 	}
 

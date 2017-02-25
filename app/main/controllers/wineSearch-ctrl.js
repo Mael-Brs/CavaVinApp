@@ -31,7 +31,7 @@ function WineSearchCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,User
   };
 
   vm.selectVintage = function(wine){
-    CacheService.setSelectedWine(wine);
+    CacheService.put('selectedWine', wine);
     $state.go('selectVintage',{wineId:wine.id});
   }
 

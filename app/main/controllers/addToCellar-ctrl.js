@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('addToCellarCtrl',['$log', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', function ($log, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService) {
+.controller('addToCellarCtrl',['$log', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'StatService', 'Cellar', function ($log, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService, StatService, Cellar) {
 
   var vm = this;
   vm.submit = submit;
@@ -13,15 +13,21 @@ angular
 
   $scope.$on('$ionicView.enter', function(e) { 
     activeWineId = $stateParams.wineId;
+    cellar = CacheService.get('activeCellar');
+    if(!cellar){
+      getCellar();
+    }
     inputInit();
   });
 
-  Principal.identity().then(function(account) {
-    account = account;
-    cellar = User.cellars({login:account.login},function(result){
-      vm.userWine.cellarId = result.id;
-    });
-  });
+  function getCellar(){
+    Principal.identity().then(function(account) {
+      account = account;
+      cellar = User.cellars({login:account.login},function(result){
+        vm.userWine.cellarId = result.id;
+      });
+    }); 
+  }
       
   /**********Functions**********/
   function inputInit(){
@@ -35,7 +41,7 @@ angular
         cellarId:cellar.id
       };
 
-      vm.userWine.vintage = CacheService.getSelectedVintage();
+      vm.userWine.vintage = CacheService.get('selectedVintage');
 
     } else {
       vm.userWine = WineInCellar.get({id:activeWineId});
@@ -46,10 +52,22 @@ angular
    function submit() {
     if (!$scope.form.$invalid) {
       var newWineInCellar = new WineInCellar(vm.userWine);
-      newWineInCellar.$save(function() {
-          $state.go('list');
-      });
 
+      newWineInCellar.$save(function(wineInCellar) {
+        var wineInCellars = CacheService.get('wineInCellars');
+
+        if(wineInCellars){
+          wineInCellars.push(wineInCellar);
+          CacheService.put('wineInCellars', wineInCellars);
+        } else {
+          Cellar.wineInCellars({id:cellar.id}, function(wines){
+            CacheService.put('wineInCellars', wines);
+          });
+        }
+
+        StatService.updateCellarDetails();
+        $state.go('list');
+      });
     }
   }
 
