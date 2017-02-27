@@ -71,11 +71,15 @@ angular.module('main')
         }
 
         function saveCellar(){
+            vm.cellar.userId = vm.account.id;
+            vm.cellar.userLogin = vm.account.login;
             Cellar.save(vm.cellar, onSaveSuccess, onSaveError);
         }
 
         function onSaveSuccess () {
             vm.success = 'OK';
+            vm.modal.hide();
+            getAccount();
         }
 
          function onSaveError () {

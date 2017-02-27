@@ -16,8 +16,9 @@ angular
     cellar = CacheService.get('activeCellar');
     if(!cellar){
       getCellar();
+    } else {
+      inputInit();
     }
-    inputInit();
   });
 
   function getCellar(){
@@ -25,6 +26,7 @@ angular
       account = account;
       cellar = User.cellars({login:account.login},function(result){
         vm.userWine.cellarId = result.id;
+        inputInit();
       });
     }); 
   }

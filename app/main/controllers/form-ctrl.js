@@ -15,8 +15,9 @@ angular
     cellar = CacheService.get('activeCellar');
     if(!cellar){
       getCellar();
+    } else {
+      inputInit();
     }
-    inputInit();
   });
 
   function getCellar(){
@@ -24,6 +25,7 @@ angular
       account = value;
       cellar = User.cellars({login:account.login},function(result){
         vm.userWine.cellarId = result.id;
+        inputInit();
       });
     });
   }
@@ -123,7 +125,7 @@ angular
         addColor(vm.newColor);
       } else {
         var newWine = new Wine(vm.userWine.vintage.wine);
-        var newVintage = new Vintage(vm.userWine.vintage.wine);
+        var newVintage = new Vintage(vm.userWine.vintage);
         var newWineInCellar = new WineInCellar(vm.userWine);
 
         newWine.$save(function(wine) {

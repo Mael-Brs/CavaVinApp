@@ -52,6 +52,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
     confirmPopup.then(function(res) {
       if(res) {
           WineInCellar.delete({id: id}, function successCallback() {
+              CacheService.remove('wineInCellars');
               loadAll();
           });
        } 
