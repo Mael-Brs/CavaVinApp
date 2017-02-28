@@ -10,7 +10,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   var vm = this;
   vm.wines;
   vm.showForm = false;
-  vm.sortColor = 'appellation'; // set the default sort color
+  vm.sortWine = 'apogee'; // set the default sort color
   vm.sortReverse = false;
   vm.openModal = openModal;
   var cellar;
