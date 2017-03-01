@@ -33,7 +33,7 @@
                 '&j_password=' + encodeURIComponent(credentials.password) +
                 '&remember-me=' + credentials.rememberMe + '&submit=Login';
 
-            return $http.post('api/authentication', data, {
+            return $http.post(Config.ENV.SERVER_URL + 'api/authentication', data, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }

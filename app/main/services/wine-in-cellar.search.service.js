@@ -5,10 +5,10 @@
         .module('CavaVin')
         .factory('WineInCellarSearch', WineInCellarSearch);
 
-    WineInCellarSearch.$inject = ['$resource'];
+    WineInCellarSearch.$inject = ['$resource', 'Config'];
 
-    function WineInCellarSearch($resource) {
-        var resourceUrl =  'api/_search/wine-in-cellars/:id';
+    function WineInCellarSearch($resource, Config) {
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/_search/wine-in-cellars/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true}

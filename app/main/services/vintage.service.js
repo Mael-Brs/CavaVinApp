@@ -4,10 +4,10 @@
         .module('CavaVin')
         .factory('Vintage', Vintage);
 
-    Vintage.$inject = ['$resource'];
+    Vintage.$inject = ['$resource', 'Config'];
 
-    function Vintage ($resource) {
-        var resourceUrl =  'api/vintages/:id';
+    function Vintage ($resource, Config) {
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/vintages/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

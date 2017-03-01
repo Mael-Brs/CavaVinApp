@@ -4,10 +4,10 @@
         .module('CavaVin')
         .factory('Region', Region);
 
-    Region.$inject = ['$resource'];
+    Region.$inject = ['$resource', 'Config'];
 
-    function Region ($resource) {
-        var resourceUrl =  'api/regions/:id';
+    function Region ($resource, Config) {
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/regions/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

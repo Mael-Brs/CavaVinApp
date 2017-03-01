@@ -7,6 +7,6 @@ run.$inject = ['stateHandler', 'translationHandler', '$http', '$localStorage'];
 
 function run(stateHandler, translationHandler, $http, $localStorage) {
     stateHandler.initialize();
-        translationHandler.initialize();
-        $http.defaults.headers.post['X-XSRF-TOKEN'] = $localStorage['X-XSRF-TOKEN'];
+    translationHandler.initialize();
+    $http.defaults.headers.post['X-XSRF-TOKEN'] = $localStorage['X-XSRF-TOKEN'];
 }

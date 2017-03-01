@@ -4,10 +4,10 @@
         .module('CavaVin')
         .factory('Year', Year);
 
-    Year.$inject = ['$resource'];
+    Year.$inject = ['$resource', 'Config'];
 
-    function Year ($resource) {
-        var resourceUrl =  'api/years/:id';
+    function Year ($resource, Config) {
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/years/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

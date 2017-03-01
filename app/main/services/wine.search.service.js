@@ -5,10 +5,10 @@
         .module('CavaVin')
         .factory('WineSearch', WineSearch);
 
-    WineSearch.$inject = ['$resource'];
+    WineSearch.$inject = ['$resource', 'Config'];
 
-    function WineSearch($resource) {
-        var resourceUrl =  'api/_search/wines/:id';
+    function WineSearch($resource, Config) {
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/_search/wines/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true}

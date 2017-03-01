@@ -4,10 +4,10 @@
         .module('CavaVin')
         .factory('Color', Color);
 
-    Color.$inject = ['$resource'];
+    Color.$inject = ['$resource', 'Config'];
 
-    function Color ($resource) {
-        var resourceUrl =  'api/colors/:id';
+    function Color ($resource, Config) {
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/colors/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
