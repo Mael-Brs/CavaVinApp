@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .directive('minbytes', minbytes);
 
     function minbytes () {

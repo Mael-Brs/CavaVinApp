@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .filter('findLanguageFromKey', findLanguageFromKey);
 
     function findLanguageFromKey() {
@@ -17,10 +17,12 @@
                 'el': 'Ελληνικά',
                 'en': 'English',
                 'es': 'Español',
+                'et': 'Eesti',
                 'fr': 'Français',
                 'gl': 'Galego',
                 'hu': 'Magyar',
                 'hi': 'हिंदी',
+                'hy': 'Հայերեն',
                 'it': 'Italiano',
                 'ja': '日本語',
                 'ko': '한국어',
@@ -32,9 +34,11 @@
                 'ro': 'Română',
                 'ru': 'Русский',
                 'sk': 'Slovenský',
+                'sr': 'Srpski',
                 'sv': 'Svenska',
                 'ta': 'தமிழ்',
                 'tr': 'Türkçe',
+                'vi': 'Tiếng Việt',
                 'zh-cn': '中文（简体）',
                 'zh-tw': '繁體中文'
             }[lang];

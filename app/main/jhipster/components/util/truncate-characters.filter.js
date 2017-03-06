@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .filter('characters', characters);
-        
+
     function characters () {
         return charactersFilter;
 

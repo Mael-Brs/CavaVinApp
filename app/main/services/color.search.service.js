@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('ColorSearch', ColorSearch);
 
     ColorSearch.$inject = ['$resource', 'Config'];

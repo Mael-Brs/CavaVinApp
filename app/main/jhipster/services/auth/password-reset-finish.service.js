@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('PasswordResetFinish', PasswordResetFinish);
 
     PasswordResetFinish.$inject = ['$resource', 'Config'];

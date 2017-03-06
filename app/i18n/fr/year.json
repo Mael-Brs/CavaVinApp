@@ -1,0 +1,22 @@
+{
+    "cavavinApp": {
+        "year" : {
+            "home": {
+                "title": "Years",
+                "createLabel": "Créer un nouveau Year",
+                "createOrEditLabel": "Créer ou éditer un Year",
+                "search": "Recherche pour Year"
+            },
+            "created": "Un nouveau Year a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Year avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Year avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Year {{ id }} ?"
+            },
+            "detail": {
+                "title": "Year"
+            },
+            "number": "Number"
+        }
+    }
+}

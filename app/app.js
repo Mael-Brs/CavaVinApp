@@ -1,12 +1,11 @@
 'use strict';
-angular.module('CavaVin', [
+angular.module('cavavin', [
     // load your modules here
     'main', // starting with the main module
 ]).run(run);
-run.$inject = ['stateHandler', 'translationHandler', '$http', '$localStorage'];
+run.$inject = ['stateHandler', 'translationHandler'];
 
-function run(stateHandler, translationHandler, $http, $localStorage) {
+function run(stateHandler, translationHandler) {
     stateHandler.initialize();
-    translationHandler.initialize();
-    $http.defaults.headers.post['X-XSRF-TOKEN'] = $localStorage['X-XSRF-TOKEN'];
+        translationHandler.initialize();
 }

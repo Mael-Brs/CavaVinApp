@@ -1,0 +1,24 @@
+{
+    "cavavinApp": {
+        "vintage" : {
+            "home": {
+                "title": "Vintages",
+                "createLabel": "Create a new Vintage",
+                "createOrEditLabel": "Create or edit a Vintage",
+                "search": "Search for Vintage"
+            },
+            "created": "A new Vintage is created with identifier {{ param }}",
+            "updated": "A Vintage is updated with identifier {{ param }}",
+            "deleted": "A Vintage is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Vintage {{ id }}?"
+            },
+            "detail": {
+                "title": "Vintage"
+            },
+            "bareCode": "Bare Code",
+            "year": "Year",
+            "wine": "Wine"
+        }
+    }
+}

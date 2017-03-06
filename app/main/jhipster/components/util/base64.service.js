@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('Base64', Base64);
 
     function Base64 () {

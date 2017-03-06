@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('Password', Password);
 
     Password.$inject = ['$resource', 'Config'];

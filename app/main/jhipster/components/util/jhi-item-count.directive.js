@@ -15,6 +15,6 @@
     };
 
     angular
-        .module('CavaVin')
+        .module('main')
         .component('jhiItemCount', jhiItemCount);
 })();

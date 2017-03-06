@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .provider('AlertService', AlertService);
 
     function AlertService () {

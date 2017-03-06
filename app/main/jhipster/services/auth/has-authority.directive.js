@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .directive('hasAuthority', hasAuthority);
 
     hasAuthority.$inject = ['Principal'];

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('Account', Account);
 
     Account.$inject = ['$resource', 'Config'];

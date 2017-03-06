@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .filter('words', words);
 
     function words() {
@@ -21,7 +21,6 @@
                     input = inputWords.slice(0, words).join(' ') + '...';
                 }
             }
-            
             return input;
         }
     }

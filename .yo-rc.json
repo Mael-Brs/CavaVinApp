@@ -22,12 +22,12 @@
     }
   },
   "generator-jhipster": {
-    "jhipsterVersion": "3.9.1",
-    "baseName": "CavaVin",
-    "packageName": "com.mbras.cave",
-    "packageFolder": "com/mbras/cave",
+    "jhipsterVersion": "4.0.7",
+    "baseName": "cavavin",
+    "packageName": "com.mbras.cavavin",
+    "packageFolder": "com/mbras/cavavin",
     "serverPort": "8080",
-    "authenticationType": "session",
+    "authenticationType": "jwt",
     "hibernateCache": "ehcache",
     "clusteredHttpSession": false,
     "websocket": false,
@@ -36,10 +36,13 @@
     "prodDatabaseType": "postgresql",
     "searchEngine": "elasticsearch",
     "messageBroker": false,
+    "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
-    "rememberMeKey": "d2a979876a000744060f8caceec20e6cfc69fde8",
-    "useSass": false,
+    "jwtSecretKey": "d96910351020d6ca0c0df813e64a2dac7711e58f",
+    "clientFramework": "angular1",
+    "useSass": true,
+    "clientPackageManager": "yarn",
     "applicationType": "monolith",
     "testFrameworks": [
       "gatling",
@@ -52,7 +55,6 @@
       "fr",
       "en"
     ],
-    "serviceDiscoveryType": false,
-    "jhipsterHome": "../CavaVinWS"
+    "jhipsterHome": "../CavaVinWS-0.2"
   }
 }

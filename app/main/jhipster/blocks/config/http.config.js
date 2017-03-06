@@ -8,9 +8,9 @@
     httpConfig.$inject = ['$httpProvider', 'httpRequestInterceptorCacheBusterProvider', '$urlMatcherFactoryProvider'];
 
     function httpConfig($httpProvider, httpRequestInterceptorCacheBusterProvider, $urlMatcherFactoryProvider) {
-        //enable XSRF
-        $httpProvider.defaults.xsrfCookieName = 'XSRF-TOKEN';
-        $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
+        //enable CSRF
+        $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
@@ -19,7 +19,7 @@
         $httpProvider.interceptors.push('authExpiredInterceptor');
         $httpProvider.interceptors.push('notificationInterceptor');
         $httpProvider.interceptors.push('authInterceptor');
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'com.mbras.cave';
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'com.mbras.cavavin';
 
         // jhipster-needle-angularjs-add-interceptor JHipster will add new application http interceptor here
 

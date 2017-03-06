@@ -2,13 +2,13 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .controller('RegisterController', RegisterController);
 
 
-    RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService', 'Cellar'];
+    RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService'];
 
-    function RegisterController ($translate, $timeout, Auth, LoginService, Cellar) {
+    function RegisterController ($translate, $timeout, Auth, LoginService) {
         var vm = this;
 
         vm.doNotMatch = null;
@@ -18,14 +18,12 @@
         vm.register = register;
         vm.registerAccount = {};
         vm.success = null;
-        vm.cellar = {capacity:null};
 
         $timeout(function (){angular.element('#login').focus();});
 
         function register () {
             if (vm.registerAccount.password !== vm.confirmPassword) {
                 vm.doNotMatch = 'ERROR';
-
             } else {
                 vm.registerAccount.langKey = $translate.use();
                 vm.doNotMatch = null;
@@ -33,7 +31,9 @@
                 vm.errorUserExists = null;
                 vm.errorEmailExists = null;
 
-                Auth.createAccount(vm.registerAccount).then(saveCellar).catch(function (response) {
+                Auth.createAccount(vm.registerAccount).then(function () {
+                    vm.success = 'OK';
+                }).catch(function (response) {
                     vm.success = null;
                     if (response.status === 400 && response.data === 'login already in use') {
                         vm.errorUserExists = 'ERROR';
@@ -43,18 +43,6 @@
                         vm.error = 'ERROR';
                     }
                 });
-
-                function saveCellar(){
-                    Cellar.save(vm.cellar, onSaveSuccess, onSaveError);
-                }
-
-                function onSaveSuccess () {
-                    vm.success = 'OK';
-                }
-
-                 function onSaveError () {
-                    vm.error = 'ERROR';
-                }
             }
         }
     }

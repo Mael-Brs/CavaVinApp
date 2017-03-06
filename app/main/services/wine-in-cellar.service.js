@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('WineInCellar', WineInCellar);
 
     WineInCellar.$inject = ['$resource', 'Config'];

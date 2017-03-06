@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('Principal', Principal);
 
     Principal.$inject = ['$q', 'Account'];

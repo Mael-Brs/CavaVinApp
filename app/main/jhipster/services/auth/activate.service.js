@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('Activate', Activate);
 
     Activate.$inject = ['$resource', 'Config'];

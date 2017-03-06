@@ -1,0 +1,24 @@
+{
+    "cavavinApp": {
+        "vintage" : {
+            "home": {
+                "title": "Vintages",
+                "createLabel": "Créer un nouveau Vintage",
+                "createOrEditLabel": "Créer ou éditer un Vintage",
+                "search": "Recherche pour Vintage"
+            },
+            "created": "Un nouveau Vintage a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Vintage avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Vintage avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Vintage {{ id }} ?"
+            },
+            "detail": {
+                "title": "Vintage"
+            },
+            "bareCode": "Bare Code",
+            "year": "Year",
+            "wine": "Wine"
+        }
+    }
+}

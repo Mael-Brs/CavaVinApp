@@ -17,11 +17,10 @@
         function request (config) {
             /*jshint camelcase: false */
             config.headers = config.headers || {};
-            var token = $localStorage['X-XSRF-TOKEN'];
+            var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
             if (token) {
-                config.headers['X-XSRF-TOKEN'] = token;
+                config.headers.Authorization = 'Bearer ' + token;
             }
-
             return config;
         }
     }

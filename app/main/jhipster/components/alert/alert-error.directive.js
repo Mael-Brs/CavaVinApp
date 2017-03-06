@@ -2,7 +2,7 @@
     'use strict';
 
     var jhiAlertError = {
-        template: '<div class="alerts" ng-cloak="">' +
+        template: '<div class="alerts" ng-cloak="" role="alert">' +
                         '<div ng-repeat="alert in $ctrl.alerts" ng-class="[alert.position, {\'toast\': alert.toast}]">' +
                             '<uib-alert ng-cloak="" type="{{alert.type}}" close="alert.close($ctrl.alerts)"><pre>{{ alert.msg }}</pre></uib-alert>' +
                         '</div>' +
@@ -11,7 +11,7 @@
     };
 
     angular
-        .module('CavaVin')
+        .module('main')
         .component('jhiAlertError', jhiAlertError);
 
     jhiAlertErrorController.$inject = ['$scope', 'AlertService', '$rootScope', '$translate'];
@@ -38,7 +38,7 @@
             );
         }
 
-        var cleanHttpErrorListener = $rootScope.$on('cavaVinApp.httpError', function (event, httpResponse) {
+        var cleanHttpErrorListener = $rootScope.$on('cavavinApp.httpError', function (event, httpResponse) {
             var i;
             event.stopPropagation();
             switch (httpResponse.status) {
@@ -48,8 +48,11 @@
                 break;
 
             case 400:
-                var errorHeader = httpResponse.headers('X-cavaVinApp-error');
-                var entityKey = httpResponse.headers('X-cavaVinApp-params');
+                var headers = Object.keys(httpResponse.headers()).filter(function (header) {
+                    return header.indexOf('app-error', header.length - 'app-error'.length) !== -1 || header.indexOf('app-params', header.length - 'app-params'.length) !== -1;
+                }).sort();
+                var errorHeader = httpResponse.headers(headers[0]);
+                var entityKey = httpResponse.headers(headers[1]);
                 if (errorHeader) {
                     var entityName = $translate.instant('global.menu.entities.' + entityKey);
                     addErrorAlert(errorHeader, errorHeader, {entityName: entityName});
@@ -58,7 +61,7 @@
                         var fieldError = httpResponse.data.fieldErrors[i];
                         // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                         var convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
-                        var fieldName = $translate.instant('cavaVinApp.' + fieldError.objectName + '.' + convertedField);
+                        var fieldName = $translate.instant('cavavinApp.' + fieldError.objectName + '.' + convertedField);
                         addErrorAlert('Field ' + fieldName + ' cannot be empty', 'error.' + fieldError.message, {fieldName: fieldName});
                     }
                 } else if (httpResponse.data && httpResponse.data.message) {

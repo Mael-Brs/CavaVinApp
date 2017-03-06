@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .directive('pageRibbon', pageRibbon);
 
     pageRibbon.$inject = ['ProfileService', '$rootScope', '$translate'];
@@ -11,7 +11,7 @@
         var directive = {
             replace : true,
             restrict : 'AE',
-            template : '<div class="ribbon hidden"><a href="" translate="global.ribbon.{{ribbonEnv}}">{{ribbonEnv}}</a></div>',
+            template : '<div class="ribbon hidden"><a href="" data-translate="global.ribbon.{{ribbonEnv}}">{{ribbonEnv}}</a></div>',
             link : linkFunc
         };
 

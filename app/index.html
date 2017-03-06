@@ -9,7 +9,7 @@
     <meta name="format-detection" content="telephone=no"> <!-- no auto telephone linking -->
 
     <meta name="apple-mobile-web-app-capable" content="yes"> <!-- can be saved to home screen on ios -->
-    <title>CavaVin</title>
+    <title>My Project</title>
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -24,7 +24,7 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body ng-app="CavaVin">
+  <body ng-app="cavavin">
 
     
     <!-- the current view will be rendered in the <ion-nav-view> directive -->
@@ -61,14 +61,13 @@
 
     <!-- build:js scripts/app.js -->
     <!-- inject:js -->
-    <script src="app.js"></script>
+    <script src="main/main.js"></script>
     <script src="main/services/year.service.js"></script>
     <script src="main/services/wine-in-cellar.service.js"></script>
     <script src="main/services/wine-in-cellar.search.service.js"></script>
     <script src="main/services/wine.service.js"></script>
     <script src="main/services/wine.search.service.js"></script>
     <script src="main/services/vintage.service.js"></script>
-    <script src="main/main.js"></script>
     <script src="main/services/stat.service.js"></script>
     <script src="main/services/region.service.js"></script>
     <script src="main/services/region.search.service.js"></script>
@@ -81,7 +80,6 @@
     <script src="main/jhipster/services/user/user.service.js"></script>
     <script src="main/jhipster/services/profiles/profile.service.js"></script>
     <script src="main/jhipster/services/profiles/page-ribbon.directive.js"></script>
-    <script src="main/jhipster/services/auth/sessions.service.js"></script>
     <script src="main/jhipster/services/auth/register.service.js"></script>
     <script src="main/jhipster/services/auth/principal.service.js"></script>
     <script src="main/jhipster/services/auth/password-reset-init.service.js"></script>
@@ -89,8 +87,8 @@
     <script src="main/jhipster/services/auth/password.service.js"></script>
     <script src="main/jhipster/services/auth/has-authority.directive.js"></script>
     <script src="main/jhipster/services/auth/has-any-authority.directive.js"></script>
-    <script src="main/jhipster/services/auth/auth.session.service.js"></script>
     <script src="main/jhipster/services/auth/auth.service.js"></script>
+    <script src="main/jhipster/services/auth/auth.jwt.service.js"></script>
     <script src="main/jhipster/services/auth/activate.service.js"></script>
     <script src="main/jhipster/services/auth/account.service.js"></script>
     <script src="main/jhipster/components/util/truncate-words.filter.js"></script>
@@ -118,7 +116,7 @@
     <script src="main/jhipster/blocks/interceptor/notification.interceptor.js"></script>
     <script src="main/jhipster/blocks/interceptor/errorhandler.interceptor.js"></script>
     <script src="main/jhipster/blocks/interceptor/auth-expired.interceptor.js"></script>
-    <script src="main/jhipster/blocks/interceptor/auth.session.interceptor.js"></script>
+    <script src="main/jhipster/blocks/interceptor/auth.interceptor.js"></script>
     <script src="main/jhipster/blocks/handlers/translation.handler.js"></script>
     <script src="main/jhipster/blocks/handlers/state.handler.js"></script>
     <script src="main/jhipster/blocks/config/uib-pagination.config.js"></script>
@@ -133,8 +131,6 @@
     <script src="main/jhipster/admin/admin.state.js"></script>
     <script src="main/jhipster/account/settings/settings.state.js"></script>
     <script src="main/jhipster/account/settings/settings.controller.js"></script>
-    <script src="main/jhipster/account/sessions/sessions.state.js"></script>
-    <script src="main/jhipster/account/sessions/sessions.controller.js"></script>
     <script src="main/jhipster/account/reset/request/reset.request.state.js"></script>
     <script src="main/jhipster/account/reset/request/reset.request.controller.js"></script>
     <script src="main/jhipster/account/reset/finish/reset.finish.state.js"></script>
@@ -160,6 +156,7 @@
     <script src="main/constants/config-const.js"></script>
     <script src="i18n/angular-locale_fr.js"></script>
     <script src="i18n/angular-locale_en.js"></script>
+    <script src="app.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
   </body>

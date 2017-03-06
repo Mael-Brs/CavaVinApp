@@ -1,6 +1,7 @@
 'use strict';
 angular.module('main')
 .constant('Config', {
+
   // gulp environment: injects environment vars
   ENV: {
     /*inject-env*/

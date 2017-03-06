@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('CavaVin')
+        .module('main')
         .factory('CellarSearch', CellarSearch);
 
     CellarSearch.$inject = ['$resource', 'Config'];
