@@ -1,7 +1,7 @@
 <ion-modal-view>
     <ion-header-bar class="bar bar-header bar-positive">
         <h1 class="title" translate="list.modal.details.title">Details vin</h1>
-        <button class="button button-clear button-primary" ng-click="vm.modal.hide()" translate="entity.action.cancel">Cancel</button>
+        <button class="button button-clear icon ion-close-circled" ng-click="vm.modal.hide()"></button>
     </ion-header-bar>
     <ion-content class="padding">
 		
@@ -46,6 +46,11 @@
                 <span>{{vm.selected.maxKeep}}</span>
             </label>
 
+            <label class="item" >
+                <span>Apogée : </span>
+                <span>{{vm.selected.apogee}}</span>
+            </label>
+
              <label class="item" >
                 <span>Quantité : </span>
                 <span>{{vm.selected.quantity}}</span>
@@ -61,6 +66,6 @@
                 <span>{{vm.selected.comments}}</span>
             </label>
         </div>
-        
+        <button ng-click="vm.modal.hide()" class="button button-block button-positive">Retour</button>
 	</ion-content>
 </ion-modal-view>

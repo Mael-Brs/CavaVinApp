@@ -1,68 +1,71 @@
 <ion-view view-title="Ma cave">
-	<ion-nav-buttons side="right">
-      <button class="button button-icon button-clear ion-plus-round" ng-click="vm.addWine()">
+    <ion-nav-buttons side="right">
+      <button class="button icon button-clear ion-plus-round" ng-click="vm.addWine()">
       </button>
     </ion-nav-buttons>
-  	<ion-content>
-		
-		<a class="button button-full button-small" ng-click="vm.showForm=!vm.showForm">
-		    Tri et recherche
-		    <span class="icon-right ion-chevron-down" />
-		</a>	
+    <ion-content>
+        
+        <a class="button button-full button-small" ng-click="vm.showForm=!vm.showForm">
+            Tri et recherche
+            <span class="icon-right ion-chevron-down" />
+        </a>    
 
-		<div id="searchSort" ng-show="vm.showForm">
-			<div class="item item-input-inset">
-			    <label class="item-input-wrapper">
-				    <i class="icon ion-search"></i>
-				    <input type="text" placeholder="Chercher un vin" ng-model="vm.searchWine"/>
-				</label>
-			</div>
-		</div>
-		<div id="sort" class="item row" ng-show="vm.showForm">
-			<div class="col-75">
-				<label class="item-input item-select">
-		          <div class="input-label">
-		            Trier par
-		          </div>
-		
-					<select ng-model="vm.sortWine">
-				        <option value="vintage.wine.name">Nom</option> 
-				        <option value="vintage.wine.appellation">Appellation</option> 
-	  					<option value="vintage.wine.producer">Domaine</option>
-	  					<option value="vintage.year.number">Année</option>
-	  					<option value="vintage.wine.region.regionName">Région</option>
-	  					<option value="vintage.wine.color.colorName">Couleur</option>
-	  					<option value="quantity">Quantité</option>
-	  					<option value="apogee">Apogée</option>
-					</select>
-				</label>
-			</div>
-			<div class="col">
-				<div class="item-input-inset button-sort">
-					<i ng-click="vm.sortReverse=!vm.sortReverse" class="button button-small icon" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i>
-				</div>
-			</div>
-		</div>
-				
-		<ion-list>
-		  <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine">
-		    <div class="winAttributes" on-tap=vm.openModal(data)>
-				<span class="year">{{data.vintage.year.number}}</span>
-				<span class="badge badge-assertive quantity">{{data.quantity}}</span>
-				<span class="wineItemLine name">{{data.vintage.wine.name}}</span>
-				<span class="wineItemLine appellation">{{data.vintage.wine.appellation}}</span>
-				<div class="wineItemLine detail">
-					<span>{{data.vintage.wine.region.regionName}}</span>
-					<span class="color">{{data.vintage.wine.color.colorName}}</span>
-				</div>
-				<div class="wineItemLine detail">
-					<span class="secondItem">{{data.vintage.maxKeep.number}}</span>
-				</div>
-			</div>
-		    <ion-option-button class="button-assertive" ng-click="vm.removeWine(data.id)">Delete</ion-option-button>
-		    <ion-option-button class="button-positive" ng-click="vm.editWine(data.id)">Edit</ion-option-button>
-		  </ion-item>
-		</ion-list>
-			
-  </ion-content>
+        <div id="searchSort" ng-show="vm.showForm">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-search"></i>
+                    <input type="text" placeholder="Chercher un vin" ng-model="vm.searchWine"/>
+                </label>
+            </div>
+        </div>
+        <div id="sort" class="item row" ng-show="vm.showForm">
+            <div class="col-75">
+                <label class="item-input item-select">
+                    <div class="input-label">
+                        Trier par
+                    </div>
+        
+                    <select ng-model="vm.sortWine">
+                        <option value="vintage.wine.name">Nom</option> 
+                        <option value="vintage.wine.appellation">Appellation</option> 
+                        <option value="vintage.wine.producer">Domaine</option>
+                        <option value="vintage.year.number">Année</option>
+                        <option value="vintage.wine.region.regionName">Région</option>
+                        <option value="vintage.wine.color.colorName">Couleur</option>
+                        <option value="quantity">Quantité</option>
+                        <option value="apogee">Apogée</option>
+                    </select>
+                </label>
+            </div>
+            <div class="col">
+                <div class="item-input-inset button-sort">
+                    <i ng-click="vm.sortReverse=!vm.sortReverse" class="button button-small icon" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i>
+                </div>
+            </div>
+        </div>
+                
+        <ion-list>
+          <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine">
+            <div class="winAttributes" on-tap=vm.openModal(data)>
+                <span class="year">{{data.vintage.year.number}}</span>
+                <span class="badge badge-assertive quantity">{{data.quantity}}</span>
+                <span class="wineItemLine name">{{data.vintage.wine.name}}</span>
+                <span class="wineItemLine appellation">{{data.vintage.wine.appellation}}</span>
+                <div class="wineItemLine detail">
+                    <span>{{data.vintage.wine.region.regionName}}</span>
+                    <span class="color">{{data.vintage.wine.color.colorName}}</span>
+                </div>
+                <div class="wineItemLine detail">
+                    <span class="secondItem">{{data.vintage.maxKeep.number}}</span>
+                </div>
+            </div>
+            <ion-option-button class="button-assertive" ng-click="vm.removeWine(data.id)">Delete</ion-option-button>
+            <ion-option-button class="button-positive" ng-click="vm.editWine(data.id)">Edit</ion-option-button>
+          </ion-item>
+        </ion-list>
+            
+    </ion-content>
+    <div class="bar bar-footer">
+      <button class="button icon ion-funnel button-positive pull-right"></button>
+    </div>
 </ion-view>

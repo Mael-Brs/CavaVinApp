@@ -147,7 +147,7 @@ angular
               }
 
               StatService.updateCellarDetails();
-              inputInit();
+              $state.go('list');
             });
           });
         });
