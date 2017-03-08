@@ -7,7 +7,7 @@ angular.module('main')
     function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar) {
         var vm = this;
         vm.account = null;
-        vm.isAuthenticated = null;
+        vm.isAuthenticated = Principal.isAuthenticated;
         vm.login = LoginService.open;
         vm.logout = logout;
         vm.register = register;
@@ -18,6 +18,8 @@ angular.module('main')
         $rootScope.$on('authenticationSuccess', function() {
             getAccount();
         });
+
+        getAccount();
 
         $scope.$on('$ionicView.enter', function() { 
             getCellarDetails();
@@ -37,7 +39,7 @@ angular.module('main')
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
-                vm.isAuthenticated = Principal.isAuthenticated;
+
                 if (account){
                     User.cellars({login:account.login},function(cellar){
                         vm.cellar = cellar;
