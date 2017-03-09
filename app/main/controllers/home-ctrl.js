@@ -14,12 +14,6 @@ angular.module('main')
         vm.openModal = openModal;
         vm.save = saveCellar;
 
-        $rootScope.$on('authenticationSuccess', function() {
-            getAccount();
-        });
-
-        getAccount();
-
         $scope.$on('$ionicView.enter', function() { 
             getCellarDetails();
         });
@@ -28,8 +22,6 @@ angular.module('main')
             vm.cellar = CacheService.get('activeCellar');
             if(vm.cellar){
                 vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
-                vm.wineByRegion = vm.cellar.wineByRegion;
-                vm.wineByColor = vm.cellar.wineByColor;
             } else {
                 getAccount();
             }
