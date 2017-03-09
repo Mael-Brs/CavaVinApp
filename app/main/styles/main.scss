@@ -30,3 +30,14 @@ ul#strength {
 .hidden{
     display: none;
 }
+
+meter {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #387ef5;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+    border-radius: 3px;
+    border:1px grey;
+}
