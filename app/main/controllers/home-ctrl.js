@@ -9,9 +9,8 @@ angular.module('main')
         vm.account = null;
         vm.isAuthenticated = Principal.isAuthenticated;
         vm.login = LoginService.open;
-        vm.logout = logout;
         vm.register = register;
-        vm.cellar;
+        vm.cellar = null;
         vm.openModal = openModal;
         vm.save = saveCellar;
 
@@ -54,11 +53,6 @@ angular.module('main')
 
         function register () {
             $state.go('register');
-        }
-
-        function logout () {
-            Auth.logout();
-            $state.go('home');
         }
 
         $ionicModal.fromTemplateUrl('main/templates/createCellar.html', {
