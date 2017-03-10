@@ -33,31 +33,26 @@ ul#strength {
 
 meter {
     /* Reset the default appearance */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    -webkit-appearance: meter;
+    padding-left:20px;
+    width:55%;
+    padding-right:10px;
+    height:22px;
+    border:2px solid grey;
+    position: absolute;
+    top: 16px;
+    right: 62px;
 }
 
-.styled meter::-webkit-meter-bar {
+meter::-webkit-meter-bar {
   background: #EEE;
   box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
-.styled meter::-webkit-meter-optimum-value,
-.styled meter::-webkit-meter-suboptimum-value,
-.styled meter::-webkit-meter-even-less-good-value {
-  border-radius: 3px;
-}
-
-.styled meter::-webkit-meter-optimum-value {
-  background: #86CC00;
-}
-
-.styled meter::-webkit-meter-suboptimum-value {
-  background: #FFDB1A;
-}
-
-.styled meter::-webkit-meter-even-less-good-value  {
-  background: #CC4600;
+meter::-webkit-meter-optimum-value, 
+meter::-webkit-meter-suboptimum-value, 
+meter::-webkit-meter-even-less-good-value {
+  border-radius: 4px;
+  background: #990033;
 }

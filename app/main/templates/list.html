@@ -37,11 +37,6 @@
                     </select>
                 </label>
             </div>
-            <div class="col">
-                <div class="item-input-inset button-sort">
-                    <i ng-click="vm.sortReverse=!vm.sortReverse" class="button button-small icon" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i>
-                </div>
-            </div>
         </div>
                 
         <ion-list>
@@ -66,6 +61,7 @@
             
     </ion-content>
     <div class="bar bar-footer">
+      <button class="button icon button-positive" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'" ng-click="vm.sortReverse=!vm.sortReverse"></button>
       <button class="button icon ion-funnel button-positive pull-right"></button>
     </div>
 </ion-view>
