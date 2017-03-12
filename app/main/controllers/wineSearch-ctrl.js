@@ -26,7 +26,7 @@ function WineSearchCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,User
     }
   };
 
-  vm.editWine = function(id){
+  vm.createWine = function(id){
     $state.go('form',{wineId:id});
   };
 

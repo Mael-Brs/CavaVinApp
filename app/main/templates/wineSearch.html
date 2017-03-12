@@ -1,6 +1,6 @@
 <ion-view view-title="Recherche de vin">
 	<ion-nav-buttons side="right">
-      <button class="button button-icon button-clear ion-plus-round" ng-click="vm.editWine(-1)">
+      <button class="button button-icon button-clear ion-plus-round" ng-click="vm.createWine(-1)">
       </button>
     </ion-nav-buttons>
 
@@ -10,7 +10,7 @@
 	    <label class="item-input-wrapper">
 		    <input type="text" placeholder="Rechercher un vin" ng-model="vm.query" />
 		</label>
-		<button class="button button-small icon ion-search" ng-click="vm.submit(vm.query)"/>
+		<button class="button button-small button-positive icon ion-search" ng-click="vm.submit(vm.query)"/>
 	</div>
 
 

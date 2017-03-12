@@ -152,7 +152,7 @@ angular.module('main', [
         })
         .state('addToCellar', {
             parent: 'app',
-            url: '/addToCellar/:wineId',
+            url: '/addToCellar',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -183,6 +183,24 @@ angular.module('main', [
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('selectVintage');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        .state('editWine', {
+            parent: 'app',
+            url: '/editWine/:wineId',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            views: {
+                'pageContent': {
+                    templateUrl: 'main/templates/editWine.html',
+                    controller: 'editWineCtrl as vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     return $translate.refresh();
                 }]
             }

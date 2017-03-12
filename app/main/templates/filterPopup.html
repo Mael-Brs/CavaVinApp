@@ -1,0 +1,21 @@
+<div class="item item-input-inset">
+    <label class="item-input-wrapper">
+        <i class="icon ion-search"></i>
+        <input type="text" placeholder="Mot clé" ng-model="vm.searchWine"/>
+    </label>
+</div>
+<label class="item item-input item-select">
+    <div class="input-label">
+        Trier par
+    </div>
+    <select ng-model="vm.sortWine">
+        <option value="vintage.wine.name">Nom</option> 
+        <option value="vintage.wine.appellation">Appellation</option> 
+        <option value="vintage.wine.producer">Domaine</option>
+        <option value="vintage.year.number">Année</option>
+        <option value="vintage.wine.region.regionName">Région</option>
+        <option value="vintage.wine.color.colorName">Couleur</option>
+        <option value="quantity">Quantité</option>
+        <option value="apogee">Apogée</option>
+    </select>
+</label>

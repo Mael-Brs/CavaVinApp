@@ -26,21 +26,29 @@ ul#strength {
     background-color: lightgrey;
 }
 
-
 .hidden{
     display: none;
+}
+
+/* Cellar details css */
+.stat-label{
+  max-width:30%;
+}
+
+.stat-content {
+   .badge {
+    right: 20px;
+  }
 }
 
 meter {
     /* Reset the default appearance */
     -webkit-appearance: meter;
-    padding-left:20px;
-    width:55%;
-    padding-right:10px;
     height:22px;
-    border:2px solid grey;
     position: absolute;
+    width:calc(100% - 172px);
     top: 16px;
+    left:110px;
     right: 62px;
 }
 

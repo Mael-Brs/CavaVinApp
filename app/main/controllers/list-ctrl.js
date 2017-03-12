@@ -13,6 +13,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   vm.sortWine = 'apogee'; // set the default sort color
   vm.sortReverse = false;
   vm.openModal = openModal;
+  vm.openFilter = openFilter;
   var cellar;
 
   $scope.$on('$ionicView.enter', function() { 
@@ -60,20 +61,32 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   };
 
   vm.editWine = function (id){
-    $state.go('addToCellar',{wineId:id});
+    $state.go('editWine',{wineId:id});
   };
 
+  $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+  }).then(function(modal) {
+      vm.modal = modal;
+  });
 
-   $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        vm.modal = modal;
+  function openModal(wine){
+      vm.selected = wine;
+      vm.modal.show();
+  }
+
+  function openFilter(){
+    var myPopup = $ionicPopup.show({
+      templateUrl: 'main/templates/filterPopup.html',
+      title: 'Filtrer les vins',
+      scope: $scope,
+      buttons: [
+        { text: 'Fermer',
+          type: 'button-positive' 
+        }
+      ]
     });
-
-    function openModal(wine){
-        vm.selected = wine;
-        vm.modal.show();
-    }
+  }
   
 }

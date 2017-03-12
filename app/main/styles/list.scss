@@ -1,24 +1,4 @@
-.button.button-full.icon-right.ion-chevron-down{
-	margin: 0px;
-}
 
-.item.row, .item .col {
-  padding: 0;
-}
-
-#searchSort {
-	padding:0px 0px 0px 0px;
-}
-
-.button-sort {
-	padding-right : 10px;
-	float:right;
-}
-
-span.icon-right.ion-chevron-down{
-	float:right;
-	margin-right:10px;
-}
 
 .name {
 	/*font-style : italic;*/
@@ -64,6 +44,17 @@ span.icon-right.ion-chevron-down{
 
 .badge.badge-assertive.quantity {
 	top:58px;
+}
+
+
+ion-popover-view{
+	ion-content{
+		overflow: visible!important;
+	}
+}
+
+#filterTerm{
+	margin:0 5px 0 5px;
 }
 
 

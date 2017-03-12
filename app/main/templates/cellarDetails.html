@@ -1,5 +1,5 @@
 <ion-view view-title="{{'global.menu.cellarDetails' | translate}}">
-    <ion-content>
+    <ion-content class="stat-content">
 		<div class="card">
             <div class="item item-text-wrap">
                 <div>
@@ -8,7 +8,7 @@
                 <span class="badge badge-assertive">{{vm.cellar.capacity}}</span>
             </div>
 			<div class="item item-text-wrap">
-                <div>
+                <div class="stat-label">
                     Bouteille(s)
                 </div>
                 <span class="badge badge-assertive">{{vm.sum}}</span>
@@ -20,7 +20,7 @@
                 Bouteilles par region
             </div>
             <div class="item item-text-wrap" ng-repeat="stat in vm.wineByRegion | orderBy:'sum' : true">
-                <div>
+                <div class="stat-label">
                     {{stat.region}}
                 </div>
                 <span  class="badge badge-assertive">{{stat.sum}}</span>
@@ -32,7 +32,7 @@
                 Bouteilles par couleur
             </div>
             <div class="item item-text-wrap" ng-repeat="stat in vm.wineByColor | orderBy:'sum' : true">
-                <div>
+                <div class="stat-label">
                     {{stat.color}}
                 </div>
                 <span  class="badge badge-assertive">{{stat.sum}}</span>
