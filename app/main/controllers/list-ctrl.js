@@ -3,10 +3,10 @@ angular
 .module('main')
 .controller('ListCtrl',ListCtrl);
 
-ListCtrl.$inject = ['$log', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicPopover'];
+ListCtrl.$inject = ['$log', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate'];
 
 
-function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicPopover) {
+function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate) {
   var vm = this;
   vm.wines;
   vm.showForm = false;
@@ -17,6 +17,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   var cellar;
 
   $scope.$on('$ionicView.enter', function() { 
+    $ionicListDelegate.closeOptionButtons();
     cellar = CacheService.get('activeCellar');
     // TODO Use cache in get function
     if(!cellar){

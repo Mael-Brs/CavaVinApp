@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('addToCellarCtrl',['$log', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'StatService', 'Cellar', function ($log, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService, StatService, Cellar) {
+.controller('addToCellarCtrl',['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'StatService', 'Cellar', function ($ionicHistory, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService, StatService, Cellar) {
 
   var vm = this;
   vm.submit = submit;
@@ -59,6 +59,9 @@ angular
         }
 
         StatService.updateCellarDetails();
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
         $state.go('list');
       });
     }

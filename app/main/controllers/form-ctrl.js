@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('FormCtrl',['$log', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'StatService', 'Cellar', function ($log, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, StatService, Cellar) {
+.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'StatService', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, StatService, Cellar) {
   var vm = this;
   var activeWineId;
   var account;
@@ -147,6 +147,9 @@ angular
               }
 
               StatService.updateCellarDetails();
+              $ionicHistory.nextViewOptions({
+                disableBack: true
+              });
               $state.go('list');
             });
           });

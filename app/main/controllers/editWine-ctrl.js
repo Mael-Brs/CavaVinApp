@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('editWineCtrl',['$log', '$scope', '$state', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'StatService', 'Cellar', function ($log, $scope, $state, WineInCellar,User, Principal, $stateParams, CacheService, StatService, Cellar) {
+.controller('editWineCtrl',['$ionicHistory', '$scope', '$state', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'StatService', 'Cellar', function ($ionicHistory, $scope, $state, WineInCellar,User, Principal, $stateParams, CacheService, StatService, Cellar) {
 
   var vm = this;
   vm.submit = submit;
@@ -57,6 +57,9 @@ angular
         }
 
         StatService.updateCellarDetails();
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
         $state.go('list');
       });
     }
