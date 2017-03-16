@@ -43,7 +43,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   }
   
   vm.addWine = function(){
-    $state.go('wineSearch');
+    $state.go('form',{wineId:-1});
   };
 
   vm.removeWine = function(id){
@@ -61,8 +61,12 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
      });
   };
 
-  vm.editWine = function (id){
-    $state.go('editWine',{wineId:id});
+  vm.editWine = function (wineInCellar){
+    if(wineInCellar.vintage.wine.creatorId === cellar.userId){
+      $state.go('form',{wineId:wineInCellar.id});
+    } else {
+      $state.go('editWine',{wineId:wineInCellar.id});
+    }
   };
 
   $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {

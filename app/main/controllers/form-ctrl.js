@@ -47,18 +47,28 @@ angular
 
     if (activeWineId == -1){
       vm.userWine = {
-        id : "",
-        wine:{
-          name : "",
-          appellation : "",
-          year : "",
-          region : {
-            id:"",
-            regionName:""
+        id : null,
+        vintage : {
+          id : null,
+          bareCode : null,
+          year : {
+            id : null,
+            number : null
           },
-          color :{
-            id:"",
-            colorName:""
+          wine : {
+            id : null,
+            name : "",
+            appellation : "",
+            producer : "",
+            creatorId: cellar.userId,
+            region : {
+              id : null,
+              regionName : ""
+            },
+            color : {
+              id : null,
+              colorName : ""
+            }
           }
         },
         quantity: "",
