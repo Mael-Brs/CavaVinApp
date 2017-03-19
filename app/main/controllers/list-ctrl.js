@@ -3,10 +3,10 @@ angular
 .module('main')
 .controller('ListCtrl',ListCtrl);
 
-ListCtrl.$inject = ['$log', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate'];
+ListCtrl.$inject = ['$log', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices'];
 
 
-function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate) {
+function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices) {
   var vm = this;
   vm.wines;
   vm.showForm = false;
@@ -19,7 +19,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   $scope.$on('$ionicView.enter', function() { 
     $ionicListDelegate.closeOptionButtons();
     cellar = CacheService.get('activeCellar');
-    // TODO Use cache in get function
+
     if(!cellar){
       Principal.identity().then(function(account) {
         account = account;
@@ -37,7 +37,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
     if(!vm.wines){
       Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
         vm.wines = wineInCellars;
-        CacheService.put('wineInCellars', wineInCellars);
+        CommonServices.addWinesInCache(wineInCellars);
       });
     }
   }

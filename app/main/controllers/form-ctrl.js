@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'StatService', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, StatService, Cellar) {
+.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, CommonServices, Cellar) {
   var vm = this;
   var activeWineId;
   var account;
@@ -155,15 +155,15 @@ angular
           var wineInCellars = CacheService.get('wineInCellars');
 
           if(wineInCellars){
-            wineInCellars.push(wineInCellar);
+            wineInCellars[wineInCellar.id] = wineInCellar;
             CacheService.put('wineInCellars', wineInCellars);
           } else {
             Cellar.wineInCellars({id:cellar.id}, function(wines){
-              CacheService.put('wineInCellars', wines);
+              CommonServices.addWinesInCache(wines);
             });
           }
 
-          StatService.updateCellarDetails();
+          CommonServices.updateCellarDetails();
           $ionicHistory.nextViewOptions({
             disableBack: true
           });
@@ -184,15 +184,15 @@ angular
           var wineInCellars = CacheService.get('wineInCellars');
 
           if(wineInCellars){
-            wineInCellars.push(wineInCellar);
+            wineInCellars[wineInCellar.id] = wineInCellar;
             CacheService.put('wineInCellars', wineInCellars);
           } else {
             Cellar.wineInCellars({id:cellar.id}, function(wines){
-              CacheService.put('wineInCellars', wines);
+              CommonServices.addWinesInCache(wines);
             });
           }
 
-          StatService.updateCellarDetails();
+          CommonServices.updateCellarDetails();
           $ionicHistory.nextViewOptions({
             disableBack: true
           });
