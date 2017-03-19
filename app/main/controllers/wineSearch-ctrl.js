@@ -8,23 +8,16 @@ WineSearchCtrl.$inject = ['$log', '$scope', '$state', 'Principal', 'WineSearch',
 function WineSearchCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,User, $ionicModal, CacheService) {
   var vm = this;
   var account;
-  //var cellar;
+
   vm.submit = submit;
-
- /* Principal.identity().then(function(account) {
-    account = account;
-    cellar = User.cellars({login:account.login},function(cellar){
-
-    });
-  });*/
   
   function submit (query) {
     if (typeof query != 'undefined') {
-      WineSearch.query({query: query}, function(result) {
+      WineSearch.query({name: query, producer:query}, function(result) {
           vm.result = result;
       });
     }
-  };
+  }
 
   vm.createWine = function(id){
     $state.go('form',{wineId:id});
@@ -33,6 +26,6 @@ function WineSearchCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,User
   vm.selectVintage = function(wine){
     CacheService.put('selectedWine', wine);
     $state.go('selectVintage',{wineId:wine.id});
-  }
+  };
 
-};
+}
