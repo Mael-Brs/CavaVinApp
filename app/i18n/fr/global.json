@@ -6,6 +6,7 @@
             "cellarDetails": "Detail de la cave",
             "home": "Accueil",
             "list":"Liste des vins",
+            "wineCatalog": "Catalogue des vins",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",

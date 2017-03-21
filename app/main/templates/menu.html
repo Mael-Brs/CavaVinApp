@@ -42,6 +42,9 @@
                 <ion-item ng-switch-when="true" ng-if="vm.isCellar()" menu-close ui-sref="cellarDetails">
                     <span translate="global.menu.cellarDetails">Cellar details</span>
                 </ion-item>
+                <ion-item ng-switch-when="true" ng-if="vm.isCellar()" menu-close ui-sref="wineCatalog">
+                    <span translate="global.menu.wineCatalog">Wine catalog</span>
+                </ion-item>
                 <ion-item ng-switch-when="false" menu-close ng-click="vm.login()">
                     <span translate="global.menu.account.login">Sign In</span>
                 </ion-item>
