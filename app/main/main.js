@@ -132,16 +132,16 @@ angular.module('main', [
             }
         })
 
-        .state('wineSearch', {
+        .state('wineCatalog', {
             parent: 'app',
-            url: '/wineSearch',
+            url: '/wineCatalog',
             data: {
                 authorities: ['ROLE_USER']
             },
             views: {
                 'pageContent': {
-                    templateUrl: 'main/templates/wineSearch.html',
-                    controller: 'WineSearchCtrl as vm'
+                    templateUrl: 'main/templates/wineCatalog.html',
+                    controller: 'WineCatalogCtrl as vm'
                 }
             },
             resolve: {
