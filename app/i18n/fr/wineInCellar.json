@@ -16,9 +16,11 @@
             "detail": {
                 "title": "Wine In Cellar"
             },
-            "price": "Price",
-            "quantity": "Quantity",
-            "cellar": "Cellar",
+            "price": "Prix",
+            "quantity": "Quantité",
+            "cellar": "Cave",
+            "apogee": "Apogée",
+            "comments": "Commentaires",
             "wine": "Wine"
         }
     }

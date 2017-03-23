@@ -108,6 +108,8 @@ angular.module('main', [
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('list');
+                    $translatePartialLoader.addPart('wineInCellar');
+                    $translatePartialLoader.addPart('wine');
                     return $translate.refresh();
                 }]
             }
@@ -127,6 +129,8 @@ angular.module('main', [
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('wineInCellar');
+                    $translatePartialLoader.addPart('wine');
                     return $translate.refresh();
                 }]
             }

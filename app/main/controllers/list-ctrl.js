@@ -3,10 +3,10 @@ angular
 .module('main')
 .controller('ListCtrl',ListCtrl);
 
-ListCtrl.$inject = ['$log', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices'];
+ListCtrl.$inject = ['$translate', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices'];
 
 
-function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices) {
+function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices) {
   var vm = this;
   vm.wines;
   vm.showForm = false;
@@ -87,7 +87,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
       title: 'Filtrer les vins',
       scope: $scope,
       buttons: [
-        { text: 'Fermer',
+        { text: $translate.instant('entity.action.close'),
           type: 'button-positive' 
         }
       ]

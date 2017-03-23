@@ -1,5 +1,5 @@
 {
-    "cavavinApp": {
+    "cavaVinApp": {
         "vintage" : {
             "home": {
                 "title": "Vintages",
@@ -17,8 +17,8 @@
                 "title": "Vintage"
             },
             "bareCode": "Bare Code",
-            "year": "Year",
-            "wine": "Wine"
+            "year": "Année",
+            "wine": "Vin"
         }
     }
 }

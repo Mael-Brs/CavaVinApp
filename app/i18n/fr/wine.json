@@ -18,11 +18,12 @@
             },
             "name": "Name",
             "appellation": "Appellation",
-            "domaine": "Domaine",
-            "year": "Year",
-            "maxKeep": "Max Keep",
+            "producer": "Producteur",
+            "year": "Année",
+            "maxKeep": "Garde max",
+            "minKeep": "Garde min",
             "region": "Region",
-            "color": "Color"
+            "color": "Couleur"
         }
     }
 }

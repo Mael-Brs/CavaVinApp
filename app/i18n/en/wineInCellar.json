@@ -19,6 +19,8 @@
             "price": "Price",
             "quantity": "Quantity",
             "cellar": "Cellar",
+            "comments": "Comments",
+            "apogee": "Apogee",
             "wine": "Wine"
         }
     }
