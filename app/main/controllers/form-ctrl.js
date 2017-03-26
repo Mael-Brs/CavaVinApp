@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'StatService', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, StatService, Cellar) {
+.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, CommonServices, Cellar) {
   var vm = this;
   var activeWineId;
   var account;
@@ -47,18 +47,28 @@ angular
 
     if (activeWineId == -1){
       vm.userWine = {
-        id : "",
-        wine:{
-          name : "",
-          appellation : "",
-          year : "",
-          region : {
-            id:"",
-            regionName:""
+        id : null,
+        vintage : {
+          id : null,
+          bareCode : null,
+          year : {
+            id : null,
+            number : null
           },
-          color :{
-            id:"",
-            colorName:""
+          wine : {
+            id : null,
+            name : "",
+            appellation : "",
+            producer : "",
+            creatorId: cellar.userId,
+            region : {
+              id : null,
+              regionName : ""
+            },
+            color : {
+              id : null,
+              colorName : ""
+            }
           }
         },
         quantity: "",
@@ -124,39 +134,72 @@ angular
       } else if(vm.userWine.vintage.wine.color.colorName === "Autre"){
         addColor(vm.newColor);
       } else {
-        var newWine = new Wine(vm.userWine.vintage.wine);
-        var newVintage = new Vintage(vm.userWine.vintage);
-        var newWineInCellar = new WineInCellar(vm.userWine);
 
-        newWine.$save(function(wine) {
-          newVintage.wine = wine;
-
-          newVintage.$save(function(vintage) {
-            newWineInCellar.vintage = vintage;
-
-            newWineInCellar.$save(function(wineInCellar) {
-              var wineInCellars = CacheService.get('wineInCellars');
-
-              if(wineInCellars){
-                wineInCellars.push(wineInCellar);
-                CacheService.put('wineInCellars', wineInCellars);
-              } else {
-                Cellar.wineInCellars({id:cellar.id}, function(wines){
-                  CacheService.put('wineInCellars', wines);
-                });
-              }
-
-              StatService.updateCellarDetails();
-              $ionicHistory.nextViewOptions({
-                disableBack: true
-              });
-              $state.go('list');
-            });
-          });
-        });
+        if(activeWineId == -1){
+          create(vm.userWine.vintage.wine, vm.userWine.vintage, vm.userWine);
+        } else {
+          update(vm.userWine.vintage.wine, vm.userWine.vintage, vm.userWine);
+        }
       }
-
     }
+  }
+
+  function create(newWine, newVintage, newWineInCellar){
+    Wine.save(newWine, function(wine) {
+      newVintage.wine = wine;
+
+      Vintage.save(newVintage, function(vintage) {
+        newWineInCellar.vintage = vintage;
+
+        WineInCellar.save(newWineInCellar, function(wineInCellar) {
+          var wineInCellars = CacheService.get('wineInCellars');
+
+          if(wineInCellars){
+            wineInCellars[wineInCellar.id] = wineInCellar;
+            CacheService.put('wineInCellars', wineInCellars);
+          } else {
+            Cellar.wineInCellars({id:cellar.id}, function(wines){
+              CommonServices.addWinesInCache(wines);
+            });
+          }
+
+          CommonServices.updateCellarDetails();
+          $ionicHistory.nextViewOptions({
+            disableBack: true
+          });
+          $state.go('list');
+        });
+      });
+    });
+  }
+
+  function update(newWine, newVintage, newWineInCellar){
+    Wine.update(newWine,function(wine) {
+      newVintage.wine = wine;
+
+      Vintage.update(newVintage, function(vintage) {
+        newWineInCellar.vintage = vintage;
+
+        WineInCellar.update(newWineInCellar, function(wineInCellar) {
+          var wineInCellars = CacheService.get('wineInCellars');
+
+          if(wineInCellars){
+            wineInCellars[wineInCellar.id] = wineInCellar;
+            CacheService.put('wineInCellars', wineInCellars);
+          } else {
+            Cellar.wineInCellars({id:cellar.id}, function(wines){
+              CommonServices.addWinesInCache(wines);
+            });
+          }
+
+          CommonServices.updateCellarDetails();
+          $ionicHistory.nextViewOptions({
+            disableBack: true
+          });
+          $state.go('list');
+        });
+      });
+    });
   }
 
 }]);

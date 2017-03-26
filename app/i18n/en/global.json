@@ -6,6 +6,7 @@
             "cellarDetails": "Cellar details",
             "home": "Home",
             "list": "Wine list",
+            "wineCatalog": "Wines catalog",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
@@ -50,7 +51,8 @@
             "email": "E-mail",
             "email.placeholder": "Your e-mail",
             "cellarCapacity": "Cellar capacity",
-            "cellarCapacity.placeholder": "Cellar capacity"
+            "cellarCapacity.placeholder": "Cellar capacity",
+            "and-or": "And / Or"
         },
         "messages": {
             "info": {
@@ -97,7 +99,9 @@
             "edit": "Edit",
             "open": "Open",
             "save": "Save",
-            "view": "View"
+            "view": "View",
+            "close": "Close"
+
         },
         "detail": {
             "field": "Field",

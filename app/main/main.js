@@ -108,6 +108,8 @@ angular.module('main', [
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('list');
+                    $translatePartialLoader.addPart('wineInCellar');
+                    $translatePartialLoader.addPart('wine');
                     return $translate.refresh();
                 }]
             }
@@ -127,25 +129,28 @@ angular.module('main', [
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('wineInCellar');
+                    $translatePartialLoader.addPart('wine');
                     return $translate.refresh();
                 }]
             }
         })
 
-        .state('wineSearch', {
+        .state('wineCatalog', {
             parent: 'app',
-            url: '/wineSearch',
+            url: '/wineCatalog',
             data: {
                 authorities: ['ROLE_USER']
             },
             views: {
                 'pageContent': {
-                    templateUrl: 'main/templates/wineSearch.html',
-                    controller: 'WineSearchCtrl as vm'
+                    templateUrl: 'main/templates/wineCatalog.html',
+                    controller: 'WineCatalogCtrl as vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('wine');
                     return $translate.refresh();
                 }]
             }

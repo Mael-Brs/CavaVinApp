@@ -16,13 +16,14 @@
             "detail": {
                 "title": "Wine"
             },
-            "name": "Name",
+            "name": "Nom",
             "appellation": "Appellation",
-            "domaine": "Domaine",
-            "year": "Year",
-            "maxKeep": "Max Keep",
+            "producer": "Producteur",
+            "year": "Année",
+            "maxKeep": "Garde max",
+            "minKeep": "Garde min",
             "region": "Region",
-            "color": "Color"
+            "color": "Couleur"
         }
     }
 }

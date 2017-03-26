@@ -2,13 +2,14 @@
     'use strict';
     angular
     .module('main')
-    .factory('StatService', StatService);
+    .factory('CommonServices', CommonServices);
 
-    StatService.$inject = ['CacheService'];
+    CommonServices.$inject = ['CacheService'];
 
-    function StatService (CacheService){
+    function CommonServices (CacheService){
         var services = {
-            updateCellarDetails:updateCellarDetails
+            updateCellarDetails:updateCellarDetails,
+            addWinesInCache:addWinesInCache
         };
         return services;
 
@@ -23,7 +24,7 @@
                 var sumByRegion = {};
                 var sumByColor = {};
 
-                for (var i = 0 ; i < wineInCellars.length ; i++){
+                for (var i in wineInCellars){
                     var quantity = wineInCellars[i].quantity;
                     var region = wineInCellars[i].vintage.wine.region.regionName;
                     var color = wineInCellars[i].vintage.wine.color.colorName;
@@ -57,5 +58,20 @@
                 CacheService.put('activeCellar', cellar);
             }
         }
+
+        /**
+         * Ajoute les vins en cache en les mappant par id
+         * @param {[type]} wines [description]
+         */
+        function addWinesInCache(wines){
+            var wineInCellars = [];
+
+            for (var i = 0 ; i < wines.length ; i++){
+                var wine = wines[i];
+                wineInCellars[wine.id] = wine;
+            }
+            CacheService.put('wineInCellars', wineInCellars);
+        }
+
     }
 })();

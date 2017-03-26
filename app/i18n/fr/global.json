@@ -6,6 +6,7 @@
             "cellarDetails": "Detail de la cave",
             "home": "Accueil",
             "list":"Liste des vins",
+            "wineCatalog": "Catalogue des vins",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
@@ -50,7 +51,8 @@
             "email": "Email",
             "email.placeholder": "Votre email",
             "cellarCapacity": "Capacité de la cave",
-            "cellarCapacity.placeholder": "Capacité de la cave"
+            "cellarCapacity.placeholder": "Capacité de la cave",
+            "and-or": "Et / Ou"
         },
         "messages": {
             "info": {
@@ -97,7 +99,8 @@
             "delete": "Supprimer",
             "open": "Ouvrir",
             "save": "Sauvegarder",
-            "view": "Voir"
+            "view": "Voir",
+            "close": "Fermer"
         },
         "detail": {
             "field": "Champs",

@@ -3,10 +3,10 @@ angular
 .module('main')
 .controller('ListCtrl',ListCtrl);
 
-ListCtrl.$inject = ['$log', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate'];
+ListCtrl.$inject = ['$translate', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices'];
 
 
-function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate) {
+function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices) {
   var vm = this;
   vm.wines;
   vm.showForm = false;
@@ -19,7 +19,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
   $scope.$on('$ionicView.enter', function() { 
     $ionicListDelegate.closeOptionButtons();
     cellar = CacheService.get('activeCellar');
-    // TODO Use cache in get function
+
     if(!cellar){
       Principal.identity().then(function(account) {
         account = account;
@@ -37,14 +37,10 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
     if(!vm.wines){
       Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
         vm.wines = wineInCellars;
-        CacheService.put('wineInCellars', wineInCellars);
+        CommonServices.addWinesInCache(wineInCellars);
       });
     }
   }
-  
-  vm.addWine = function(){
-    $state.go('wineSearch');
-  };
 
   vm.removeWine = function(id){
     var confirmPopup = $ionicPopup.confirm({
@@ -61,8 +57,12 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
      });
   };
 
-  vm.editWine = function (id){
-    $state.go('editWine',{wineId:id});
+  vm.editWine = function (wineInCellar){
+    if(wineInCellar.vintage.wine.creatorId === cellar.userId){
+      $state.go('form',{wineId:wineInCellar.id});
+    } else {
+      $state.go('editWine',{wineId:wineInCellar.id});
+    }
   };
 
   $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {
@@ -83,7 +83,7 @@ function ListCtrl ($log, $scope, $state, WineInCellar, Principal, $ionicPopup, C
       title: 'Filtrer les vins',
       scope: $scope,
       buttons: [
-        { text: 'Fermer',
+        { text: $translate.instant('entity.action.close'),
           type: 'button-positive' 
         }
       ]

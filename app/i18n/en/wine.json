@@ -18,9 +18,10 @@
             },
             "name": "Name",
             "appellation": "Appellation",
-            "domaine": "Domaine",
+            "producer": "Producer",
             "year": "Year",
             "maxKeep": "Max Keep",
+            "minKeep": "Min Keep",
             "region": "Region",
             "color": "Color"
         }

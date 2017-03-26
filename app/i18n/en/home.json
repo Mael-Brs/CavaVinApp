@@ -8,6 +8,13 @@
         "cellar": {
             "undefined":"Your cellar capacity is undefined, <a class=\"alert-link\" href=\"\" ng-click=\"vm.openModal()\">Define cellar capacity</a> ",
             "title" : "Define your cellar capacity"
+        },
+        "actions":{
+            "add": "Add a wine in catalog",
+            "my-wines": "See your wines",
+            "wineCatalog": "Find a wine in catalog",
+            "cellar": "See your cellar details",
+            "title": "Would-you ?"
         }
     }
 }

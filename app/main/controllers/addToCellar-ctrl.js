@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('addToCellarCtrl',['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'StatService', 'Cellar', function ($ionicHistory, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService, StatService, Cellar) {
+.controller('addToCellarCtrl',['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService, CommonServices, Cellar) {
 
   var vm = this;
   vm.submit = submit;
@@ -50,15 +50,15 @@ angular
         var wineInCellars = CacheService.get('wineInCellars');
 
         if(wineInCellars){
-          wineInCellars.push(wineInCellar);
+          wineInCellars[wineInCellar.id] = wineInCellar;
           CacheService.put('wineInCellars', wineInCellars);
         } else {
           Cellar.wineInCellars({id:cellar.id}, function(wines){
-            CacheService.put('wineInCellars', wines);
+              CommonServices.addWinesInCache(wines);
           });
         }
 
-        StatService.updateCellarDetails();
+        CommonServices.updateCellarDetails();
         $ionicHistory.nextViewOptions({
           disableBack: true
         });
