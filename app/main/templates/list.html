@@ -1,8 +1,4 @@
 <ion-view view-title="Ma cave">
-    <ion-nav-buttons side="right">
-      <button class="button icon button-clear ion-plus-round" ng-click="vm.addWine()">
-      </button>
-    </ion-nav-buttons>
     <ion-content>                  
         <ion-list>
             <ion-item ng-repeat="data in vm.wines| orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine track by data.id">
@@ -27,6 +23,6 @@
     <div class="bar bar-footer">
         <button class="button icon button-positive" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'" ng-click="vm.sortReverse=!vm.sortReverse"></button>
         <a id="filterTerm" class="button icon-right ion-close-round button-outline button-dark" ng-if="vm.searchWine" ng-click="vm.searchWine=''">{{vm.searchWine}}</a>
-        <button class="button icon ion-funnel button-positive pull-right" ng-click="vm.openFilter()"></button>
+        <button class="button icon ion-android-options button-positive pull-right" ng-click="vm.openFilter()"></button>
     </div>
 </ion-view>

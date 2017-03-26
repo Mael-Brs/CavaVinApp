@@ -41,10 +41,6 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
       });
     }
   }
-  
-  vm.addWine = function(){
-    $state.go('form',{wineId:-1});
-  };
 
   vm.removeWine = function(id){
     var confirmPopup = $ionicPopup.confirm({

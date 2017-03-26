@@ -51,7 +51,8 @@
             "email": "Email",
             "email.placeholder": "Votre email",
             "cellarCapacity": "Capacité de la cave",
-            "cellarCapacity.placeholder": "Capacité de la cave"
+            "cellarCapacity.placeholder": "Capacité de la cave",
+            "and-or": "Et / Ou"
         },
         "messages": {
             "info": {

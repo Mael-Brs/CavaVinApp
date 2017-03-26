@@ -150,6 +150,7 @@ angular.module('main', [
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('wine');
                     return $translate.refresh();
                 }]
             }

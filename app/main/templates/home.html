@@ -19,19 +19,23 @@
             </div>
             <div class="list card" ng-if="vm.cellar">
                 <div class="item item-divider">
-                    <span > Voulez vous ?</span>
+                    <span translate="home.actions.title">Voulez vous ?</span>
                 </div>
                 <a href="#/app/form/-1" class="item item-icon-left">
                     <i class="icon ion-plus-round"></i>
-                    Ajouter un vin
+                    {{'home.actions.add' | translate}}
                 </a>
                 <a href="#/app/list" class="item item-icon-left">
-                    <i class="icon ion-clipboard"></i>
-                    Voir vos vins
+                    <i class="icon ion-android-clipboard"></i>
+                    {{'home.actions.my-wines' | translate}}
+                </a>
+                <a href="#/app/wineCatalog" class="item item-icon-left">
+                    <i class="icon ion-android-archive"></i>
+                    {{'home.actions.wineCatalog' | translate}}
                 </a>
                 <a href="#/app/cellarDetails" class="item item-icon-left">
                     <i class="icon ion-stats-bars"></i>
-                    Voir les infos de votre cave
+                    {{'home.actions.cellar' | translate}}
                 </a>
 
             </div>

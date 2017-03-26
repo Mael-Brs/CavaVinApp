@@ -51,7 +51,8 @@
             "email": "E-mail",
             "email.placeholder": "Your e-mail",
             "cellarCapacity": "Cellar capacity",
-            "cellarCapacity.placeholder": "Cellar capacity"
+            "cellarCapacity.placeholder": "Cellar capacity",
+            "and-or": "And / Or"
         },
         "messages": {
             "info": {
