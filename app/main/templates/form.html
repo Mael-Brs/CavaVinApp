@@ -77,7 +77,7 @@
 			<input type="text" ng-model="vm.userWine.comments">
 		</label>
 
-	  <button type="button" ng-click="vm.submit()" ng-disabled="form.$invalid || vm.userWine.vintage.wine.region === undefined || vm.userWine.vintage.wine.color === undefined" class="button button-block button-positive">Créer</button>
+	  <button type="button" ng-click="vm.submit()" ng-disabled="form.$invalid || vm.userWine.vintage.wine.region === undefined || vm.userWine.vintage.wine.color === undefined" class="button button-block button-positive">{{vm.activeWineId == -1 ? 'entity.action.save' : 'entity.action.edit' | translate}}</button>
 	</div>
 
    </form>

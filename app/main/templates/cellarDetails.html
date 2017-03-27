@@ -17,6 +17,18 @@
         </div>
         <div class="card">
             <div class="item item-divider">
+                Bouteilles par année
+            </div>
+            <div class="item item-text-wrap" ng-repeat="stat in vm.wineByYear | orderBy:'sum' : true">
+                <div class="stat-label">
+                    {{stat.year}}
+                </div>
+                <span  class="badge badge-assertive">{{stat.sum}}</span>
+                <meter class="col-65" value="{{stat.sum/vm.sum}}"></meter>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
                 Bouteilles par region
             </div>
             <div class="item item-text-wrap" ng-repeat="stat in vm.wineByRegion | orderBy:'sum' : true">

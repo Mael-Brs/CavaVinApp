@@ -4,14 +4,14 @@ angular
 .module('main')
 .controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, CommonServices, Cellar) {
   var vm = this;
-  var activeWineId;
   var account;
   var cellar;
+  vm.activeWineId;
   vm.userWine = {};
   vm.submit = submit;
 
   $scope.$on('$ionicView.enter', function(e) { 
-    activeWineId = $stateParams.wineId;
+    vm.activeWineId = $stateParams.wineId;
     cellar = CacheService.get('activeCellar');
     if(!cellar){
       getCellar();
@@ -45,7 +45,7 @@ angular
     loadColors();
     loadYears();
 
-    if (activeWineId == -1){
+    if (vm.activeWineId == -1){
       vm.userWine = {
         id : null,
         vintage : {
@@ -78,8 +78,8 @@ angular
         cellarId:cellar.id
       };
 
-    } else if (activeWineId != -1){
-      WineInCellar.get({id:activeWineId}, function successCallback(result) {
+    } else if (vm.activeWineId != -1){
+      WineInCellar.get({id:vm.activeWineId}, function successCallback(result) {
           vm.userWine = result;
       }, function errorCallback(response) {
       
@@ -135,7 +135,7 @@ angular
         addColor(vm.newColor);
       } else {
 
-        if(activeWineId == -1){
+        if(vm.activeWineId == -1){
           create(vm.userWine.vintage.wine, vm.userWine.vintage, vm.userWine);
         } else {
           update(vm.userWine.vintage.wine, vm.userWine.vintage, vm.userWine);
