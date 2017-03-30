@@ -43,12 +43,11 @@ angular
       WineInCellar.update(vm.userWine, function(wineInCellar) {
         var wineInCellars = CacheService.get('wineInCellars');
 
-        if(wineInCellars){    
-          wineInCellars[wineInCellar.id] = wineInCellar;
-          CacheService.put('wineInCellars', wineInCellars);
+        if(wineInCellars){
+            CommonServices.updateWineInCellar(wineInCellar);
         } else {
           Cellar.wineInCellars({id:cellar.id}, function(wines){
-            CommonServices.addWinesInCache(wines);
+            CacheService.put('wineInCellars', wines);
           });
         }
 

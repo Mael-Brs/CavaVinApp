@@ -36,8 +36,8 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     vm.wines = CacheService.get('wineInCellars');
     if(!vm.wines){
       Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
+        CacheService.put('wineInCellars', wineInCellars);
         vm.wines = wineInCellars;
-        CommonServices.addWinesInCache(wineInCellars);
       });
     }
   }

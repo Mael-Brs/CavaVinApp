@@ -9,7 +9,8 @@
     function CommonServices (CacheService){
         var services = {
             updateCellarDetails:updateCellarDetails,
-            addWinesInCache:addWinesInCache
+            addWinesInCache:addWinesInCache,
+            updateWineInCellar:updateWineInCellar
         };
         return services;
 
@@ -24,7 +25,7 @@
                 var sumByRegion = {};
                 var sumByColor = {};
 
-                for (var i in wineInCellars){
+                for (var i = 0 ; i < wineInCellars.length ; i++){
                     var quantity = wineInCellars[i].quantity;
                     var region = wineInCellars[i].vintage.wine.region.regionName;
                     var color = wineInCellars[i].vintage.wine.color.colorName;
@@ -69,6 +70,17 @@
             for (var i = 0 ; i < wines.length ; i++){
                 var wine = wines[i];
                 wineInCellars[wine.id] = wine;
+            }
+            CacheService.put('wineInCellars', wineInCellars);
+        }
+
+        function updateWineInCellar(wineInCellar){
+            var wineInCellars = CacheService.get('wineInCellars');
+
+            for (var i = 0 ; i < wineInCellars.length ; i++){
+                if(wineInCellars[i].id === wineInCellar.id){
+                    wineInCellars[i] = wineInCellar;
+                }
             }
             CacheService.put('wineInCellars', wineInCellars);
         }

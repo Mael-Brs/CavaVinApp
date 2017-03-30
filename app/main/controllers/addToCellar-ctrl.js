@@ -50,11 +50,11 @@ angular
         var wineInCellars = CacheService.get('wineInCellars');
 
         if(wineInCellars){
-          wineInCellars[wineInCellar.id] = wineInCellar;
+          wineInCellars.push(wineInCellar);
           CacheService.put('wineInCellars', wineInCellars);
         } else {
           Cellar.wineInCellars({id:cellar.id}, function(wines){
-              CommonServices.addWinesInCache(wines);
+            CacheService.put('wineInCellars', wines);
           });
         }
 
