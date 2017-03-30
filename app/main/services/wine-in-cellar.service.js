@@ -24,6 +24,10 @@
             'saveAll': {
                 params: {subResource: 'all'},
                 method:'POST'
+            },
+            'updateAll': {
+                params: {subResource: 'all'},
+                method:'PUT'
             }
         });
     }

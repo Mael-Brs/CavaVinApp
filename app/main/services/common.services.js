@@ -80,6 +80,7 @@
             for (var i = 0 ; i < wineInCellars.length ; i++){
                 if(wineInCellars[i].id === wineInCellar.id){
                     wineInCellars[i] = wineInCellar;
+                    break;
                 }
             }
             CacheService.put('wineInCellars', wineInCellars);

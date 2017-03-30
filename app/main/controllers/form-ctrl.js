@@ -167,30 +167,23 @@ angular
   }
 
   function update(newWine, newVintage, newWineInCellar){
-    Wine.update(newWine,function(wine) {
-      newVintage.wine = wine;
 
-      Vintage.update(newVintage, function(vintage) {
-        newWineInCellar.vintage = vintage;
+    WineInCellar.updateAll(newWineInCellar, function(wineInCellar) {
+      var wineInCellars = CacheService.get('wineInCellars');
 
-        WineInCellar.update(newWineInCellar, function(wineInCellar) {
-          var wineInCellars = CacheService.get('wineInCellars');
-
-          if(wineInCellars){
-              CommonServices.updateWineInCellar(wineInCellar);
-          } else {
-            Cellar.wineInCellars({id:cellar.id}, function(wines){
-              CacheService.put('wineInCellars', wines);
-            });
-          }
-
-          CommonServices.updateCellarDetails();
-          $ionicHistory.nextViewOptions({
-            disableBack: true
-          });
-          $state.go('list');
+      if(wineInCellars){
+          CommonServices.updateWineInCellar(wineInCellar);
+      } else {
+        Cellar.wineInCellars({id:cellar.id}, function(wines){
+          CacheService.put('wineInCellars', wines);
         });
+      }
+
+      CommonServices.updateCellarDetails();
+      $ionicHistory.nextViewOptions({
+        disableBack: true
       });
+      $state.go('list');
     });
   }
 
