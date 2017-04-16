@@ -37,6 +37,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     if(!vm.wines){
       Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
         CacheService.put('wineInCellars', wineInCellars);
+        CommonServices.updateCellarDetails();
         vm.wines = wineInCellars;
       });
     }

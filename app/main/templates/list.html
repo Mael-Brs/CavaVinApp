@@ -20,9 +20,9 @@
             </ion-item>
         </ion-list>         
     </ion-content>
-    <div class="bar bar-footer">
+    <ion-footer-bar>
         <button class="button icon button-positive" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'" ng-click="vm.sortReverse=!vm.sortReverse"></button>
         <a id="filterTerm" class="button icon-right ion-close-round button-outline button-dark" ng-if="vm.searchWine" ng-click="vm.searchWine=''">{{vm.searchWine}}</a>
         <button class="button icon ion-android-options button-positive pull-right" ng-click="vm.openFilter()"></button>
-    </div>
+    </ion-footer-bar>
 </ion-view>

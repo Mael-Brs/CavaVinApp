@@ -22,13 +22,17 @@
                 var sumOfWine = 0;
                 var wineByRegion = [];
                 var wineByColor = [];
+                var wineByYear = [];
                 var sumByRegion = {};
                 var sumByColor = {};
+                var sumByYear = {};
+
 
                 for (var i = 0 ; i < wineInCellars.length ; i++){
                     var quantity = wineInCellars[i].quantity;
                     var region = wineInCellars[i].vintage.wine.region.regionName;
                     var color = wineInCellars[i].vintage.wine.color.colorName;
+                    var year = wineInCellars[i].vintage.year.number;
 
                     sumOfWine += quantity;
 
@@ -43,6 +47,12 @@
                     } else {
                         sumByColor[color] += quantity;
                     }
+
+                    if(!sumByYear[year]){
+                        sumByYear[year] = quantity;
+                    } else {
+                        sumByYear[year] += quantity;
+                    }
                 }
 
                 for(var regionName in sumByRegion){
@@ -53,9 +63,14 @@
                     wineByColor.push({color:colorName, sum:sumByColor[colorName]});
                 }
 
+                for(var yearNumber in sumByYear){
+                    wineByYear.push({year:yearNumber, sum:sumByYear[yearNumber]});
+                }
+
                 cellar.sumOfWine = sumOfWine;
                 cellar.wineByRegion = wineByRegion;
                 cellar.wineByColor = wineByColor;
+                cellar.wineByYear = wineByYear;
                 CacheService.put('activeCellar', cellar);
             }
         }
