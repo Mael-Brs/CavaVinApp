@@ -34,7 +34,7 @@
 				Rechercher un vin dans notre base de données
 		  </ion-item>
 		  <ion-item ng-show="vm.result.length == 0">
-		  		Aucun élément trouvé pour : {{vm.search.name}} {{vm.search.producer}} 
+		  		Aucun élément trouvé pour : {{vm.query}}
 		  </ion-item>
 		  <ion-item href="#/app/form/-1" class="item item-icon-left" ng-show="vm.result">
 				<i class="icon ion-plus-round"></i>
@@ -43,7 +43,7 @@
 		</ion-list>
 				
 	</ion-content>
-	<div class="bar bar-footer">
+	<ion-footer-bar>
 	    <button class="button icon ion-search button-positive pull-right" ng-click="vm.openSearch()"></button>
-	</div>
+	</ion-footer-bar>
 </ion-view>

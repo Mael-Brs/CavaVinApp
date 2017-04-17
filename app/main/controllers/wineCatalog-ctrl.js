@@ -13,14 +13,13 @@ function WineCatalogCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,Use
   vm.openSearch = openSearch;
 
   $scope.$on('$ionicView.enter', function() { 
+    vm.query = "";
     openSearch();
   });
   
-  function submit(name, producer) {
-    name = name ? name : "";
-    producer = producer ? producer : "";
+  function submit(query) {
 
-    WineSearch.query({name: name, producer:producer}, function(result) {
+    WineSearch.query({query: query}, function(result) {
         vm.result = result;
     });
   }
@@ -46,11 +45,11 @@ function WineCatalogCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,Use
           text: '<b>Rechercher</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!vm.search.name && !vm.search.producer) {
+            if (!vm.query) {
               //don't allow the user to close unless he enters an input
               e.preventDefault();
             } else {
-              vm.submit(vm.search.name, vm.search.producer);
+              vm.submit(vm.query);
             }
           }
         }
