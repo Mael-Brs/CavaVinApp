@@ -41,26 +41,27 @@ ul#strength {
   }
 }
 
-meter {
+meter.simple-meter {
     /* Reset the default appearance */
     -webkit-appearance: meter;
-    height:22px;
+    height:18px;
     position: absolute;
     width:calc(100% - 172px);
-    top: 16px;
+    top: 17px;
     left:110px;
     right: 62px;
+
+    &::-webkit-meter-bar {
+      background: #EEE;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+    }
+
+    &::-webkit-meter-optimum-value, 
+    &::-webkit-meter-suboptimum-value, 
+    &::-webkit-meter-even-less-good-value {    
+      background: #990033;
+    }
+
 }
 
-meter::-webkit-meter-bar {
-  background: #EEE;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
-  border-radius: 4px;
-}
 
-meter::-webkit-meter-optimum-value, 
-meter::-webkit-meter-suboptimum-value, 
-meter::-webkit-meter-even-less-good-value {
-  border-radius: 4px;
-  background: #990033;
-}

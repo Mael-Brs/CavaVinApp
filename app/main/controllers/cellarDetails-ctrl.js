@@ -32,6 +32,7 @@ angular.module('main')
                         vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
                         vm.wineByRegion = vm.cellar.wineByRegion;
                         vm.wineByColor = vm.cellar.wineByColor;
+                        vm.wineByYear = vm.cellar.wineByYear;
                     }
                 });
             });

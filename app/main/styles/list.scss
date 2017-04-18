@@ -57,5 +57,32 @@ ion-popover-view{
 	margin:0 5px 0 5px;
 }
 
+.winAttributes meter {
+    /* Reset the default appearance */
+    -webkit-appearance: meter;
+    height:8px;
+    width:100%;
+	position:absolute;
+	bottom: 0px;
+	left: 0px;
+
+    &::-webkit-meter-bar {
+		background: #EEE;
+		box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+    }
+
+    &.young::-webkit-meter-optimum-value{
+		background: #5cb85c;
+    }
+
+    &.mature::-webkit-meter-optimum-value {
+    	background: #f0ad4e;
+    }
+
+    &.apogee::-webkit-meter-optimum-value {    
+    	background: #d9534f;
+    }
+
+}
 
 

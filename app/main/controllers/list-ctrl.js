@@ -14,6 +14,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   vm.sortReverse = false;
   vm.openModal = openModal;
   vm.openFilter = openFilter;
+  vm.thisYear = new Date().getFullYear();
   var cellar;
 
   $scope.$on('$ionicView.enter', function() { 

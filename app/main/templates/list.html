@@ -11,6 +11,7 @@
                         <span>{{data.vintage.wine.region.regionName}}</span>
                         <span class="color">{{data.vintage.wine.color.colorName}}</span>
                     </div>
+                    <meter value="{{data.age=(vm.thisYear-data.vintage.year.number)/data.maxKeep}}" ng-class="data.age <= 0.1 ? 'young' : (data.age > 0.9 ? 'apogee' : 'mature')" ></meter>
                 </div>
             <ion-option-button class="button-assertive" ng-click="vm.removeWine(data.id)">Delete</ion-option-button>
             <ion-option-button class="button-positive" ng-click="vm.editWine(data)">Edit</ion-option-button>

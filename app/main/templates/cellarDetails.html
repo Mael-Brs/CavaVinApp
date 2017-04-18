@@ -12,7 +12,7 @@
                     Bouteille(s)
                 </div>
                 <span class="badge badge-assertive">{{vm.sum}}</span>
-                <meter value="{{vm.sum/vm.cellar.capacity}}"></meter>
+                <meter class="simple-meter" value="{{vm.sum/vm.cellar.capacity}}"></meter>
             </div>
         </div>
         <div class="card">
@@ -24,7 +24,7 @@
                     {{stat.year}}
                 </div>
                 <span  class="badge badge-assertive">{{stat.sum}}</span>
-                <meter class="col-65" value="{{stat.sum/vm.sum}}"></meter>
+                <meter class="simple-meter" value="{{stat.sum/vm.sum}}"></meter>
             </div>
         </div>
         <div class="card">
@@ -36,7 +36,7 @@
                     {{stat.region}}
                 </div>
                 <span  class="badge badge-assertive">{{stat.sum}}</span>
-                <meter class="col-65" value="{{stat.sum/vm.sum}}"></meter>
+                <meter class="simple-meter" value="{{stat.sum/vm.sum}}"></meter>
             </div>
         </div>
         <div class="card">
@@ -48,7 +48,7 @@
                     {{stat.color}}
                 </div>
                 <span  class="badge badge-assertive">{{stat.sum}}</span>
-                <meter value="{{stat.sum/vm.sum}}"></meter>
+                <meter class="simple-meter" value="{{stat.sum/vm.sum}}"></meter>
             </div>
         </div>
     </ion-content>
