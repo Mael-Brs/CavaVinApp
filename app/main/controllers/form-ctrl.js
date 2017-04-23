@@ -162,7 +162,7 @@ angular
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
-      $state.go('list');
+      $state.go('home');
     });
   }
 
@@ -183,7 +183,7 @@ angular
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
-      $state.go('list');
+      $state.go('home');
     });
   }
 

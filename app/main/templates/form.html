@@ -22,7 +22,7 @@
 			<div class="input-label" translate="cavaVinApp.wine.year">
 			  Année
 			</div>
-			<select ng-model="vm.userWine.vintage.year" ng-options="year as year.number for year in vm.years track by year.id">
+			<select ng-model="vm.userWine.vintage.year" ng-options="year as year.number for year in vm.years | orderBy:year.number:true track by year.id">
 			</select>
 		</label>
 
