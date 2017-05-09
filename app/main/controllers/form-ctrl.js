@@ -183,7 +183,7 @@ angular
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
-      $state.go('home');
+      $state.go('list');
     });
   }
 

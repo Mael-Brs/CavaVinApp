@@ -62,7 +62,7 @@ angular
         $ionicHistory.nextViewOptions({
           disableBack: true
         });
-        $state.go('list');
+        $state.go('home');
       });
     }
   }

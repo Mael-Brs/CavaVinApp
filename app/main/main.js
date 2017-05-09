@@ -131,6 +131,7 @@ angular.module('main', [
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('wineInCellar');
                     $translatePartialLoader.addPart('wine');
+                    $translatePartialLoader.addPart('form');
                     return $translate.refresh();
                 }]
             }
@@ -169,6 +170,9 @@ angular.module('main', [
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('wineInCellar');
+                    $translatePartialLoader.addPart('wine');
+                    $translatePartialLoader.addPart('addToCellar');
                     return $translate.refresh();
                 }]
             }
@@ -206,6 +210,9 @@ angular.module('main', [
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('wineInCellar');
+                    $translatePartialLoader.addPart('wine');
+                    $translatePartialLoader.addPart('form');
                     return $translate.refresh();
                 }]
             }

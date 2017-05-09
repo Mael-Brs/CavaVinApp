@@ -1,4 +1,4 @@
-<ion-view view-title="Fiche vin">
+<ion-view view-title="{{vm.activeWineId == -1 ? 'form.title.create' : 'form.title.edit' | translate}}">
   <ion-content>
   <form name="$parent.form">
 
@@ -19,23 +19,14 @@
 		</label>
 
 		<label class="item item-input item-select">
-			<div class="input-label" translate="cavaVinApp.wine.year">
-			  Année
-			</div>
-			<select ng-model="vm.userWine.vintage.year" ng-options="year as year.number for year in vm.years | orderBy:year.number:true track by year.id">
-			</select>
-		</label>
-
-		<label class="item item-input item-select">
 			<div class="input-label" translate="cavaVinApp.wine.region">
 			  Région
 			</div>
 			<select ng-model="vm.userWine.vintage.wine.region" ng-options="region as region.regionName for region in vm.regions track by region.id">
 			</select>
 		</label>
-
 		<label class="item item-input" ng-show="vm.userWine.vintage.wine.region.regionName=='Autre'">
-			<span class="input-label">Autre</span>
+			<span class="input-label" translate="global.entity.detail.other">Autre</span>
     		<input type="text" placeholder="Nom région" ng-model="vm.newRegion.regionName" ng-required="vm.userWine.vintage.wine.region.regionName=='Autre'" />
   		</label>
 
@@ -46,11 +37,18 @@
 			<select ng-model="vm.userWine.vintage.wine.color" ng-options="color as color.colorName for color in vm.colors track by color.id">
 			</select>
 		</label>
-
 		<label class="item item-input" ng-show="vm.userWine.vintage.wine.color.colorName=='Autre'">
-			<span class="input-label">Autre</span>
+			<span class="input-label" translate="global.entity.detail.other" >Autre</span>
     		<input type="text" placeholder="Nom couleur" ng-model="vm.newColor.colorName" ng-required="vm.userWine.vintage.wine.color.colorName=='Autre'" />
   		</label>
+
+  		<label class="item item-input item-select">
+			<div class="input-label" translate="cavaVinApp.wine.year">
+			  Année
+			</div>
+			<select ng-model="vm.userWine.vintage.year" ng-options="year as year.number for year in vm.years | orderBy:year.number:true track by year.id">
+			</select>
+		</label>
 
 		<label class="item item-input" >
 			<span class="input-label" translate="cavaVinApp.wine.minKeep">Garde minimale</span>
@@ -76,9 +74,9 @@
 			<span class="input-label" translate="cavaVinApp.wineInCellar.comments" >Commentaires</span>
 			<input type="text" ng-model="vm.userWine.comments">
 		</label>
-
-	  <button type="button" ng-click="vm.submit()" ng-disabled="form.$invalid || vm.userWine.vintage.wine.region === undefined || vm.userWine.vintage.wine.color === undefined" class="button button-block button-positive">{{vm.activeWineId == -1 ? 'entity.action.save' : 'entity.action.edit' | translate}}</button>
 	</div>
+
+  	<button type="button" ng-click="vm.submit()" ng-disabled="form.$invalid || vm.userWine.vintage.wine.region === undefined || vm.userWine.vintage.wine.color === undefined" class="button button-block button-positive">{{vm.activeWineId == -1 ? 'entity.action.save' : 'entity.action.edit' | translate}}</button>
 
    </form>
 

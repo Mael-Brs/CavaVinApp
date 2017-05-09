@@ -38,3 +38,5 @@ yarn.lock
 
 # npm
 npm-debug.log
+*.iml
+.idea/
