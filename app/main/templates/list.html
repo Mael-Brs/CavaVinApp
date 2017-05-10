@@ -1,22 +1,24 @@
 <ion-view view-title="Ma cave">
-    <ion-content>                  
+    <ion-content>
         <ion-list>
             <ion-item ng-repeat="data in vm.wines| orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine track by data.id">
                 <div class="winAttributes" on-tap=vm.openModal(data)>
-                    <span class="year">{{data.vintage.year.number}}</span>
-                    <span class="badge badge-assertive quantity">{{data.quantity}}</span>
-                    <span class="wineItemLine name">{{data.vintage.wine.name}}</span>
-                    <span class="wineItemLine appellation">{{data.vintage.wine.appellation}}</span>
-                    <div class="wineItemLine detail">
-                        <span>{{data.vintage.wine.region.regionName}}</span>
-                        <span class="color">{{data.vintage.wine.color.colorName}}</span>
-                    </div>
-                    <meter value="{{data.age=(vm.thisYear-data.vintage.year.number)}}" min=0 max={{data.maxKeep}} ng-class="data.age <= data.minKeep ? 'young' : (data.age == data.maxKeep ? 'apogee' : 'mature')" ></meter>
+                  <span class="year">{{data.vintage.year.number}}</span>
+                  <span class="badge badge-assertive quantity">{{data.quantity}}</span>
+                  <span class="wineItemLine name">{{data.vintage.wine.name}}</span>
+                  <span class="wineItemLine appellation">{{data.vintage.wine.appellation}}</span>
+                  <div class="wineItemLine detail">
+                    <span>{{data.vintage.wine.region.regionName}}</span>
+                    <span class="color">{{data.vintage.wine.color.colorName}}</span>
+                  </div>
+                  <meter value="{{data.age=(vm.thisYear-data.vintage.year.number)}}" min=0 max={{data.maxKeep}} ng-class="data.age <= data.minKeep ? 'young' : (data.age == data.maxKeep ? 'apogee' : 'mature')" ></meter>
                 </div>
-            <ion-option-button class="button-assertive" ng-click="vm.removeWine(data.id)">Delete</ion-option-button>
-            <ion-option-button class="button-positive" ng-click="vm.editWine(data)">Edit</ion-option-button>
+                <ion-option-button class="button icon button-positive ion-plus" ng-click="vm.updateQuantity(data, +1)"></ion-option-button>
+                <ion-option-button class="button icon button-positive ion-minus" ng-click="vm.updateQuantity(data, -1)"></ion-option-button>
+                <ion-option-button class="button button-positive" ng-click="vm.editWine(data)">Edit</ion-option-button>
+                <ion-option-button class="button button-assertive" ng-click="vm.removeWine(data.id)">Delete</ion-option-button>
             </ion-item>
-        </ion-list>         
+        </ion-list>
     </ion-content>
     <ion-footer-bar>
         <button class="button icon button-positive" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'" ng-click="vm.sortReverse=!vm.sortReverse"></button>

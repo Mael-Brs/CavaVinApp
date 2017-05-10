@@ -10,7 +10,7 @@ angular
   vm.userWine = {};
   vm.submit = submit;
 
-  $scope.$on('$ionicView.enter', function(e) { 
+  $scope.$on('$ionicView.enter', function() {
     vm.activeWineId = $stateParams.wineId;
     cellar = CacheService.get('activeCellar');
     if(!cellar){
@@ -29,8 +29,7 @@ angular
       });
     });
   }
-      
-  //-------Functions-------------\\
+
   function inputInit(){
     vm.newColor = {
       id:"",
@@ -82,7 +81,7 @@ angular
       WineInCellar.get({id:vm.activeWineId}, function successCallback(result) {
           vm.userWine = result;
       }, function errorCallback(response) {
-      
+
       });
     }
 
@@ -96,7 +95,7 @@ angular
       });
     }
   }
-  
+
   function loadColors(){
     if(typeof vm.colors === 'undefined'){
       Color.query(function(result){
@@ -129,7 +128,7 @@ angular
 
     if (!$scope.form.$invalid) {
 
-      if(vm.userWine.vintage.wine.region.regionName === "Autre"){         
+      if(vm.userWine.vintage.wine.region.regionName === "Autre"){
         addRegion(vm.newRegion);
       } else if(vm.userWine.vintage.wine.color.colorName === "Autre"){
         addColor(vm.newColor);

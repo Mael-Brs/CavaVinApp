@@ -17,13 +17,12 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   vm.thisYear = new Date().getFullYear();
   var cellar;
 
-  $scope.$on('$ionicView.enter', function() { 
+  $scope.$on('$ionicView.enter', function() {
     $ionicListDelegate.closeOptionButtons();
     cellar = CacheService.get('activeCellar');
 
     if(!cellar){
       Principal.identity().then(function(account) {
-        account = account;
         cellar = User.cellars({login:account.login},function(){
           loadAll();
         });
@@ -55,7 +54,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
               CacheService.remove('wineInCellars');
               loadAll();
           });
-       } 
+       }
      });
   };
 
@@ -66,6 +65,33 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
       $state.go('editWine',{wineId:wineInCellar.id});
     }
   };
+
+  vm.updateQuantity = function(wineInCellar, step){
+    if(wineInCellar.quantity > 0 || step > 0){
+      wineInCellar.quantity += step;
+
+      if(wineInCellar.quantity === 0){
+        vm.removeWine(wineInCellar.id);
+
+      } else {
+        WineInCellar.update(wineInCellar,function(wineInCellar) {
+           var wineInCellars = CacheService.get('wineInCellars');
+
+           if(wineInCellars){
+               CommonServices.updateWineInCellar(wineInCellar);
+           } else {
+             Cellar.wineInCellars({id:cellar.id}, function(wines){
+               CacheService.put('wineInCellars', wines);
+             });
+           }
+
+           CommonServices.updateCellarDetails();
+        });
+
+      }
+    }
+  }
+
 
   $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {
       scope: $scope,
@@ -80,16 +106,16 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   }
 
   function openFilter(){
-    var myPopup = $ionicPopup.show({
+    $ionicPopup.show({
       templateUrl: 'main/templates/filterPopup.html',
       title: 'Filtrer les vins',
       scope: $scope,
       buttons: [
         { text: $translate.instant('entity.action.close'),
-          type: 'button-positive' 
+          type: 'button-positive'
         }
       ]
     });
   }
-  
+
 }
