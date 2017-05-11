@@ -56,12 +56,28 @@ meter.simple-meter {
       box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
     }
 
-    &::-webkit-meter-optimum-value, 
-    &::-webkit-meter-suboptimum-value, 
-    &::-webkit-meter-even-less-good-value {    
+    &::-webkit-meter-optimum-value,
+    &::-webkit-meter-suboptimum-value,
+    &::-webkit-meter-even-less-good-value {
       background: #990033;
     }
 
 }
 
+input.ng-invalid, select.ng-invalid{
+  box-shadow: #F00 0px 0px 1.5px 1px;
+}
+
+
+#formList{
+  select{
+    right:2px;
+    top:2px;
+    bottom:2px;
+    width: 50%;
+  }
+  input{
+    margin-right: 1px;
+  }
+}
 
