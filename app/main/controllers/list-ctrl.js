@@ -39,6 +39,8 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
         CacheService.put('wineInCellars', wineInCellars);
         CommonServices.updateCellarDetails();
         vm.wines = wineInCellars;
+      }, function(){
+        CommonServices.showAlert("Erreur", "Erreur lors du chargement de votre cave");
       });
     }
   }

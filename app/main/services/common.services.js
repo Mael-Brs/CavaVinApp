@@ -4,20 +4,24 @@
     .module('main')
     .factory('CommonServices', CommonServices);
 
-    CommonServices.$inject = ['CacheService'];
+    CommonServices.$inject = ['CacheService', '$ionicPopup'];
 
-    function CommonServices (CacheService){
+    function CommonServices (CacheService, $ionicPopup){
         var services = {
             updateCellarDetails:updateCellarDetails,
             addWinesInCache:addWinesInCache,
-            updateWineInCellar:updateWineInCellar
+            updateWineInCellar:updateWineInCellar,
+            showAlert:showAlert
         };
         return services;
 
+        /**
+         * Met à jour les stats de la cave dans le cache
+         */
         function updateCellarDetails() {
             var wineInCellars = CacheService.get('wineInCellars');
             var cellar = CacheService.get('activeCellar');
-            
+
             if(cellar && wineInCellars){
                 var sumOfWine = 0;
                 var wineByRegion = [];
@@ -56,15 +60,21 @@
                 }
 
                 for(var regionName in sumByRegion){
-                    wineByRegion.push({region:regionName, sum:sumByRegion[regionName]});
+                    if(sumByRegion.hasOwnProperty(regionName)){
+                      wineByRegion.push({region:regionName, sum:sumByRegion[regionName]});
+                    }
                 }
 
                 for(var colorName in sumByColor){
-                    wineByColor.push({color:colorName, sum:sumByColor[colorName]});
+                	if(sumByColor.hasOwnProperty(colorName)){
+                    	wineByColor.push({color:colorName, sum:sumByColor[colorName]});
+                	}
                 }
 
                 for(var yearNumber in sumByYear){
-                    wineByYear.push({year:yearNumber, sum:sumByYear[yearNumber]});
+                	if(sumByYear.hasOwnProperty(yearNumber)){
+	                    wineByYear.push({year:yearNumber, sum:sumByYear[yearNumber]});
+	                }
                 }
 
                 cellar.sumOfWine = sumOfWine;
@@ -77,7 +87,7 @@
 
         /**
          * Ajoute les vins en cache en les mappant par id
-         * @param {[type]} wines [description]
+         * @param {List<WineInCellar>} wines Liste des vins dans la cave de l'utilisateur
          */
         function addWinesInCache(wines){
             var wineInCellars = [];
@@ -89,6 +99,10 @@
             CacheService.put('wineInCellars', wineInCellars);
         }
 
+        /**
+         * Recherche et met à jour le vin dans le cache
+         * @param  {WineInCellar} wineInCellar vin
+         */
         function updateWineInCellar(wineInCellar){
             var wineInCellars = CacheService.get('wineInCellars');
 
@@ -101,5 +115,16 @@
             CacheService.put('wineInCellars', wineInCellars);
         }
 
+		/**
+		 * Fonction affichant une popup d'alerte
+		 * @param  {String} alertTitle   titre de la popup
+		 * @param  {String} alertMessage message à afficher
+		 */
+        function showAlert(alertTitle, alertMessage) {
+            $ionicPopup.alert({
+                title: '<b>' + alertTitle + '</b>',
+                template: alertMessage
+            });
+        }
     }
 })();
