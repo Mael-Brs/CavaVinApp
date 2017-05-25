@@ -13,7 +13,8 @@
     "run:ios": "gulp --cordova 'run ios",
     "run:android": "gulp --cordova 'run android'",
     "watch:build": "gulp watch-build",
-    "build": "gulp build --minify"
+    "build": "gulp build --minify",
+    "prod:android": "gulp --env=prod --cordova \"run android --device\""
   },
   "devDependencies": {
     "browser-sync": "^2.8.3",

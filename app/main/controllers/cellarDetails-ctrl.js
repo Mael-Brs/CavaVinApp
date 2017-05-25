@@ -2,9 +2,9 @@
 angular.module('main')
     .controller('CellarDetailsCtrl', CellarDetailsCtrl);
 
-    CellarDetailsCtrl.$inject = ['$scope', '$rootScope', '$state', 'Principal', 'CacheService', 'Cellar', 'User'];
+    CellarDetailsCtrl.$inject = ['$scope', 'Principal', 'CacheService', 'User', 'CommonServices'];
 
-    function CellarDetailsCtrl($scope, $rootScope, $state, Principal, CacheService, Cellar, User) {
+    function CellarDetailsCtrl($scope, Principal, CacheService, User, CommonServices) {
         var vm = this;
         vm.cellar;
 
@@ -34,6 +34,8 @@ angular.module('main')
                         vm.wineByColor = vm.cellar.wineByColor;
                         vm.wineByYear = vm.cellar.wineByYear;
                     }
+                }, function(){
+                    CommonServices.showAlert('error.getCellar');
                 });
             });
         }

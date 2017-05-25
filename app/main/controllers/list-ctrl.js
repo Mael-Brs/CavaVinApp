@@ -35,13 +35,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   function loadAll() {
     vm.wines = CacheService.get('wineInCellars');
     if(!vm.wines){
-      Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
-        CacheService.put('wineInCellars', wineInCellars);
-        CommonServices.updateCellarDetails();
-        vm.wines = wineInCellars;
-      }, function(){
-        CommonServices.showAlert("Erreur", "Erreur lors du chargement de votre cave");
-      });
+      getWineInCellars();
     }
   }
 
@@ -55,6 +49,8 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
           WineInCellar.delete({id: id}, function successCallback() {
               CacheService.remove('wineInCellars');
               loadAll();
+          }, function(){
+              CommonServices.showAlert('error.deleteWine');
           });
        }
      });
@@ -77,23 +73,34 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
 
       } else {
         WineInCellar.update(wineInCellar,function(wineInCellar) {
-           var wineInCellars = CacheService.get('wineInCellars');
+            var wineInCellars = CacheService.get('wineInCellars');
 
-           if(wineInCellars){
-               CommonServices.updateWineInCellar(wineInCellar);
-           } else {
-             Cellar.wineInCellars({id:cellar.id}, function(wines){
-               CacheService.put('wineInCellars', wines);
-             });
-           }
+            if(wineInCellars){
+              CommonServices.updateWineInCellar(wineInCellar);
+              CommonServices.updateCellarDetails();
+            } else {
+              getWineInCellars();
+            }
 
-           CommonServices.updateCellarDetails();
+        }, function(){
+            CommonServices.showAlert('error.updateWine');
         });
 
       }
     }
   }
 
+  function getWineInCellars(){
+    Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
+      CacheService.put('wineInCellars', wineInCellars);
+      //Update cache
+      CommonServices.updateCellarDetails();
+      //Update view
+      vm.wines = wineInCellars;
+    }, function(){
+      CommonServices.showAlert('error.getWines');
+    });
+  }
 
   $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {
       scope: $scope,

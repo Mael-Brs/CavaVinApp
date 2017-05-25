@@ -1,6 +1,19 @@
 {
     "error": {
-        "title": "Page d'erreur !",
-        "403": "Vous n'avez pas les droits pour accéder à cette page."
+        "title": "Erreur !",
+        "403": "Vous n'avez pas les droits pour accéder à cette page.",
+        "createWine": "Erreur lors de la création du vin",
+        "getWines": "Erreur lors du chargement de vos vins",
+        "getWine": "Erreur lors du chargement du vin",
+        "updateWine": "Erreur lors de la mise à jour du vin",
+        "deleteWine": "Erreur lors de la suppression du vin",
+        "getCellar": "Erreur lors du chargement de la cave",
+        "createCellar": "Erreur lors de la création de la cave",
+        "searchWine": "Erreur lors de la recherche du vin",
+        "getRegions": "Erreur lors du chargement de la liste des regions",
+        "createRegion": "Erreur lors de la création de la region",
+        "getColors": "Erreur lors du chargement de la liste des couleurs",
+        "createColor": "Erreur lors de la création de la couleur",
+        "getYears": "Erreur lors du chargement de la liste des années"
     }
 }

@@ -3,11 +3,10 @@ angular
 .module('main')
 .controller('WineCatalogCtrl', WineCatalogCtrl);
 
-WineCatalogCtrl.$inject = ['$log', '$scope', '$state', 'Principal', 'WineSearch','Cellar', 'User', '$ionicPopup', 'CacheService'];
+WineCatalogCtrl.$inject = ['$log', '$scope', '$state', 'WineSearch', '$ionicPopup', 'CacheService', 'CommonServices'];
 
-function WineCatalogCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,User, $ionicPopup, CacheService) {
+function WineCatalogCtrl ($log, $scope, $state, WineSearch, $ionicPopup, CacheService, CommonServices) {
   var vm = this;
-  var account;
 
   vm.submit = submit;
   vm.openSearch = openSearch;
@@ -18,9 +17,10 @@ function WineCatalogCtrl ($log, $scope, $state, Principal, WineSearch,Cellar,Use
   });
   
   function submit(query) {
-
     WineSearch.query({query: query}, function(result) {
         vm.result = result;
+    }, function(){
+        CommonServices.showAlert('error.searchWine');
     });
   }
 

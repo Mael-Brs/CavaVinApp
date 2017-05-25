@@ -4,9 +4,9 @@
     .module('main')
     .factory('CommonServices', CommonServices);
 
-    CommonServices.$inject = ['CacheService', '$ionicPopup'];
+    CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate'];
 
-    function CommonServices (CacheService, $ionicPopup){
+    function CommonServices (CacheService, $ionicPopup, $translate){
         var services = {
             updateCellarDetails:updateCellarDetails,
             addWinesInCache:addWinesInCache,
@@ -117,13 +117,12 @@
 
 		/**
 		 * Fonction affichant une popup d'alerte
-		 * @param  {String} alertTitle   titre de la popup
 		 * @param  {String} alertMessage message à afficher
 		 */
-        function showAlert(alertTitle, alertMessage) {
+        function showAlert(alertMessage) {
             $ionicPopup.alert({
-                title: '<b>' + alertTitle + '</b>',
-                template: alertMessage
+                title: '<b>' + $translate.instant('error.title') + '</b>',
+                template: $translate.instant(alertMessage)
             });
         }
     }

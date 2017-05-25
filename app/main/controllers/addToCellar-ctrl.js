@@ -25,6 +25,8 @@ angular
       cellar = User.cellars({login:account.login},function(result){
         vm.userWine.cellarId = result.id;
         inputInit();
+      }, function(){
+          CommonServices.showAlert('error.getCellar');
       });
     }); 
   }
@@ -52,17 +54,21 @@ angular
         if(wineInCellars){
           wineInCellars.push(wineInCellar);
           CacheService.put('wineInCellars', wineInCellars);
+          CommonServices.updateCellarDetails();
         } else {
           Cellar.wineInCellars({id:cellar.id}, function(wines){
             CacheService.put('wineInCellars', wines);
+            CommonServices.updateCellarDetails();
           });
         }
 
-        CommonServices.updateCellarDetails();
         $ionicHistory.nextViewOptions({
           disableBack: true
         });
+
         $state.go('home');
+      }, function(){
+          CommonServices.showAlert('error.createWine');
       });
     }
   }

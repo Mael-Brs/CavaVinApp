@@ -1,6 +1,19 @@
 {
     "error": {
-        "title": "Error page!",
-        "403": "You are not authorized to access the page."
+        "title": "Error !",
+        "403": "You are not authorized to access the page.",
+        "createWine": "Error while creating wine",
+        "getWines": "Error while loading wines",
+        "getWine": "Error while loading wine",
+        "updateWine": "Error while updating wines",
+        "deleteWine": "Error while deleting wines",
+        "getCellar": "Error while loading cellar",
+        "createCellar": "Error while creating cellar",
+        "searchWine": "Error while searching wine",
+        "getRegions": "Error while loading regions",
+        "createRegion": "Error while creating region",
+        "getColors": "Error while loading colors",
+        "createColor": "Error while creating color",
+        "getYears": "Error while loading years"
     }
 }

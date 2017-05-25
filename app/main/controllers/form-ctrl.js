@@ -26,6 +26,8 @@ angular
       cellar = User.cellars({login:account.login},function(result){
         vm.userWine.cellarId = result.id;
         inputInit();
+      }, function(){
+          CommonServices.showAlert('error.getCellar');
       });
     });
   }
@@ -57,8 +59,8 @@ angular
     } else if (vm.activeWineId != -1){
       WineInCellar.get({id:vm.activeWineId}, function successCallback(result) {
           vm.userWine = result;
-      }, function errorCallback(response) {
-
+      }, function () {
+        CommonServices.showAlert('error.getWine');
       });
     }
 
@@ -69,6 +71,8 @@ angular
       Region.query(function(result){
         vm.regions = result;
         vm.regions.push({id:"-1",regionName:"Autre"});
+      }, function(){
+        CommonServices.showAlert('error.getRegions');
       });
     }
   }
@@ -78,18 +82,26 @@ angular
       Color.query(function(result){
         vm.colors = result;
         vm.colors.push({id:"-1", colorName:"Autre"});
+      }, function(){
+        CommonServices.showAlert('error.getColors');
       });
     }
   }
 
   function loadYears(){
-    vm.years = Year.query();
+    Year.query(function(result){
+      vm.years = result;
+    }, function(){
+      CommonServices.showAlert('error.getYears');
+    });
   }
 
   function addRegion(region){
     Region.save(region, function(value) {
         vm.userWine.vintage.wine.region = value;
         submit();
+    }, function(){
+      CommonServices.showAlert('error.createRegion');
     });
   }
 
@@ -97,11 +109,13 @@ angular
     Color.save(color, function(value) {
         vm.userWine.vintage.wine.color = value;
         submit();
+    }, function(){
+      CommonServices.showAlert('error.createColor');
     });
   }
 
 
-   function submit() {
+  function submit() {
 
     if (!$scope.form.$invalid) {
 
@@ -128,17 +142,18 @@ angular
       if(wineInCellars){
         wineInCellars.push(wineInCellar);
         CacheService.put('wineInCellars', wineInCellars);
+        CommonServices.updateCellarDetails();
       } else {
-        Cellar.wineInCellars({id:cellar.id}, function(wines){
-          CacheService.put('wineInCellars', wines);
-        });
+        getWineInCellars();
       }
 
-      CommonServices.updateCellarDetails();
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
+
       $state.go('home');
+    }, function(){
+        CommonServices.showAlert('error.createWine');
     });
   }
 
@@ -148,18 +163,29 @@ angular
       var wineInCellars = CacheService.get('wineInCellars');
 
       if(wineInCellars){
-          CommonServices.updateWineInCellar(wineInCellar);
+        CommonServices.updateWineInCellar(wineInCellar);
+        CommonServices.updateCellarDetails();
       } else {
-        Cellar.wineInCellars({id:cellar.id}, function(wines){
-          CacheService.put('wineInCellars', wines);
-        });
+        getWineInCellars();
       }
 
-      CommonServices.updateCellarDetails();
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
+
       $state.go('list');
+    }, function(){
+        CommonServices.showAlert('error.updateWine');
+    });
+  }
+
+  function getWineInCellars(){
+    Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
+      CacheService.put('wineInCellars', wineInCellars);
+      //Update cache
+      CommonServices.updateCellarDetails();
+    }, function(){
+      CommonServices.showAlert('error.getWines');
     });
   }
 
