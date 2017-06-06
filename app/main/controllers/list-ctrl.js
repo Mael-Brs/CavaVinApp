@@ -32,13 +32,22 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     }
   });
 
+  /**
+   * Set les variables du scope
+   */
   function loadAll() {
+    vm.wineByRegion = cellar.wineByRegion;
+    vm.wineByColor = cellar.wineByColor;
     vm.wines = CacheService.get('wineInCellars');
     if(!vm.wines){
       getWineInCellars();
     }
   }
 
+/**
+ * Fonction de suppression du vin au click sur le bouton
+ * @param  {number} id id du vin
+ */
   vm.removeWine = function(id){
     var confirmPopup = $ionicPopup.confirm({
       title: 'Supprimer le vin',
@@ -90,6 +99,9 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     }
   }
 
+  /**
+   * Appelle le ws getWinInCellars et les met en cache
+   */
   function getWineInCellars(){
     Cellar.wineInCellars({id:cellar.id}, function(wineInCellars){
       CacheService.put('wineInCellars', wineInCellars);
