@@ -13,6 +13,7 @@ function WineCatalogCtrl ($log, $scope, $state, WineSearch, $ionicPopup, CacheSe
 
   $scope.$on('$ionicView.enter', function() { 
     vm.query = "";
+    vm.result = {};
     openSearch();
   });
   
