@@ -1,7 +1,7 @@
 <ion-view view-title="{{'selectVintage.title' | translate}}">
     <ion-content class="padding">
 		<ion-list>
-            <form name="form" role="form" novalidate ng-submit="vm.select()" show-validation>
+            <form name="form" role="form" novalidate show-validation>
             <div class="card list">
                 <label class="item" >
                     <span>Nom : </span>
@@ -39,7 +39,8 @@
                 </label>
                 </ion-item>
 
-                <button type="submit" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.select">Select</button>
+                <button ng-click="vm.addToCellar()" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.addToCellar">Add to cellar</button>
+                <button ng-click="vm.pinVintage()" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.pinVintage">Pin</button>
             </form>
             <ion-item ng-click="vm.openCreateVintage()" class="item item-icon-left">
                 <i class="icon ion-plus-round"></i>

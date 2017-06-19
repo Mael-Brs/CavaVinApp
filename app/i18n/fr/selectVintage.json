@@ -1,7 +1,8 @@
 {
     "selectVintage": {
         "title": "Millésime",
-        "select": "Selectionner",
+        "addToCellar": "Ajouter à la cave",
+        "pinVintage": "Epingler",
         "modal": {
         	"title": "Ajouter un millésime"
         }

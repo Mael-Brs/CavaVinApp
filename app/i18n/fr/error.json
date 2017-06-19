@@ -2,6 +2,8 @@
     "error": {
         "title": "Erreur !",
         "403": "Vous n'avez pas les droits pour accéder à cette page.",
+        "createPinnedVintage": "Erreur lors de la créaton du millésime épinglé",
+        "getPinnedVintage": "Erreur lors du chargement des millésimes épinglés",
         "createWine": "Erreur lors de la création du vin",
         "getWines": "Erreur lors du chargement de vos vins",
         "getWine": "Erreur lors du chargement du vin",
