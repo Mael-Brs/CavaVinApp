@@ -1,7 +1,6 @@
 {
     "list": {
-        "title": "Vintage",
-        "select": "Select",
+        "title": "Ma cave",
         "modal": {
         	"details":{
         		"title": "Details du vin en cave"

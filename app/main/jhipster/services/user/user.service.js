@@ -23,6 +23,11 @@
             'cellars':{
                 params: {subResource: 'cellars'},
                 method: 'GET'
+            },
+            'pinnedVintages':{
+                params: {subResource: 'pinned-vintages'},
+                method: 'GET', 
+                isArray: true
             }
         });
 

@@ -217,5 +217,25 @@ angular.module('main', [
                     return $translate.refresh();
                 }]
             }
+        })
+        .state('pinnedList', {
+            parent: 'app',
+            url: '/pinnedList',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            views: {
+                'pageContent': {
+                    templateUrl: 'main/templates/pinnedList.html',
+                    controller: 'pinnedListCtrl as vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('wineInCellar');
+                    $translatePartialLoader.addPart('wine');
+                    return $translate.refresh();
+                }]
+            }
         });
 });

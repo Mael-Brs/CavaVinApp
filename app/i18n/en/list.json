@@ -1,7 +1,6 @@
 {
     "list": {
-        "title": "Vintage",
-        "select": "Select",
+        "title": "My cellar",
         "modal": {
         	"details":{
         		"title": "Wine in cellar details"

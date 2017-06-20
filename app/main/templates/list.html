@@ -1,4 +1,4 @@
-<ion-view view-title="Ma cave">
+<ion-view view-title="{{'list.title' | translate}}">
     <ion-content>
         <ion-list>
             <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine | filter:vm.searchRegion | filter:vm.searchColor track by data.id">

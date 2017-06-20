@@ -7,7 +7,7 @@
             "home": "Home",
             "list": "Wine list",
             "wineCatalog": "Wines catalog",
-            "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "pinnedList": "Pinned vintage",
             "entities": {
                 "main": "Entities",
                 "region": "Region",
