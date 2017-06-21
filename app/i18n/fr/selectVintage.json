@@ -5,6 +5,7 @@
         "pinVintage": "Epingler",
         "modal": {
         	"title": "Ajouter un millésime"
-        }
+        },
+        "newVintage": "Nouveau millésime"
     }
 }

@@ -4,33 +4,33 @@
             <form name="form" role="form" novalidate show-validation>
             <div class="card list">
                 <label class="item" >
-                    <span>Nom : </span>
+                    <span translate="cavaVinApp.wine.name">Nom</span> : 
                     <span>{{vm.wine.name}}</span>
                 </label>
 
                 <label class="item" >
-                    <span>Appellation : </span>
+                    <span translate="cavaVinApp.wine.appellation">Appellation</span> :
                     <span>{{vm.wine.appellation}}</span>
                 </label>
 
                 <label class="item" >
-                    <span>Producteur : </span>
+                    <span translate="cavaVinApp.wine.producer">Producteur</span> :
                     <span>{{vm.wine.producer}}</span>
                 </label>
 
                 <label class="item" >
-                    <span>Région : </span>
+                    <span translate="cavaVinApp.wine.region">Région</span> :
                     <span>{{vm.wine.region.regionName}}</span>
                 </label>
 
                 <label class="item" >
-                    <span>Couleur : </span>
+                    <span translate="cavaVinApp.wine.color">Couleur</span> :
                  <span>{{vm.wine.color.colorName}}</span>
                 </label>
             </div>	
             <ion-item class="item-input item-select">
 				<label >
-                    <div class="input-label">
+                    <div class="input-label" translate="cavaVinApp.wine.year">
                       Année
                     </div>
                     <select ng-model="vm.selectedVintage" ng-options="vintage as vintage.year.number for vintage in vm.vintages track by vintage.id">
@@ -44,7 +44,7 @@
             </form>
             <ion-item ng-click="vm.openCreateVintage()" class="item item-icon-left">
                 <i class="icon ion-plus-round"></i>
-                Nouveau millésime
+                {{'selectVintage.newVintage' | translate}}
             </ion-item>
         </ion-list>
 	</ion-content>

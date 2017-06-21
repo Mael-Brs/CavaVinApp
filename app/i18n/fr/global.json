@@ -5,9 +5,9 @@
         "menu": {
             "cellarDetails": "Detail de la cave",
             "home": "Accueil",
-            "list":"Liste des vins",
+            "cellarContent":"Contenu de la cave",
             "wineCatalog": "Catalogue des vins",
-            "pinnedList": "Pinned vintage",
+            "pinnedList": "Vins épinglés",
             "entities": {
                 "main": "Entités",
                 "region": "Region",

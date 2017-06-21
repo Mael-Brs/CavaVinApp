@@ -5,6 +5,7 @@
         "pinVintage": "Pin",
         "modal": {
         	"title": "Add vintage"
-        }
+        },
+        "newVintage": "New vintage"
     }
 }

@@ -5,7 +5,7 @@
         "menu": {
             "cellarDetails": "Cellar details",
             "home": "Home",
-            "list": "Wine list",
+            "cellarContent": "Cellar content",
             "wineCatalog": "Wines catalog",
             "pinnedList": "Pinned vintage",
             "entities": {
