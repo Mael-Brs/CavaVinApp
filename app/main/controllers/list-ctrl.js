@@ -50,8 +50,8 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
  */
   vm.removeWine = function(id){
     var confirmPopup = $ionicPopup.confirm({
-      title: 'Supprimer le vin',
-      template: 'Etes-vous sûr de vouloir supprimer ce vin?'
+      title: '{{"deleteTitle" | translate}}',
+      template: '{{"deleteMessage" | translate}}'
     });
     confirmPopup.then(function(res) {
       if(res) {

@@ -5,6 +5,9 @@
         	"details":{
         		"title": "Details du vin en cave"
         	}
-        }
+        },
+        "pinVintage": "Voulez-vous épingler ce millésime ?",
+        "deleteTitle": "Supprimer le vin",
+        "deleteMessage": "Etes-vous sûr de vouloir supprimer ce vin ?"
     }
 }
