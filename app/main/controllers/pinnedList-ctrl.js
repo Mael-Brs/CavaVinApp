@@ -15,15 +15,16 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
     $ionicListDelegate.closeOptionButtons();
     cellar = CacheService.get('activeCellar');
 
-    if(!cellar){
-      Principal.identity().then(function(account) {
-        cellar = User.cellars({login:account.login},function(){
-          loadAll();
-        });
-      });
-    } else {
-      loadAll();
-    }
+    Principal.identity().then(function(account) {
+      user = account;
+      if(!cellar){
+          cellar = User.cellars({login:account.login},function(){
+            loadAll();
+          });
+      } else {
+        loadAll();
+      }
+    });
   });
 
   /**

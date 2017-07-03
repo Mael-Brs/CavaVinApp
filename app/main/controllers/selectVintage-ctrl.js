@@ -45,7 +45,7 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 		PinnedVintage.save({vintage:vm.selectedVintage, userId:user.id}, function(value) {
 			//$state.go('addToCellar');
 		}, function(){
-		  CommonServices.showAlert('error.createColor');
+		  CommonServices.showAlert('error.createPinnedVintage');
 		});
 	}
 

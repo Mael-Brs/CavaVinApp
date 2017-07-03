@@ -3,10 +3,10 @@ angular
 .module('main')
 .controller('ListCtrl',ListCtrl);
 
-ListCtrl.$inject = ['$translate', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices'];
+ListCtrl.$inject = ['$translate', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedVintage'];
 
 
-function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices) {
+function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedVintage) {
   var vm = this;
   vm.wines;
   vm.showForm = false;
@@ -16,20 +16,22 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   vm.openFilter = openFilter;
   vm.thisYear = new Date().getFullYear();
   var cellar;
+  var user;
 
   $scope.$on('$ionicView.enter', function() {
     $ionicListDelegate.closeOptionButtons();
     cellar = CacheService.get('activeCellar');
 
-    if(!cellar){
-      Principal.identity().then(function(account) {
-        cellar = User.cellars({login:account.login},function(){
-          loadAll();
-        });
-      });
-    } else {
-      loadAll();
-    }
+    Principal.identity().then(function(account) {
+      user = account;
+      if(!cellar){
+          cellar = User.cellars({login:account.login},function(){
+            loadAll();
+          });
+      } else {
+        loadAll();
+      }
+    });
   });
 
   /**
@@ -50,8 +52,8 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
  */
   vm.removeWine = function(id){
     var confirmPopup = $ionicPopup.confirm({
-      title: '{{"deleteTitle" | translate}}',
-      template: '{{"deleteMessage" | translate}}'
+      title: $translate.instant('list.deleteTitle'),
+      template: '{{"list.deleteMessage" | translate}}'
     });
     confirmPopup.then(function(res) {
       if(res) {
@@ -78,7 +80,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
       wineInCellar.quantity += step;
 
       if(wineInCellar.quantity === 0){
-        vm.removeWine(wineInCellar.id);
+        pinVintage(wineInCellar);
 
       } else {
         WineInCellar.update(wineInCellar,function(wineInCellar) {
@@ -138,5 +140,21 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
       ]
     });
   }
+
+  function pinVintage(wineInCellar){
+    var confirmPopup = $ionicPopup.confirm({
+      title: $translate.instant('list.deleteTitle'),
+      template: '{{"list.pinVintage" | translate}}'
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+          PinnedVintage.save({vintage:wineInCellar.vintage, userId:user.id}, function successCallback() {
+              vm.removeWine(wineInCellar.id);
+          }, function(){
+              CommonServices.showAlert('error.createPinnedVintage');
+          });
+       }
+     });
+  };
 
 }
