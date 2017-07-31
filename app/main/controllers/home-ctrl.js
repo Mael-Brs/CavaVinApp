@@ -32,7 +32,7 @@ angular.module('main')
                 vm.account = account;
 
                 if (account){
-                    User.cellars({login:account.login},function(cellar){
+                    User.cellars({ref:account.id},function(cellar){
                         vm.cellar = cellar;
                         if(vm.cellar){
                             vm.sum = cellar.sumOfWine !== null ? cellar.sumOfWine : 0;

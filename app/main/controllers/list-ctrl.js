@@ -25,7 +25,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     Principal.identity().then(function(account) {
       user = account;
       if(!cellar){
-          cellar = User.cellars({login:account.login},function(){
+          cellar = User.cellars({ref:account.id},function(){
             loadAll();
           });
       } else {

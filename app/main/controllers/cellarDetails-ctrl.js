@@ -26,7 +26,7 @@ angular.module('main')
 
         function getCellar(){
             Principal.identity().then(function(account) {
-                User.cellars({login:account.login}, function(result){
+                User.cellars({ref:account.id}, function(result){
                     vm.cellar = result;
                     if(vm.cellar){
                         vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;

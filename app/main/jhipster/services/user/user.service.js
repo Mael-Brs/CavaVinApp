@@ -8,7 +8,7 @@
     User.$inject = ['$resource', 'Config'];
 
     function User ($resource, Config) {
-        var service = $resource(Config.ENV.SERVER_URL + 'api/users/:login/:subResource', {}, {
+        var service = $resource(Config.ENV.SERVER_URL + 'api/users/:ref/:subResource', {}, {
             'query': {method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

@@ -19,7 +19,7 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
     Principal.identity().then(function(account) {
       user = account;
       if(!cellar){
-          cellar = User.cellars({login:account.login},function(){
+          cellar = User.cellars({ref:account.id},function(){
             loadAll();
           });
       } else {
@@ -38,10 +38,10 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
     }
   }
 
-/**
- * Fonction de suppression du vin au click sur le bouton
- * @param  {number} id id du vin
- */
+  /**
+   * Fonction de suppression du vin au click sur le bouton
+   * @param  {number} id id du vin
+   */
   vm.removePinned = function(id){
     var confirmPopup = $ionicPopup.confirm({
       title: 'Supprimer le vin',
@@ -65,10 +65,10 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
   };
 
   /**
-   * Appelle le ws getWinInCellars et les met en cache
+   * Appelle le ws getPinnedVintages et les met en cache
    */
   function getPinnedVintages(){
-    User.pinnedVintages({login:user.id}, function(pinnedVintages){
+    User.pinnedVintages({ref:user.id}, function(pinnedVintages){
       CacheService.put('pinnedVintages', pinnedVintages);
       vm.wines = pinnedVintages;
     }, function(){

@@ -23,7 +23,7 @@ angular
   function getCellar(){
     Principal.identity().then(function(value) {
       account = value;
-      cellar = User.cellars({login:account.login},function(result){
+      cellar = User.cellars({ref:account.id},function(result){
         vm.userWine.cellarId = result.id;
         inputInit();
       }, function(){
