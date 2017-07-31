@@ -10,6 +10,7 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
   var vm = this;
   vm.wines;
   var cellar;
+  var user;
 
   $scope.$on('$ionicView.enter', function() {
     $ionicListDelegate.closeOptionButtons();
@@ -67,7 +68,7 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
    * Appelle le ws getWinInCellars et les met en cache
    */
   function getPinnedVintages(){
-    User.pinnedVintages({login:'current'}, function(pinnedVintages){
+    User.pinnedVintages({login:user.id}, function(pinnedVintages){
       CacheService.put('pinnedVintages', pinnedVintages);
       vm.wines = pinnedVintages;
     }, function(){
