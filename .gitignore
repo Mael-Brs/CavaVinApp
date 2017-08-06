@@ -40,3 +40,4 @@ yarn.lock
 npm-debug.log
 *.iml
 .idea/
+app/main/constants/config-const.js
