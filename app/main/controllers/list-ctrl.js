@@ -10,8 +10,11 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   var vm = this;
   vm.wines;
   vm.showForm = false;
+  //paramètres de tri
   vm.sortWine = 'apogee'; // set the default sort color
   vm.sortReverse = false;
+  vm.isWineInCellarFilter = true;
+  
   vm.openModal = openModal;
   vm.openFilter = openFilter;
   vm.thisYear = new Date().getFullYear();

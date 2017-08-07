@@ -11,6 +11,10 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
   vm.wines;
   var cellar;
   var user;
+  vm.openFilter = openFilter;
+  vm.isWineInCellarFilter = false;
+  vm.sortWine = 'vintage.wine.name'; // set the default sort color
+  vm.sortReverse = false;
 
   $scope.$on('$ionicView.enter', function() {
     $ionicListDelegate.closeOptionButtons();
@@ -35,6 +39,8 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
     vm.wines = CacheService.get('pinnedVintages');
     if(!vm.wines){
       getPinnedVintages();
+    } else {
+      buildFilterOptions();
     }
   }
 
@@ -71,10 +77,45 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
     User.pinnedVintages({ref:user.id}, function(pinnedVintages){
       CacheService.put('pinnedVintages', pinnedVintages);
       vm.wines = pinnedVintages;
+      buildFilterOptions();      
     }, function(){
       CommonServices.showAlert('error.getWines');
     });
   }
 
+  function openFilter(){
+    $ionicPopup.show({
+      templateUrl: 'main/templates/filterPopup.html',
+      title: 'Filtrer les vins',
+      scope: $scope,
+      buttons: [
+        { text: $translate.instant('entity.action.close'),
+          type: 'button-positive'
+        }
+      ]
+    });
+  }
+
+  function buildFilterOptions(){
+    vm.wineByRegion = [];
+    vm.wineByColor = [];
+
+    for (var i = 0 ; i < vm.wines.length ; i++){
+      var region = vm.wines[i].vintage.wine.region.regionName;
+      var color = vm.wines[i].vintage.wine.color.colorName;
+      var regions = {};
+      var colors = {};
+
+      if(!regions[region]){
+          regions[region] = true;
+          vm.wineByRegion.push({region:region});
+      }
+
+      if(!colors[color]){
+          colors[color] = true;
+          vm.wineByColor.push({color:color});
+      }
+    }
+  };
 
 }
