@@ -7,7 +7,7 @@
     PinnedVintage.$inject = ['$resource'];
 
     function PinnedVintage ($resource) {
-        var resourceUrl =  'api/pinned-vintages/:id';
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/pinned-vintages/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
