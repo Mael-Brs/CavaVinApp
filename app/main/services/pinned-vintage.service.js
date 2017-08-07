@@ -4,9 +4,9 @@
         .module('main')
         .factory('PinnedVintage', PinnedVintage);
 
-    PinnedVintage.$inject = ['$resource'];
+    PinnedVintage.$inject = ['$resource', 'Config'];
 
-    function PinnedVintage ($resource) {
+    function PinnedVintage ($resource, Config) {
         var resourceUrl =  Config.ENV.SERVER_URL + 'api/pinned-vintages/:id';
 
         return $resource(resourceUrl, {}, {
