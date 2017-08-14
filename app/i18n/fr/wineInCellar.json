@@ -19,8 +19,9 @@
             "price": "Prix",
             "quantity": "Quantité",
             "cellar": "Cave",
-            "apogee": "Apogée",
             "comments": "Commentaires",
+            "apogee": "Apogée",
+            "location": "Emplacement",
             "wine": "Wine"
         }
     }

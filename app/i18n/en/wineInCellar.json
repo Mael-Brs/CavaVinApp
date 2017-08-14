@@ -21,6 +21,7 @@
             "cellar": "Cellar",
             "comments": "Comments",
             "apogee": "Apogee",
+            "location": "Location",
             "wine": "Wine"
         }
     }
