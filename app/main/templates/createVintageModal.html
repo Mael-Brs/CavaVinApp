@@ -11,16 +11,15 @@
                     <div class="input-label">
                       Année
                     </div>
-                    <select ng-model="vm.selectedYear" ng-options="year as year.number for year in vm.years track by year.id">
-                    </select>
+                    <input type="number" step="1" ng-model="vm.newYear" ng-pattern="/^\d{4}$/" required>
                 </label>
                 <label class="item item-input">
                     <div class="input-label">
                       Code barre
                     </div>
-                <input type="text" ng-model="vm.bareCode">
+                    <input type="text" ng-model="vm.bareCode">
                 </label>
-                <button type="submit" ng-disabled="form.$invalid || !vm.selectedYear" class="button button-full button-positive" translate="entity.action.save">Save</button>
+                <button type="submit" ng-disabled="form.$invalid || !vm.newYear" class="button button-full button-positive" translate="entity.action.save">Save</button>
             </ion-item>
             </form>
         </ion-list>

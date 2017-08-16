@@ -3,9 +3,9 @@ angular
 .module('main')
 .controller('SelectVintage', SelectVintage);
 
-SelectVintage.$inject = ['$scope', '$state', 'Vintage', 'Wine', 'Principal', '$stateParams', '$ionicModal', 'Year', 'CacheService', 'PinnedVintage', 'CommonServices'];
+SelectVintage.$inject = ['$scope', '$state', 'Vintage', 'Wine', 'Principal', '$stateParams', '$ionicModal', 'CacheService', 'PinnedVintage', 'CommonServices'];
 
-function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, $ionicModal, Year, CacheService, PinnedVintage, CommonServices) {
+function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, $ionicModal, CacheService, PinnedVintage, CommonServices) {
 	var vm = this;
 	var user;
 	vm.addToCellar = addToCellar;
@@ -13,7 +13,7 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 	vm.vintages = Wine.vintages({id:vm.wineId});
 	vm.createVintage = createVintage;
 	vm.pinVintage = pinVintage;
-	vm.years = Year.query();
+
 	vm.openCreateVintage = openCreateVintage;
 	vm.wine = CacheService.get('selectedWine');
 
@@ -32,7 +32,7 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 	}
 
 	function createVintage(){
-		var newVintage = new Vintage({year:vm.selectedYear, maxKeep:vm.maxKeep, wine:{id:vm.wineId}});
+		var newVintage = new Vintage({year: vm.newYear, wine:{id: vm.wineId}, bareCode: vm.bareCode});
 		newVintage.$save(function(){
 			vm.modal.hide();
 			vm.vintages = Wine.vintages({id:vm.wineId});

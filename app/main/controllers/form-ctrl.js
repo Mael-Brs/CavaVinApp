@@ -2,7 +2,7 @@
 
 angular
 .module('main')
-.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Year', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Year, Vintage, CacheService, CommonServices, Cellar) {
+.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Vintage, CacheService, CommonServices, Cellar) {
   var vm = this;
   var account;
   var cellar;
@@ -44,7 +44,6 @@ angular
 
     loadRegions();
     loadColors();
-    loadYears();
 
     if (vm.activeWineId == -1){
       vm.userWine = {
@@ -86,14 +85,6 @@ angular
         CommonServices.showAlert('error.getColors');
       });
     }
-  }
-
-  function loadYears(){
-    Year.query(function(result){
-      vm.years = result;
-    }, function(){
-      CommonServices.showAlert('error.getYears');
-    });
   }
 
   function addRegion(region){

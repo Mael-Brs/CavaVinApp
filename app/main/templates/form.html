@@ -48,9 +48,7 @@
 				<div class="input-label" translate="cavaVinApp.wine.year">
 				  Année
 				</div>
-				<select ng-model="vm.userWine.vintage.year" ng-options="year as year.number for year in vm.years | orderBy:year.number:true track by year.id" required>
-					<option value=""></option>
-				</select>
+				<input type="number" step="1" ng-model="vm.userWine.vintage.year" ng-pattern="/^\d{4}$/" required>
 			</label>
 
 			<label class="item item-input" >
