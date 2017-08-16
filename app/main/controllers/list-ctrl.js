@@ -17,7 +17,9 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   
   vm.openModal = openModal;
   vm.openFilter = openFilter;
-  vm.thisYear = new Date().getFullYear();
+  var date = new Date();
+  vm.thisYear = date.getFullYear();
+  vm.yearRatio = (date.getMonth() + 1) /12 ;
   var cellar;
   var user;
 

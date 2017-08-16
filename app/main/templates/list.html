@@ -11,7 +11,7 @@
                     <span>{{data.vintage.wine.region.regionName}}</span>
                     <span class="color">{{data.vintage.wine.color.colorName}}</span>
                   </div>
-                  <meter value="{{data.age=(vm.thisYear-data.vintage.year)}}" min=0 max={{data.maxKeep}} ng-class="data.age <= data.minKeep ? 'young' : (data.age == data.maxKeep ? 'apogee' : 'mature')" ></meter>
+                  <meter value="{{data.age=(vm.thisYear-data.vintage.year + vm.yearRatio)}}" min=0 max={{data.maxKeep}} ng-class="data.age <= data.minKeep ? 'young' : (data.age == data.maxKeep ? 'apogee' : 'mature')" ></meter>
                 </div>
                 <ion-option-button class="button icon button-positive ion-plus" ng-click="vm.updateQuantity(data, +1)"></ion-option-button>
                 <ion-option-button class="button icon button-positive ion-minus" ng-click="vm.updateQuantity(data, -1)"></ion-option-button>
