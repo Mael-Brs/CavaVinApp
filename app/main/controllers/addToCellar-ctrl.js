@@ -26,7 +26,7 @@ angular
         vm.userWine.cellarId = result.id;
         inputInit();
       }, function(){
-          CommonServices.showAlert('error.getCellar');
+        CommonServices.showAlert('error.getCellar');
       });
     }); 
   }
@@ -44,7 +44,7 @@ angular
       vm.userWine.vintage = CacheService.get('selectedVintage');
   }
 
-   function submit() {
+  function submit() {
     if (!$scope.form.$invalid) {
       var newWineInCellar = new WineInCellar(vm.userWine);
 
