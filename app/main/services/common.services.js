@@ -36,7 +36,7 @@
                     var quantity = wineInCellars[i].quantity;
                     var region = wineInCellars[i].vintage.wine.region.regionName;
                     var color = wineInCellars[i].vintage.wine.color.colorName;
-                    var year = wineInCellars[i].vintage.year.number;
+                    var year = wineInCellars[i].vintage.year;
 
                     sumOfWine += quantity;
 

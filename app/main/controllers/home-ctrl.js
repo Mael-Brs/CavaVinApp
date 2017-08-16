@@ -30,17 +30,20 @@ angular.module('main')
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
-
-                if (account){
-                    User.cellars({ref:account.id},function(cellar){
-                        vm.cellar = cellar;
-                        if(vm.cellar){
-                            vm.sum = cellar.sumOfWine !== null ? cellar.sumOfWine : 0;
-                            CacheService.put('activeCellar',cellar);
-                        }
-                    });
-                }
+                getCellar(account)
             });
+        }
+
+        function getCellar(account){
+            if (account){
+                User.cellars({ref:account.id},function(cellar){
+                    vm.cellar = cellar;
+                    if(vm.cellar){
+                        vm.sum = cellar.sumOfWine !== null ? cellar.sumOfWine : 0;
+                        CacheService.put('activeCellar',cellar);
+                    }
+                });
+            }
         }
 
         function register () {
@@ -60,14 +63,13 @@ angular.module('main')
 
         function saveCellar(){
             vm.cellar.userId = vm.account.id;
-            vm.cellar.userLogin = vm.account.login;
             Cellar.save(vm.cellar, onSaveSuccess, onSaveError);
         }
 
         function onSaveSuccess () {
             vm.success = 'OK';
             vm.modal.hide();
-            getAccount();
+            getCellar(vm.account);
         }
 
          function onSaveError () {
