@@ -11,8 +11,8 @@
                     <span class="color">{{data.vintage.wine.color.colorName}}</span>
                   </div>
                 </div>
-                <ion-option-button class="button button-positive" ng-click="vm.addToCellar(data)" translate="entity.action.add">Add</ion-option-button>
-                <ion-option-button class="button button-assertive" ng-click="vm.removePinned(data.id)" translate="entity.action.delete">Delete</ion-option-button>
+                <ion-option-button class="button icon button-positive ion-plus-round" ng-click="vm.addToCellar(data)"></ion-option-button>
+                <ion-option-button class="button icon button-assertive ion-trash-b" ng-click="vm.removePinned(data.id)"></ion-option-button>
             </ion-item>
         </ion-list>
     </ion-content>

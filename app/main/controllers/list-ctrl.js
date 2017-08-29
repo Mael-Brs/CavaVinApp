@@ -121,6 +121,9 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     });
   }
 
+  /**
+   * Définition de la modale pour le détail du vin
+   */
   $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -128,11 +131,18 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
       vm.modal = modal;
   });
 
+  /**
+   * Fonction d'ouverture de la modale
+   * @param  {WineInCellar} wine vin selectionné
+   */
   function openModal(wine){
       vm.selected = wine;
       vm.modal.show();
   }
 
+  /**
+   * Ouvre la popup de filtrage de la liste
+   */
   function openFilter(){
     $ionicPopup.show({
       templateUrl: 'main/templates/filterPopup.html',
@@ -146,6 +156,10 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     });
   }
 
+  /**
+   * Affiche une popup pour demander l'épinglage du vin
+   * @param  {WineInCellar} wineInCellar vin sélectionné dans la liste
+   */
   function pinVintage(wineInCellar){
     var confirmPopup = $ionicPopup.confirm({
       title: $translate.instant('list.deleteTitle'),
@@ -154,12 +168,24 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     confirmPopup.then(function(res) {
       if(res) {
           PinnedVintage.save({vintage:wineInCellar.vintage, userId:user.id}, function successCallback() {
+              getPinnedVintages();
               vm.removeWine(wineInCellar.id);
           }, function(){
               CommonServices.showAlert('error.createPinnedVintage');
           });
        }
      });
-  };
+  }
+
+  /**
+   * Appelle le ws getPinnedVintages et les met en cache
+   */
+  function getPinnedVintages(){
+    User.pinnedVintages({ref:user.id}, function(pinnedVintages){
+      CacheService.put('pinnedVintages', pinnedVintages);
+    }, function(){
+      CommonServices.showAlert('error.getWines');
+    });
+  }
 
 }
