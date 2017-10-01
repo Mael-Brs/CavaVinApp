@@ -40,7 +40,7 @@
                 </ion-item>
 
                 <button ng-click="vm.addToCellar()" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.addToCellar">Add to cellar</button>
-                <button ng-click="vm.pinVintage()" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.pinVintage">Pin</button>
+                <button ng-click="vm.pinWine()" ng-disabled="form.$invalid || !vm.wine" class="button button-full button-positive" translate="selectVintage.pinWine">Pin</button>
             </form>
             <ion-item ng-click="vm.openCreateVintage()" class="item item-icon-left">
                 <i class="icon ion-plus-round"></i>

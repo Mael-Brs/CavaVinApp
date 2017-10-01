@@ -2,8 +2,8 @@
     "error": {
         "title": "Error !",
         "403": "You are not authorized to access the page.",
-        "createPinnedVintage": "Error while creating pinned vintage",
-        "getPinnedVintage": "Error while loading pinned vintage",
+        "createPinnedWine": "Error while creating pinned wine",
+        "getPinnedWine": "Error while loading pinned wine",
         "createWine": "Error while creating wine",
         "getWines": "Error while loading wines",
         "getWine": "Error while loading wine",

@@ -24,8 +24,8 @@
                 params: {subResource: 'cellars'},
                 method: 'GET'
             },
-            'pinnedVintages':{
-                params: {subResource: 'pinned-vintages'},
+            'pinnedWines':{
+                params: {subResource: 'pinned-wines'},
                 method: 'GET', 
                 isArray: true
             }
