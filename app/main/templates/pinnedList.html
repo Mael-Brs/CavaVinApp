@@ -3,12 +3,12 @@
         <ion-list>
             <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine | filter:vm.searchRegion | filter:vm.searchColor track by data.id"">
                 <div class="winAttributes" on-tap=vm.openModal(data)>
-                  <span class="year">{{data.vintage.year}}</span>
-                  <span class="wineItemLine name">{{data.vintage.wine.name}}</span>
-                  <span class="wineItemLine appellation">{{data.vintage.wine.appellation}}</span>
+                  <span class="year">{{data.wine.year}}</span>
+                  <span class="wineItemLine name">{{data.wine.name}}</span>
+                  <span class="wineItemLine appellation">{{data.wine.appellation}}</span>
                   <div class="wineItemLine detail">
-                    <span>{{data.vintage.wine.region.regionName}}</span>
-                    <span class="color">{{data.vintage.wine.color.colorName}}</span>
+                    <span>{{data.wine.region.regionName}}</span>
+                    <span class="color">{{data.wine.color.colorName}}</span>
                   </div>
                 </div>
                 <ion-option-button class="button icon button-positive ion-plus-round" ng-click="vm.addToCellar(data)"></ion-option-button>

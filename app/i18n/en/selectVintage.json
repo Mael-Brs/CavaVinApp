@@ -2,7 +2,7 @@
     "selectVintage": {
         "title": "Vintage",
         "addToCellar": "Add to cellar",
-        "pinVintage": "Pin",
+        "pinWine": "Pin",
         "modal": {
         	"title": "Add vintage"
         },

@@ -3,10 +3,10 @@ angular
 .module('main')
 .controller('ListCtrl',ListCtrl);
 
-ListCtrl.$inject = ['$translate', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedVintage'];
+ListCtrl.$inject = ['$translate', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedWine'];
 
 
-function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedVintage) {
+function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine) {
   var vm = this;
   vm.wines;
   vm.showForm = false;
@@ -51,10 +51,10 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     }
   }
 
-/**
- * Fonction de suppression du vin au click sur le bouton
- * @param  {number} id id du vin
- */
+  /**
+  * Fonction de suppression du vin au click sur le bouton
+  * @param  {number} id id du vin
+  */
   vm.removeWine = function(id){
     var confirmPopup = $ionicPopup.confirm({
       title: $translate.instant('list.deleteTitle'),
@@ -85,7 +85,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
       wineInCellar.quantity += step;
 
       if(wineInCellar.quantity === 0){
-        pinVintage(wineInCellar);
+        pinWine(wineInCellar);
 
       } else {
         WineInCellar.update(wineInCellar,function(wineInCellar) {
@@ -160,29 +160,31 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
    * Affiche une popup pour demander l'épinglage du vin
    * @param  {WineInCellar} wineInCellar vin sélectionné dans la liste
    */
-  function pinVintage(wineInCellar){
+  function pinWine(wineInCellar){
     var confirmPopup = $ionicPopup.confirm({
-      title: $translate.instant('list.deleteTitle'),
-      template: '{{"list.pinVintage" | translate}}'
+      title: $translate.instant('list.pinTitle'),
+      template: $translate.instant('list.pinWine')
     });
     confirmPopup.then(function(res) {
       if(res) {
-          PinnedVintage.save({vintage:wineInCellar.vintage, userId:user.id}, function successCallback() {
-              getPinnedVintages();
+          PinnedWine.save({wine:wineInCellar.vintage.wine, userId:user.id}, function successCallback() {
+              getPinnedWines();
               vm.removeWine(wineInCellar.id);
           }, function(){
-              CommonServices.showAlert('error.createPinnedVintage');
+              CommonServices.showAlert('error.createPinnedWine');
           });
+       } else {
+        vm.removeWine(wineInCellar.id);
        }
      });
   }
 
   /**
-   * Appelle le ws getPinnedVintages et les met en cache
+   * Appelle le ws getPinnedWines et les met en cache
    */
-  function getPinnedVintages(){
-    User.pinnedVintages({ref:user.id}, function(pinnedVintages){
-      CacheService.put('pinnedVintages', pinnedVintages);
+  function getPinnedWines(){
+    User.pinnedWines({ref:user.id}, function(pinnedWines){
+      CacheService.put('pinnedWines', pinnedWines);
     }, function(){
       CommonServices.showAlert('error.getWines');
     });

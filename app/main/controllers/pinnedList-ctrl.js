@@ -3,17 +3,17 @@ angular
 .module('main')
 .controller('pinnedListCtrl', pinnedListCtrl);
 
-pinnedListCtrl.$inject = ['$translate', '$scope', '$state', 'PinnedVintage', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicListDelegate', 'CommonServices'];
+pinnedListCtrl.$inject = ['$translate', '$scope', '$state', 'PinnedWine', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicListDelegate', 'CommonServices'];
 
 
-function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $ionicPopup, Cellar, User, CacheService, $ionicListDelegate, CommonServices) {
+function pinnedListCtrl ($translate, $scope, $state, PinnedWine, Principal, $ionicPopup, Cellar, User, CacheService, $ionicListDelegate, CommonServices) {
   var vm = this;
   vm.wines;
   var cellar;
   var user;
   vm.openFilter = openFilter;
   vm.isWineInCellarFilter = false;
-  vm.sortWine = 'vintage.wine.name'; // set the default sort color
+  vm.sortWine = 'wine.name'; // set the default sort color
   vm.sortReverse = false;
 
   $scope.$on('$ionicView.enter', function() {
@@ -36,9 +36,9 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
    * Set les variables du scope
    */
   function loadAll() {
-    vm.wines = CacheService.get('pinnedVintages');
+    vm.wines = CacheService.get('pinnedWines');
     if(!vm.wines){
-      getPinnedVintages();
+      getPinnedWines();
     } else {
       buildFilterOptions();
     }
@@ -55,8 +55,8 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
     });
     confirmPopup.then(function(res) {
       if(res) {
-          PinnedVintage.delete({id: id}, function successCallback() {
-              CacheService.remove('pinnedVintages');
+          PinnedWine.delete({id: id}, function successCallback() {
+              CacheService.remove('pinnedWines');
               loadAll();
           }, function(){
               CommonServices.showAlert('error.deleteWine');
@@ -65,18 +65,18 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
      });
   };
 
-  vm.addToCellar = function (pinnedVintage){
-    CacheService.put('selectedVintage', pinnedVintage.vintage);
-    $state.go('addToCellar');
+  vm.addToCellar = function (pinnedWine){
+    CacheService.put('selectedWine', pinnedWine.wine);
+    $state.go('selectVintage',{wineId:pinnedWine.wine.id});
   };
 
   /**
-   * Appelle le ws getPinnedVintages et les met en cache
+   * Appelle le ws getPinnedWines et les met en cache
    */
-  function getPinnedVintages(){
-    User.pinnedVintages({ref:user.id}, function(pinnedVintages){
-      CacheService.put('pinnedVintages', pinnedVintages);
-      vm.wines = pinnedVintages;
+  function getPinnedWines(){
+    User.pinnedWines({ref:user.id}, function(pinnedWines){
+      CacheService.put('pinnedWines', pinnedWines);
+      vm.wines = pinnedWines;
       buildFilterOptions();      
     }, function(){
       CommonServices.showAlert('error.getWines');
@@ -101,8 +101,8 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedVintage, Principal, $
     vm.wineByColor = [];
 
     for (var i = 0 ; i < vm.wines.length ; i++){
-      var region = vm.wines[i].vintage.wine.region.regionName;
-      var color = vm.wines[i].vintage.wine.color.colorName;
+      var region = vm.wines[i].wine.region.regionName;
+      var color = vm.wines[i].wine.color.colorName;
       var regions = {};
       var colors = {};
 

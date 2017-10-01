@@ -3,16 +3,16 @@ angular
 .module('main')
 .controller('SelectVintage', SelectVintage);
 
-SelectVintage.$inject = ['$scope', '$state', 'Vintage', 'Wine', 'Principal', '$stateParams', '$ionicModal', 'CacheService', 'PinnedVintage', 'CommonServices'];
+SelectVintage.$inject = ['$scope', '$state', 'Vintage', 'Wine', 'Principal', '$stateParams', '$ionicModal', 'CacheService', 'PinnedWine', 'CommonServices'];
 
-function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, $ionicModal, CacheService, PinnedVintage, CommonServices) {
+function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, $ionicModal, CacheService, PinnedWine, CommonServices) {
 	var vm = this;
 	var user;
 	vm.addToCellar = addToCellar;
 	vm.wineId = $stateParams.wineId;
 	vm.vintages = Wine.vintages({id:vm.wineId});
 	vm.createVintage = createVintage;
-	vm.pinVintage = pinVintage;
+	vm.pinWine = pinWine;
 
 	vm.openCreateVintage = openCreateVintage;
 	vm.wine = CacheService.get('selectedWine');
@@ -40,12 +40,11 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 
 	}
 
-	function pinVintage(){
-		vm.selectedVintage;
-		PinnedVintage.save({vintage:vm.selectedVintage, userId:user.id}, function(value) {
+	function pinWine(){
+		PinnedWine.save({wine:vm.wine, userId:user.id}, function(value) {
 			//$state.go('addToCellar');
 		}, function(){
-		  CommonServices.showAlert('error.createPinnedVintage');
+		  CommonServices.showAlert('error.createPinnedWine');
 		});
 	}
 

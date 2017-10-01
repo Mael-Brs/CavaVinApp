@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('main')
-        .factory('PinnedVintage', PinnedVintage);
+        .factory('PinnedWine', PinnedWine);
 
-    PinnedVintage.$inject = ['$resource', 'Config'];
+    PinnedWine.$inject = ['$resource', 'Config'];
 
-    function PinnedVintage ($resource, Config) {
-        var resourceUrl =  Config.ENV.SERVER_URL + 'api/pinned-vintages/:id';
+    function PinnedWine ($resource, Config) {
+        var resourceUrl =  Config.ENV.SERVER_URL + 'api/pinned-wines/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
