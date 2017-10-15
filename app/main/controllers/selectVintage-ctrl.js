@@ -9,15 +9,14 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 	var vm = this;
 	var user;
 	vm.addToCellar = addToCellar;
-	vm.wineId = $stateParams.wineId;
-	vm.vintages = Wine.vintages({id:vm.wineId});
+	vm.wineId = $stateParams.wineId;	
 	vm.createVintage = createVintage;
 	vm.pinWine = pinWine;
-
 	vm.openCreateVintage = openCreateVintage;
-	vm.wine = CacheService.get('selectedWine');
 
-	$scope.$on('$ionicView.enter', function(e) { 
+	$scope.$on('$ionicView.enter', function(e) {
+		vm.wine = CacheService.get('selectedWine');
+		vm.vintages = Wine.vintages({id:vm.wineId});
 		Principal.identity().then(function(account) {
 			user = account;
 		}, function(){
@@ -42,7 +41,7 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 
 	function pinWine(){
 		PinnedWine.save({wine:vm.wine, userId:user.id}, function(value) {
-			//$state.go('addToCellar');
+		$state.go('pinnedList');
 		}, function(){
 		  CommonServices.showAlert('error.createPinnedWine');
 		});

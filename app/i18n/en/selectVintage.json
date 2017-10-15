@@ -1,11 +1,12 @@
 {
     "selectVintage": {
-        "title": "Vintage",
+        "title": "Wine details",
         "addToCellar": "Add to cellar",
-        "pinWine": "Pin",
+        "pinWine": "Pin this wine",
         "modal": {
         	"title": "Add vintage"
         },
-        "newVintage": "New vintage"
+        "newVintage": "New vintage",
+        "selectVintage": "Select a vintage"
     }
 }

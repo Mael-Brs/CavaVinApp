@@ -1,11 +1,12 @@
 {
     "selectVintage": {
-        "title": "Millésime",
+        "title": "Détails du vin",
         "addToCellar": "Ajouter à la cave",
-        "pinWine": "Epingler",
+        "pinWine": "Epingler ce vin",
         "modal": {
         	"title": "Ajouter un millésime"
         },
-        "newVintage": "Nouveau millésime"
+        "newVintage": "Nouveau millésime",
+        "selectVintage": "Sélectionner un millésime"
     }
 }

@@ -2,50 +2,52 @@
     <ion-content class="padding">
 		<ion-list>
             <form name="form" role="form" novalidate show-validation>
-            <div class="card list">
-                <label class="item" >
-                    <span translate="cavaVinApp.wine.name">Nom</span> : 
-                    <span>{{vm.wine.name}}</span>
-                </label>
+                <div class="card list">
+                    <label class="item" >
+                        <span translate="cavaVinApp.wine.name">Nom</span> : 
+                        <span>{{vm.wine.name}}</span>
+                    </label>
 
-                <label class="item" >
-                    <span translate="cavaVinApp.wine.appellation">Appellation</span> :
-                    <span>{{vm.wine.appellation}}</span>
-                </label>
+                    <label class="item" >
+                        <span translate="cavaVinApp.wine.appellation">Appellation</span> :
+                        <span>{{vm.wine.appellation}}</span>
+                    </label>
 
-                <label class="item" >
-                    <span translate="cavaVinApp.wine.producer">Producteur</span> :
-                    <span>{{vm.wine.producer}}</span>
-                </label>
+                    <label class="item" >
+                        <span translate="cavaVinApp.wine.producer">Producteur</span> :
+                        <span>{{vm.wine.producer}}</span>
+                    </label>
 
-                <label class="item" >
-                    <span translate="cavaVinApp.wine.region">Région</span> :
-                    <span>{{vm.wine.region.regionName}}</span>
-                </label>
+                    <label class="item" >
+                        <span translate="cavaVinApp.wine.region">Région</span> :
+                        <span>{{vm.wine.region.regionName}}</span>
+                    </label>
 
-                <label class="item" >
-                    <span translate="cavaVinApp.wine.color">Couleur</span> :
-                 <span>{{vm.wine.color.colorName}}</span>
-                </label>
-            </div>	
-            <ion-item class="item-input item-select">
-				<label >
-                    <div class="input-label" translate="cavaVinApp.wine.year">
-                      Année
-                    </div>
-                    <select ng-model="vm.selectedVintage" ng-options="vintage as vintage.year for vintage in vm.vintages track by vintage.id" required>
-                        <option value=""></option>
-                    </select>
-                </label>
+                    <label class="item" >
+                        <span translate="cavaVinApp.wine.color">Couleur</span> :
+                    <span>{{vm.wine.color.colorName}}</span>
+                    </label>
+                </div>	
+                <button ng-click="vm.pinWine()" ng-disabled="!vm.wine" class="button button-full button-positive" translate="selectVintage.pinWine">Pin</button>
+                <div class="item item-divider"  translate="selectVintage.selectVintage">
+                        Select vintage
+                </div>
+                <ion-item class="item-input item-select">
+                    <label >
+                        <div class="input-label" translate="cavaVinApp.wine.year">
+                        Année
+                        </div>
+                        <select ng-model="vm.selectedVintage" ng-options="vintage as vintage.year for vintage in vm.vintages track by vintage.id" required>
+                            <option value=""></option>
+                        </select>
+                    </label>
                 </ion-item>
-
+                <ion-item ng-click="vm.openCreateVintage()" ng-show="!vm.selectedVintage" class="item item-icon-left">
+                    <i class="icon ion-plus-round"></i>
+                    {{'selectVintage.newVintage' | translate}}
+                </ion-item>
                 <button ng-click="vm.addToCellar()" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.addToCellar">Add to cellar</button>
-                <button ng-click="vm.pinWine()" ng-disabled="form.$invalid || !vm.wine" class="button button-full button-positive" translate="selectVintage.pinWine">Pin</button>
             </form>
-            <ion-item ng-click="vm.openCreateVintage()" class="item item-icon-left">
-                <i class="icon ion-plus-round"></i>
-                {{'selectVintage.newVintage' | translate}}
-            </ion-item>
         </ion-list>
 	</ion-content>
 </ion-view>
