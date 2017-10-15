@@ -21,21 +21,12 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
   vm.thisYear = date.getFullYear();
   vm.yearRatio = (date.getMonth() + 1) /12 ;
   var cellar;
-  var user;
 
   $scope.$on('$ionicView.enter', function() {
     $ionicListDelegate.closeOptionButtons();
-    cellar = CacheService.get('activeCellar');
-
-    Principal.identity().then(function(account) {
-      user = account;
-      if(!cellar){
-          cellar = User.cellars({ref:account.id},function(){
-            loadAll();
-          });
-      } else {
-        loadAll();
-      }
+    CommonServices.getCellar().then(function(result){
+      cellar = result;
+      loadAll();
     });
   });
 
@@ -63,10 +54,10 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     confirmPopup.then(function(res) {
       if(res) {
           WineInCellar.delete({id: id}, function successCallback() {
-              CacheService.remove('wineInCellars');
-              loadAll();
+            CacheService.remove('wineInCellars');
+            loadAll();
           }, function(){
-              CommonServices.showAlert('error.deleteWine');
+            CommonServices.showAlert('error.deleteWine');
           });
        }
      });
@@ -167,7 +158,7 @@ function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPo
     });
     confirmPopup.then(function(res) {
       if(res) {
-          PinnedWine.save({wine:wineInCellar.vintage.wine, userId:user.id}, function successCallback() {
+          PinnedWine.save({wine:wineInCellar.vintage.wine, userId:cellar.userId}, function successCallback() {
               getPinnedWines();
               vm.removeWine(wineInCellar.id);
           }, function(){

@@ -2,9 +2,8 @@
 
 angular
 .module('main')
-.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', 'User', 'Principal', '$stateParams', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color,User, Principal, $stateParams, Vintage, CacheService, CommonServices, Cellar) {
+.controller('FormCtrl',['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', '$stateParams', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color, $stateParams, Vintage, CacheService, CommonServices, Cellar) {
   var vm = this;
-  var account;
   var cellar;
   vm.activeWineId;
   vm.userWine = {};
@@ -12,25 +11,12 @@ angular
 
   $scope.$on('$ionicView.enter', function() {
     vm.activeWineId = $stateParams.wineId;
-    cellar = CacheService.get('activeCellar');
-    if(!cellar){
-      getCellar();
-    } else {
+    CommonServices.getCellar().then(function(result){
+      cellar = result;
+      vm.userWine.cellarId = result.id
       inputInit();
-    }
-  });
-
-  function getCellar(){
-    Principal.identity().then(function(value) {
-      account = value;
-      cellar = User.cellars({ref:account.id},function(result){
-        vm.userWine.cellarId = result.id;
-        inputInit();
-      }, function(){
-          CommonServices.showAlert('error.getCellar');
-      });
     });
-  }
+  });
 
   function inputInit(){
     vm.newColor = {

@@ -10,7 +10,7 @@
             "title" : "Define your cellar capacity"
         },
         "actions":{
-            "add": "Add a wine in catalog",
+            "add": "Create a new wine",
             "my-wines": "See your wines",
             "wineCatalog": "Find a wine in catalog",
             "cellar": "See your cellar details",

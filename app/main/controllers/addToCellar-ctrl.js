@@ -2,12 +2,11 @@
 
 angular
 .module('main')
-.controller('addToCellarCtrl',['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService, CommonServices, Cellar) {
+.controller('addToCellarCtrl',['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'Cellar', 'Principal', '$stateParams', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Vintage, WineInCellar,User, Principal, $stateParams, CacheService, CommonServices, Cellar) {
 
   var vm = this;
   vm.submit = submit;
   vm.userWine = {};
-  var account;
   var cellar;
 
   $scope.$on('$ionicView.enter', function(e) { 
@@ -20,15 +19,11 @@ angular
   });
 
   function getCellar(){
-    Principal.identity().then(function(account) {
-      account = account;
-      cellar = User.cellars({ref:account.id},function(result){
-        vm.userWine.cellarId = result.id;
-        inputInit();
-      }, function(){
-        CommonServices.showAlert('error.getCellar');
-      });
-    }); 
+    CommonServices.getCellar().then(function(result){
+      cellar = result;
+      vm.userWine.cellarId = result.id;
+      inputInit();
+    });
   }
       
   /**********Functions**********/

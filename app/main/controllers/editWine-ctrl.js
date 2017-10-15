@@ -2,34 +2,22 @@
 
 angular
 .module('main')
-.controller('editWineCtrl',['$ionicHistory', '$scope', '$state', 'WineInCellar', 'User', 'Principal', '$stateParams', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, WineInCellar,User, Principal, $stateParams, CacheService, CommonServices, Cellar) {
+.controller('editWineCtrl',['$ionicHistory', '$scope', '$state', 'WineInCellar', '$stateParams', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, WineInCellar, Principal, $stateParams, CacheService, CommonServices, Cellar) {
 
   var vm = this;
   vm.submit = submit;
   vm.userWine = {};
   var activeWineId;
-  var account;
   var cellar;
 
   $scope.$on('$ionicView.enter', function(e) { 
     activeWineId = $stateParams.wineId;
-    cellar = CacheService.get('activeCellar');
-    if(!cellar){
-      getCellar();
-    } else {
+    CommonServices.getCellar().then(function(result){
+      cellar = result;
+      vm.userWine.cellarId = result.id
       getWine();
-    }
+    });
   });
-
-  function getCellar(){
-    Principal.identity().then(function(account) {
-      account = account;
-      cellar = User.cellars({ref:account.id},function(result){
-        vm.userWine.cellarId = result.id;
-        getWine();
-      });
-    }); 
-  }
       
   /**********Functions**********/
   function getWine(){

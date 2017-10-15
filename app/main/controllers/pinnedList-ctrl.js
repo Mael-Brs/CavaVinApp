@@ -3,13 +3,12 @@ angular
 .module('main')
 .controller('pinnedListCtrl', pinnedListCtrl);
 
-pinnedListCtrl.$inject = ['$translate', '$scope', '$state', 'PinnedWine', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicListDelegate', 'CommonServices'];
+pinnedListCtrl.$inject = ['$translate', '$scope', '$state', 'PinnedWine', 'Principal', '$ionicPopup', 'User', 'CacheService', '$ionicListDelegate', 'CommonServices'];
 
 
-function pinnedListCtrl ($translate, $scope, $state, PinnedWine, Principal, $ionicPopup, Cellar, User, CacheService, $ionicListDelegate, CommonServices) {
+function pinnedListCtrl ($translate, $scope, $state, PinnedWine, Principal, $ionicPopup, User, CacheService, $ionicListDelegate, CommonServices) {
   var vm = this;
   vm.wines;
-  var cellar;
   var user;
   vm.openFilter = openFilter;
   vm.isWineInCellarFilter = false;
@@ -18,17 +17,10 @@ function pinnedListCtrl ($translate, $scope, $state, PinnedWine, Principal, $ion
 
   $scope.$on('$ionicView.enter', function() {
     $ionicListDelegate.closeOptionButtons();
-    cellar = CacheService.get('activeCellar');
 
     Principal.identity().then(function(account) {
       user = account;
-      if(!cellar){
-          cellar = User.cellars({ref:account.id},function(){
-            loadAll();
-          });
-      } else {
-        loadAll();
-      }
+      loadAll();
     });
   });
 

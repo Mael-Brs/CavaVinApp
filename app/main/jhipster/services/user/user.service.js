@@ -20,10 +20,6 @@
             'save': { method:'POST' },
             'update': { method:'PUT' },
             'delete':{ method:'DELETE'},
-            'cellars':{
-                params: {subResource: 'cellars'},
-                method: 'GET'
-            },
             'pinnedWines':{
                 params: {subResource: 'pinned-wines'},
                 method: 'GET', 

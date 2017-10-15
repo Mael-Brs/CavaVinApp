@@ -14,7 +14,8 @@ angular.module('main')
         vm.openModal = openModal;
         vm.save = saveCellar;
 
-        $scope.$on('$ionicView.enter', function() { 
+        $scope.$on('$ionicView.enter', function() {
+            getAccount();
             getCellarDetails();
         });
 
@@ -23,27 +24,24 @@ angular.module('main')
             if(vm.cellar){
                 vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
             } else {
-                getAccount();
+                getCellar();
             }
         }
 
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
-                getCellar(account)
             });
         }
 
-        function getCellar(account){
-            if (account){
-                User.cellars({ref:account.id},function(cellar){
-                    vm.cellar = cellar;
-                    if(vm.cellar){
-                        vm.sum = cellar.sumOfWine !== null ? cellar.sumOfWine : 0;
-                        CacheService.put('activeCellar',cellar);
-                    }
-                });
-            }
+        function getCellar(){
+            Cellar.query(function(result){
+                vm.cellar = result[0];
+                if(vm.cellar){
+                    vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
+                    CacheService.put('activeCellar',vm.cellar);
+                }
+            });
         }
 
         function register () {
@@ -69,7 +67,7 @@ angular.module('main')
         function onSaveSuccess () {
             vm.success = 'OK';
             vm.modal.hide();
-            getCellar(vm.account);
+            getCellar();
         }
 
          function onSaveError () {

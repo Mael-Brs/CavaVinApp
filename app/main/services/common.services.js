@@ -4,14 +4,15 @@
     .module('main')
     .factory('CommonServices', CommonServices);
 
-    CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate'];
+    CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q'];
 
-    function CommonServices (CacheService, $ionicPopup, $translate){
+    function CommonServices (CacheService, $ionicPopup, $translate, Cellar, $q){
         var services = {
             updateCellarDetails:updateCellarDetails,
             addWinesInCache:addWinesInCache,
             updateWineInCellar:updateWineInCellar,
-            showAlert:showAlert
+            showAlert:showAlert,
+            getCellar:getCellar
         };
         return services;
 
@@ -124,6 +125,26 @@
                 title: '<b>' + $translate.instant('error.title') + '</b>',
                 template: $translate.instant(alertMessage)
             });
+        }
+
+        /**
+         * Renvoie la cave depuis le cache ou le back
+         */
+        function getCellar(){
+            var deferred = $q.defer();
+            var cellar = CacheService.get('activeCellar');
+            
+            if(!cellar){
+                Cellar.query(function(result){
+                    cellar = result[0];
+                    deferred.resolve(cellar);
+                }, function(){
+                    this.showAlert('error.getCellar');
+                });
+            } else {
+                deferred.resolve(cellar);
+            }
+            return deferred.promise;
         }
     }
 })();

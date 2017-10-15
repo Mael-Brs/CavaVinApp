@@ -10,7 +10,7 @@
             "title" : "Définir la capacité de votre cave"
         },
         "actions":{
-            "add": "Ajouter un vin au catalogue",
+            "add": "Créer un nouveau vin",
             "my-wines": "Voir vos vins",
             "wineCatalog": "Chercher un vin dans le catalogue",
             "cellar": "Voir les infos de votre cave",

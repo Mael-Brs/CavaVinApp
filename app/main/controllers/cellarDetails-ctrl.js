@@ -2,9 +2,9 @@
 angular.module('main')
     .controller('CellarDetailsCtrl', CellarDetailsCtrl);
 
-    CellarDetailsCtrl.$inject = ['$scope', 'Principal', 'CacheService', 'User', 'CommonServices'];
+    CellarDetailsCtrl.$inject = ['$scope', 'CacheService', 'CommonServices'];
 
-    function CellarDetailsCtrl($scope, Principal, CacheService, User, CommonServices) {
+    function CellarDetailsCtrl($scope, CacheService, CommonServices) {
         var vm = this;
         vm.cellar;
 
@@ -12,31 +12,13 @@ angular.module('main')
             getCellarDetails();
         });
 
-        function getCellarDetails() {
-            vm.cellar = CacheService.get('activeCellar');
-            if(vm.cellar){
+        function getCellarDetails(){
+            CommonServices.getCellar().then(function(result){
+                vm.cellar = result;
                 vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
                 vm.wineByRegion = vm.cellar.wineByRegion;
                 vm.wineByColor = vm.cellar.wineByColor;
                 vm.wineByYear = vm.cellar.wineByYear;
-            } else {
-                getCellar();
-            }
-        }
-
-        function getCellar(){
-            Principal.identity().then(function(account) {
-                User.cellars({ref:account.id}, function(result){
-                    vm.cellar = result;
-                    if(vm.cellar){
-                        vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
-                        vm.wineByRegion = vm.cellar.wineByRegion;
-                        vm.wineByColor = vm.cellar.wineByColor;
-                        vm.wineByYear = vm.cellar.wineByYear;
-                    }
-                }, function(){
-                    CommonServices.showAlert('error.getCellar');
-                });
             });
         }
 
