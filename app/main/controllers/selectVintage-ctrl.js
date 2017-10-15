@@ -9,13 +9,13 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 	var vm = this;
 	var user;
 	vm.addToCellar = addToCellar;
-	vm.wineId = $stateParams.wineId;	
 	vm.createVintage = createVintage;
 	vm.pinWine = pinWine;
 	vm.openCreateVintage = openCreateVintage;
 
 	$scope.$on('$ionicView.enter', function(e) {
-		vm.wine = CacheService.get('selectedWine');
+		vm.wineId = $stateParams.wineId;
+		getWine();
 		vm.vintages = Wine.vintages({id:vm.wineId});
 		Principal.identity().then(function(account) {
 			user = account;
@@ -24,6 +24,14 @@ function SelectVintage ($scope, $state, Vintage, Wine, Principal, $stateParams, 
 		}); 
 	});
 
+	function getWine(){
+		vm.wine = CacheService.get('selectedWine');
+		if(!vm.wine){
+			Wine.get({id:vm.wineId}, function(result){
+				vm.wine = result;
+			});
+		}
+	}
 
 	function addToCellar(){
 		CacheService.put('selectedVintage', vm.selectedVintage);

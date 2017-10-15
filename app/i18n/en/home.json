@@ -11,7 +11,7 @@
         },
         "actions":{
             "add": "Create a new wine",
-            "my-wines": "See your wines",
+            "my-wines": "See the content of your cellar",
             "wineCatalog": "Find a wine in catalog",
             "cellar": "See your cellar details",
             "title": "Would-you ?"

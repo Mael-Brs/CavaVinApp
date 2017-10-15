@@ -11,7 +11,7 @@
         },
         "actions":{
             "add": "Créer un nouveau vin",
-            "my-wines": "Voir vos vins",
+            "my-wines": "Voir le contenu de vote cave",
             "wineCatalog": "Chercher un vin dans le catalogue",
             "cellar": "Voir les infos de votre cave",
             "title": "Voulez-vous ?"
