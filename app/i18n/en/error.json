@@ -16,6 +16,8 @@
         "createRegion": "Error while creating region",
         "getColors": "Error while loading colors",
         "createColor": "Error while creating color",
-        "getYears": "Error while loading years"
+        "getYears": "Error while loading years",
+        "authentificationError": "Authentification error, check your login and password",
+        "technicalError": "A technical error has occurred, please try again later"
     }
 }

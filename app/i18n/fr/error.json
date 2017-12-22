@@ -16,6 +16,8 @@
         "createRegion": "Erreur lors de la création de la region",
         "getColors": "Erreur lors du chargement de la liste des couleurs",
         "createColor": "Erreur lors de la création de la couleur",
-        "getYears": "Erreur lors du chargement de la liste des années"
+        "getYears": "Erreur lors du chargement de la liste des années",
+        "authentificationError": "Erreur d'authentification, vérifiez votre mot de passe et votre login",
+        "technicalError": "Une erreur technique est survenue, veuillez réessayer ultérieurement"
     }
 }

@@ -57,8 +57,13 @@ function LoginCtrl ($log, $ionicHistory, $scope, $rootScope, $window, $state, $t
             } else {
                 $rootScope.$broadcast('authenticationSuccess');
             }
-        }).catch(function () {
+        }).catch(function (response) {
             vm.authenticationError = true;
+            if(response.status === 401){
+                vm.errorMessage = "error.authentificationError";
+            } else {
+                vm.errorMessage = "error.technicalError";
+            }
         });
     }
 

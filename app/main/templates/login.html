@@ -3,8 +3,14 @@
         <h1 class="title" translate="login.title">Sign In</h1>
         <button class="button button-clear button-primary" ng-click="vm.hideModal()" translate="entity.action.cancel">Cancel</button>
     </ion-header-bar>
+    
     <ion-content class="padding">
         <div class="list">
+            <div class="card" ng-if="vm.authenticationError">
+                <div class="item item-text-wrap error-message">
+                    {{vm.errorMessage | translate}}
+                </div>
+            </div>
             <label class="item item-input">
                 <span class="input-label" translate="global.form.username">Login</span>
                 <input type="text" class="form-control" id="username" placeholder="{{'global.form.username.placeholder' | translate}}"
