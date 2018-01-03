@@ -1,4 +1,4 @@
 {
-    "SERVER_URL": "http://mael.synology.me:8082/",
+    "SERVER_URL": "https://cellar-manager.herokuapp.com/",
     "SOME_OTHER_URL": ""
 }
