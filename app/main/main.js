@@ -31,10 +31,10 @@ angular.module('main', [
                     return Auth.authorize();
                 }
             ],
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('global');
-                    $translatePartialLoader.addPart('error');
-                }]
+            translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                $translatePartialLoader.addPart('global');
+                $translatePartialLoader.addPart('error');
+            }]
         }
     })
     .state('login', {

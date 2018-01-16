@@ -14,7 +14,8 @@
     "run:android": "gulp --cordova 'run android'",
     "watch:build": "gulp watch-build",
     "build": "gulp build --minify",
-    "prod:android": "gulp --env=prod --cordova \"run android --device\""
+    "prod:android": "gulp --env=prod --cordova \"run android --device\"",
+    "build:android": "gulp --env=prod --cordova \"build android\""
   },
   "devDependencies": {
     "browser-sync": "^2.8.3",
@@ -78,6 +79,18 @@
         "proxyMapFrom": "/another-proxy",
         "proxyMapTo": "https://echo.getpostman.com"
       }
+    ]
+  },
+  "dependencies": {
+    "cordova-android": "^7.0.0",
+    "cordova-plugin-whitelist": "^1.3.3"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android"
     ]
   }
 }

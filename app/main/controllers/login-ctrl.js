@@ -24,7 +24,6 @@ function LoginCtrl ($log, $ionicHistory, $scope, $rootScope, $window, $state, $t
         vm.modal.hide();
         $state.go('home');
     }
-    // $timeout(function () {angular.element('#username').focus();});
 
     function cancel () {
         vm.credentials = {

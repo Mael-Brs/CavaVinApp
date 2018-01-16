@@ -16,7 +16,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <icon src="res/android/current/icon.png" width="57" height="57" density="mdpi" />
+    <icon density="mdpi" height="57" src="res/android/current/icon.png" width="57" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -24,4 +24,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <engine name="android" spec="~7.0.0" />
 </widget>

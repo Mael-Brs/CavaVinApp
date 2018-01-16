@@ -27,7 +27,7 @@
 				</select>
 			</label>
 			<label class="item item-input" ng-show="vm.userWine.vintage.wine.region.regionName=='Autre'">
-				<span class="input-label" translate="global.entity.detail.other">Autre</span>
+				<span class="input-label" translate="entity.detail.other">Autre</span>
 				<input type="text" placeholder="Nom région" ng-model="vm.newRegion.regionName" ng-required="vm.userWine.vintage.wine.region.regionName=='Autre'" />
 			</label>
 
@@ -40,11 +40,11 @@
 				</select>
 			</label>
 			<label class="item item-input" ng-show="vm.userWine.vintage.wine.color.colorName=='Autre'">
-				<span class="input-label" translate="global.entity.detail.other" >Autre</span>
+				<span class="input-label" translate="entity.detail.other" >Autre</span>
 				<input type="text" placeholder="Nom couleur" ng-model="vm.newColor.colorName" ng-required="vm.userWine.vintage.wine.color.colorName=='Autre'" />
 			</label>
 
-			<label class="item item-input item-select">
+			<label class="item item-input">
 				<div class="input-label" translate="cavaVinApp.wine.year">
 				  Année
 				</div>
