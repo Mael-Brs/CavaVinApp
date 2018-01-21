@@ -1,76 +1,78 @@
-'use strict';
-angular.module('main')
-    .controller('HomeCtrl', HomeCtrl);
+(function () {
+    'use strict';
+    angular.module('main')
+        .controller('HomeCtrl', HomeCtrl);
 
-    HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService', 'Cellar'];
+        HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService', 'Cellar'];
 
-    function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar) {
-        var vm = this;
-        vm.account = null;
-        vm.isAuthenticated = Principal.isAuthenticated;
-        vm.login = LoginService.open;
-        vm.register = register;
-        vm.cellar = null;
-        vm.openModal = openModal;
-        vm.save = saveCellar;
+        function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar) {
+            var vm = this;
+            vm.account = null;
+            vm.isAuthenticated = Principal.isAuthenticated;
+            vm.login = LoginService.open;
+            vm.register = register;
+            vm.cellar = null;
+            vm.openModal = openModal;
+            vm.save = saveCellar;
 
-        $scope.$on('$ionicView.enter', function() {
-            getAccount();
-            getCellarDetails();
-        });
-
-        function getCellarDetails() {
-            vm.cellar = CacheService.get('activeCellar');
-            if(vm.cellar){
-                vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
-            } else {
-                getCellar();
-            }
-        }
-
-        function getAccount() {
-            Principal.identity().then(function(account) {
-                vm.account = account;
+            $scope.$on('$ionicView.enter', function() {
+                getAccount();
+                getCellarDetails();
             });
-        }
 
-        function getCellar(){
-            Cellar.query(function(result){
-                vm.cellar = result[0];
+            function getCellarDetails() {
+                vm.cellar = CacheService.get('activeCellar');
                 if(vm.cellar){
                     vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
-                    CacheService.put('activeCellar',vm.cellar);
+                } else {
+                    getCellar();
                 }
+            }
+
+            function getAccount() {
+                Principal.identity().then(function(account) {
+                    vm.account = account;
+                });
+            }
+
+            function getCellar(){
+                Cellar.query(function(result){
+                    vm.cellar = result[0];
+                    if(vm.cellar){
+                        vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
+                        CacheService.put('activeCellar',vm.cellar);
+                    }
+                });
+            }
+
+            function register () {
+                $state.go('register');
+            }
+
+            $ionicModal.fromTemplateUrl('main/templates/createCellar.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                vm.modal = modal;
             });
-        }
 
-        function register () {
-            $state.go('register');
-        }
+            function openModal(){
+                vm.modal.show();
+            }
 
-        $ionicModal.fromTemplateUrl('main/templates/createCellar.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function(modal) {
-            vm.modal = modal;
-        });
+            function saveCellar(){
+                vm.cellar.userId = vm.account.id;
+                Cellar.save(vm.cellar, onSaveSuccess, onSaveError);
+            }
 
-        function openModal(){
-            vm.modal.show();
-        }
+            function onSaveSuccess () {
+                vm.success = 'OK';
+                vm.modal.hide();
+                getCellar();
+            }
 
-        function saveCellar(){
-            vm.cellar.userId = vm.account.id;
-            Cellar.save(vm.cellar, onSaveSuccess, onSaveError);
+            function onSaveError () {
+                vm.error = 'ERROR';
+            }
         }
-
-        function onSaveSuccess () {
-            vm.success = 'OK';
-            vm.modal.hide();
-            getCellar();
-        }
-
-         function onSaveError () {
-            vm.error = 'ERROR';
-        }
-    }
+}) ();
