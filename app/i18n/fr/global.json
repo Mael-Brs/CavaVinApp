@@ -101,7 +101,8 @@
             "save": "Sauvegarder",
             "view": "Voir",
             "close": "Fermer",
-            "add": "Ajouter"
+            "add": "Ajouter",
+            "pin": "Epingler"
         },
         "detail": {
             "field": "Champs",

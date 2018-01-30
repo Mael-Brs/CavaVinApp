@@ -101,8 +101,8 @@
             "save": "Save",
             "view": "View",
             "close": "Close",
-            "add": "Add"
-
+            "add": "Add",
+            "pin": "Pin"
         },
         "detail": {
             "field": "Field",

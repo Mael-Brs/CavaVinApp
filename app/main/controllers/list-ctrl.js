@@ -50,7 +50,9 @@
     vm.removeWine = function(id){
       var confirmPopup = $ionicPopup.confirm({
         title: $translate.instant('list.deleteTitle'),
-        template: '{{"list.deleteMessage" | translate}}'
+        template: $translate.instant('list.deleteMessage'),
+        cancelText: $translate.instant('entity.action.cancel'),
+        okText: $translate.instant('entity.action.delete')
       });
       confirmPopup.then(function(res) {
         if(res) {
@@ -155,7 +157,9 @@
     function pinWine(wineInCellar){
       var confirmPopup = $ionicPopup.confirm({
         title: $translate.instant('list.pinTitle'),
-        template: $translate.instant('list.pinWine')
+        template: $translate.instant('list.pinWine'),
+        cancelText: $translate.instant('entity.action.cancel'),
+        okText: $translate.instant('entity.action.pin')
       });
       confirmPopup.then(function(res) {
         if(res) {
