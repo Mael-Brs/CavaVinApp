@@ -47,7 +47,9 @@
     function removePinned(id){
       var confirmPopup = $ionicPopup.confirm({
         title: 'Supprimer le vin',
-        template: 'Etes-vous sûr de vouloir supprimer ce vin ?'
+        template: 'Etes-vous sûr de vouloir supprimer ce vin ?',
+        cancelText: $translate.instant('entity.action.cancel'),
+        okText: $translate.instant('entity.action.delete')
       });
       confirmPopup.then(function(res) {
         if(res) {

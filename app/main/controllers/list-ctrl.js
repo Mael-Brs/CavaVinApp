@@ -179,7 +179,7 @@
      * Appelle le ws getPinnedWines et les met en cache
      */
     function getPinnedWines(){
-      User.pinnedWines({ref:user.id}, function(pinnedWines){
+      User.pinnedWines({ ref: cellar.userId}, function(pinnedWines){
         CacheService.put('pinnedWines', pinnedWines);
       }, function(){
         CommonServices.showAlert('error.getWines');
