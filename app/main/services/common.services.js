@@ -9,7 +9,6 @@
   function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q) {
     var services = {
       updateCellarDetails: updateCellarDetails,
-      addWinesInCache: addWinesInCache,
       updateWineInCellar: updateWineInCellar,
       showAlert: showAlert,
       getCellar: getCellar
@@ -84,20 +83,6 @@
         cellar.wineByYear = wineByYear;
         CacheService.put('activeCellar', cellar);
       }
-    }
-
-    /**
-     * Ajoute les vins en cache en les mappant par id
-     * @param {List<WineInCellar>} wines Liste des vins dans la cave de l'utilisateur
-     */
-    function addWinesInCache(wines) {
-      var wineInCellars = [];
-
-      for (var i = 0; i < wines.length; i++) {
-        var wine = wines[i];
-        wineInCellars[wine.id] = wine;
-      }
-      CacheService.put('wineInCellars', wineInCellars);
     }
 
     /**
