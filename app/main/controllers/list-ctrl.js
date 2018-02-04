@@ -4,10 +4,10 @@
   .module('main')
   .controller('ListCtrl',ListCtrl);
 
-  ListCtrl.$inject = ['$translate', '$scope', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedWine'];
+  ListCtrl.$inject = ['$scope', '$translate', '$state', 'WineInCellar', 'Principal', '$ionicPopup','Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedWine'];
 
 
-  function ListCtrl ($translate, $scope, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine) {
+  function ListCtrl($scope, $translate, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine) {
     var vm = this;
     vm.wines;
     vm.showForm = false;
@@ -163,12 +163,7 @@
       });
       confirmPopup.then(function(res) {
         if(res) {
-            PinnedWine.save({wine:wineInCellar.vintage.wine, userId:cellar.userId}, function successCallback() {
-                getPinnedWines();
-                vm.removeWine(wineInCellar.id);
-            }, function(){
-                CommonServices.showAlert('error.createPinnedWine');
-            });
+          savePinnedWine(wineInCellar);
         } else {
           vm.removeWine(wineInCellar.id);
         }
@@ -183,6 +178,15 @@
         CacheService.put('pinnedWines', pinnedWines);
       }, function(){
         CommonServices.showAlert('error.getWines');
+      });
+    }
+
+    function savePinnedWine(wineInCellar){
+      PinnedWine.save({ wine: wineInCellar.vintage.wine, userId: cellar.userId }, function successCallback() {
+        getPinnedWines();
+        vm.removeWine(wineInCellar.id);
+      }, function () {
+        CommonServices.showAlert('error.createPinnedWine');
       });
     }
 

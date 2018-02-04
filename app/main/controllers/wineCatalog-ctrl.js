@@ -32,7 +32,7 @@
           sort: null
       }, function(result, headers) {
         getLastPage(headers('link'));
-        for (let i = 0; i < result.length; i++) {
+        for (var i = 0; i < result.length; i++) {1
             vm.result.push(result[i]);
         };
         $scope.$broadcast('scroll.infiniteScrollComplete');
