@@ -30,8 +30,8 @@ gulp.task('karma:auto', ['linting'], function (done) {
 
 // PROTRACTOR
 // Downloads the selenium webdriver
-gulp.task('webdriver-update', $.protractor.webdriver_update);
-gulp.task('webdriver-standalone', $.protractor.webdriver_standalone);
+//gulp.task('webdriver-update', $.protractor.webdriver_update);
+//gulp.task('webdriver-standalone', $.protractor.webdriver_standalone);
 
 function runProtractor (done) {
   gulp.src(paths.protractor)
@@ -48,11 +48,11 @@ function runProtractor (done) {
     });
 }
 
-gulp.task('protractor', ['serve', 'linting', 'webdriver-update'], function (done) {
+gulp.task('protractor', ['serve', 'linting'], function (done) {
   runProtractor(done);
 });
 
-var protractorBuildDeps = ['serve-build', 'webdriver-update'];
+var protractorBuildDeps = ['serve-build'];
 if (options.build !== false) {
   protractorBuildDeps.push('build');
 }
