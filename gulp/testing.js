@@ -43,7 +43,7 @@ function runProtractor (done) {
       throw err;
     })
     .on('end', function () {
-      bs.get('m-ionic').exit();
+      bs.exit();
       done();
     });
 }

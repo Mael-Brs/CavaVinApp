@@ -1,7 +1,7 @@
 <ion-view view-title="{{'global.menu.pinnedList' | translate}}">
     <ion-content>
         <ion-list>
-            <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine | filter:vm.searchRegion | filter:vm.searchColor track by data.id"">
+            <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine | filter:vm.searchRegion | filter:vm.searchColor track by data.id">
                 <div class="winAttributes" on-tap=vm.openModal(data)>
                   <span class="year">{{data.wine.year}}</span>
                   <span class="wineItemLine name">{{data.wine.name}}</span>
