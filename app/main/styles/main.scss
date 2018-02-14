@@ -1,4 +1,5 @@
 
+$theme-color:#cc0446;
 
 /* start Password strength bar style */
 ul#strength {
@@ -82,7 +83,7 @@ input.ng-invalid, select.ng-invalid{
 }
 
 .badge.badge-assertive{
-  background-color: #cc0446;
+  background-color: $theme-color;
 }
 
 .input-label{
@@ -91,4 +92,13 @@ input.ng-invalid, select.ng-invalid{
 
 .error-message{
   color: #d43333;
+}
+
+.bar.bar-positive, .button.button-positive, .toggle.toggle-positive input:checked + .track{
+  background-color: $theme-color;
+  border-color:  $theme-color;
+}
+
+.button.button-positive.activated{
+    background-color: $theme-color;
 }
