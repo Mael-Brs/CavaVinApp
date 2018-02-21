@@ -1,92 +1,95 @@
 
+.cave-list-view {
+  .name {
+    /*font-style : italic;*/
+    color : rgb(153, 0, 51);
+  }
 
-.name {
-	/*font-style : italic;*/
-	color : rgb(153, 0, 51);
-}
+  .appellation {
+    font-size:14px;
+    font-style : italic;
+    padding-bottom: 4px;
+  }
 
-.appellation {
-	font-size:14px;
-	font-style : italic;
-	padding-bottom: 4px;
-}
+  .detail {
+    font-size:12px;
+    display:inline;
+  }
 
-.detail {
-	font-size:12px;
-	display:inline;
-}
+  .color {
+    padding-left:20px;
+  }
 
-.color {
-	padding-left:20px;
-}
-
-.winAttributes {
-	display:inline;
-	float:left;
-	width:100%;
-}
-
-#wineList .item {
-	height : 110px;
-	/*margin-right: 5px;*/
-	vertical-align: middle;
-	padding: 10px 10px 10px 10px;
-}
-
-.wineItemLine {
-	display:block;
-	position:relative;
-}
-.year {
-	position:absolute;
-	right:32px;
-}
-
-.badge.badge-assertive.quantity {
-	top:58px;
-}
-
-
-ion-popover-view{
-	ion-content{
-		overflow: visible!important;
-	}
-}
-
-#filterTerm{
-	margin:0 5px 0 5px;
-}
-
-.winAttributes meter {
-    /* Reset the default appearance */
-    -webkit-appearance: meter;
-    height:8px;
+  .winAttributes {
+    display:inline;
+    float:left;
     width:100%;
-	position:absolute;
-	bottom: 0px;
-	left: 0px;
+  }
 
-    &::-webkit-meter-bar {
-		background: #EEE;
-		box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+  #wineList .item {
+    height : 110px;
+    /*margin-right: 5px;*/
+    vertical-align: middle;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .wineItemLine {
+    display:block;
+    position:relative;
+  }
+  .year {
+    position:absolute;
+    right:32px;
+  }
+
+  .badge.badge-assertive.quantity {
+    top:58px;
+  }
+
+
+  ion-popover-view{
+    ion-content{
+      overflow: visible!important;
     }
+  }
 
-    &.young::-webkit-meter-optimum-value{
-		background: #5cb85c;
-    }
+  #filterTerm{
+    margin:0 5px 0 5px;
+  }
 
-    &.mature::-webkit-meter-optimum-value {
-    	background: #f0ad4e;
-    }
+  .winAttributes meter {
+      /* Reset the default appearance */
+      -webkit-appearance: meter;
+      height:8px;
+      width:100%;
+    position:absolute;
+    bottom: 0px;
+    left: 0px;
 
-    &.apogee::-webkit-meter-optimum-value {    
-    	background: #d9534f;
-    }
+      &::-webkit-meter-bar {
+      background: #EEE;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+      }
 
+      &.young::-webkit-meter-optimum-value{
+      background: #5cb85c;
+      }
+
+      &.mature::-webkit-meter-optimum-value {
+        background: #f0ad4e;
+      }
+
+      &.apogee::-webkit-meter-optimum-value {    
+        background: #d9534f;
+      }
+
+  }
+
+  .popup-container .popup{
+    width:95%;
+  }
+
+  .item-content{
+    min-height: 96px;
+  }
 }
-
-.popup-container .popup{
-	width:95%;
-}
-
-

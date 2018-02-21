@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.mbras.cavavin" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.mbras.cavavin" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Dans Ma Cave</name>
     <description>
-        A sample app to manage your cellar
+        Une application pour gérer votre cave à vin :
+        - Ajoutez des vins, explorez le contenu de votre cave, choisissez le vin que vous allez déguster. 
+        - Définissez les temps de garde d'un vin et l'application vous indiquera quand il arrive à maturité.
     </description>
-    <author email="" href="http://cordova.io">
+    <author email="mael.b_53@hotmail.fr">
         Leam Srb
     </author>
     <content src="index.html" />
