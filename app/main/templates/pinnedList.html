@@ -1,4 +1,4 @@
-<ion-view view-title="{{'global.menu.pinnedList' | translate}}">
+<ion-view class="cave-list-view" view-title="{{'global.menu.pinnedList' | translate}}">
     <ion-content>
         <ion-list>
             <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine | filter:vm.searchRegion | filter:vm.searchColor track by data.id">
@@ -11,8 +11,8 @@
                     <span class="color">{{data.wine.color.colorName}}</span>
                   </div>
                 </div>
-                <ion-option-button class="button icon button-positive ion-plus-round" ng-click="vm.addToCellar(data)"></ion-option-button>
-                <ion-option-button class="button icon button-assertive ion-trash-b" ng-click="vm.removePinned(data.id)"></ion-option-button>
+                <ion-option-button class="button icon ion-plus-round" ng-click="vm.addToCellar(data)"></ion-option-button>
+                <ion-option-button class="button icon button-positive ion-trash-b" ng-click="vm.removePinned(data.id)"></ion-option-button>
             </ion-item>
         </ion-list>
     </ion-content>

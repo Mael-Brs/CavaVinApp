@@ -70,9 +70,9 @@ input.ng-invalid, select.ng-invalid{
 }
 
 
-#formList{
+.formList{
   select{
-    right:2px;
+    right:6px;
     top:2px;
     bottom:2px;
     width: 50%;
@@ -100,5 +100,9 @@ input.ng-invalid, select.ng-invalid{
 }
 
 .button.button-positive.activated{
-    background-color: $theme-color;
+  background-color: $theme-color;
+}
+
+.item-input.search-popup, .formList .item-input{
+  padding: 6px 5px 5px 5px;
 }
