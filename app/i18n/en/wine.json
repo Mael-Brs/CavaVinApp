@@ -5,7 +5,8 @@
                 "title": "Wines",
                 "createLabel": "Create a new Wine",
                 "createOrEditLabel": "Create or edit a Wine",
-                "search": "Search for Wine"
+                "search": "Search for Wine",
+                "noContent": "No content found for '{{query}}'"
             },
             "created": "A new Wine is created with identifier {{ param }}",
             "updated": "A Wine is updated with identifier {{ param }}",
@@ -15,6 +16,9 @@
             },
             "detail": {
                 "title": "Wine"
+            },
+            "catalog": {
+              "title": "Wine Catalog"
             },
             "name": "Name",
             "appellation": "Appellation",

@@ -3,9 +3,10 @@
         "wine" : {
             "home": {
                 "title": "Wines",
-                "createLabel": "Créer un nouveau Wine",
-                "createOrEditLabel": "Créer ou éditer un Wine",
-                "search": "Recherche pour Wine"
+                "createLabel": "Créer un nouveau vin",
+                "createOrEditLabel": "Créer ou éditer un vin",
+                "search": "Recherche de vin",
+                "noContent": "Aucun élément trouvé pour '{{query}}'"
             },
             "created": "Un nouveau Wine a été créé avec l'identifiant {{ param }}",
             "updated": "Le Wine avec l'identifiant {{ param }} a été mis à jour",
@@ -15,6 +16,9 @@
             },
             "detail": {
                 "title": "Wine"
+            },
+            "catalog": {
+                "title": "Catalogue des vins"
             },
             "name": "Nom",
             "appellation": "Appellation",

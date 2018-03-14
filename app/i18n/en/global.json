@@ -102,7 +102,8 @@
             "view": "View",
             "close": "Close",
             "add": "Add",
-            "pin": "Pin"
+            "pin": "Pin",
+            "search": "Search"
         },
         "detail": {
             "field": "Field",

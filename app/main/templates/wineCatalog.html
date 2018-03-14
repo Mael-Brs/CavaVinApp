@@ -1,4 +1,4 @@
-<ion-view class="cave-list-view" view-title="Catalogue des vins">
+<ion-view class="cave-list-view" view-title="{{'cavaVinApp.wine.catalog.title' | translate}}">
 	<ion-nav-buttons side="right">
       <button class="button button-icon button-clear ion-plus-round" ng-click="vm.createWine(-1)">
       </button>
@@ -30,11 +30,8 @@
 			</div>
 		  </ion-item>
 
-		  <ion-item ng-show="!vm.result">
-				Rechercher un vin dans notre base de données
-		  </ion-item>
-		  <ion-item ng-show="vm.result.length == 0">
-		  		Aucun élément trouvé pour : {{vm.query}}
+		  <ion-item ng-show="vm.noContent === true">
+		  		<span translate="cavaVinApp.wine.home.noContent" translate-values="{query: '{{vm.query}}'}">Aucun élément trouvé pour '{{vm.query}}'</span>
 		  </ion-item>
 		</ion-list>
 
