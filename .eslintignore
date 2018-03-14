@@ -5,4 +5,4 @@
 # ignore bower_components
 app/bower_components
 # todo change to ignore just JHipster files
-app
+app/main/jhipster

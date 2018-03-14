@@ -60,9 +60,9 @@
             }).catch(function (response) {
                 vm.authenticationError = true;
                 if(response.status === 401){
-                    vm.errorMessage = "error.authentificationError";
+                    vm.errorMessage = 'error.authentificationError';
                 } else {
-                    vm.errorMessage = "error.technicalError";
+                    vm.errorMessage = 'error.technicalError';
                 }
             });
         }
@@ -77,8 +77,8 @@
             $state.go('requestReset');
         }
 
-        $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            if (toState.name == "login"){
+        $scope.$on('$stateChangeSuccess', function (event, toState) {
+            if (toState.name == 'login'){
                 $ionicModal.fromTemplateUrl('main/templates/login.html', {
                     scope: $scope
                 }).then(function (modal) {
