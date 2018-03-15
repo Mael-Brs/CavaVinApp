@@ -1,10 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.mbras.cavavin" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Dans Ma Cave</name>
+<widget id="com.mbras.dansmacave" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Dans ma Cave</name>
     <description>
-        Une application pour gérer votre cave à vin :
-        - Ajoutez des vins, explorez le contenu de votre cave, choisissez le vin que vous allez déguster. 
-        - Définissez les temps de garde d'un vin et l'application vous indiquera quand il arrive à maturité.
+        Tu as une cave à vin mais tu ne sais jamais tout ce qu'il y a de dedans.
+        Tu sors tes bouteilles une par une pour choisir laquelle boire.
+        Cette application est faîte pour toi :
+        - Enregistre les vins et leur emplacement quand tu les stockes.
+        - Ouvre l'application, filtre et tri tes vins par critères pour choisir laquelle sortir.
+        - Ajoute des paramètres de vieillissement à tes vins pour suivre leur maturité.
     </description>
     <author email="mael.b_53@hotmail.fr">
         Leam Srb
