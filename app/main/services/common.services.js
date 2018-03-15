@@ -1,5 +1,5 @@
-(function () {
-  'use strict';
+'use strict';
+(function() {
   angular
     .module('main')
     .factory('CommonServices', CommonServices);
@@ -120,10 +120,10 @@
       var cellar = CacheService.get('activeCellar');
 
       if (!cellar) {
-        Cellar.query(function (result) {
+        Cellar.query(function(result) {
           cellar = result[0];
           deferred.resolve(cellar);
-        }, function () {
+        }, function() {
           this.showAlert('error.getCellar');
         });
       } else {

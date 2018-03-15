@@ -1,12 +1,12 @@
 'use strict';
 
-describe('list page', function () {
+describe('list page', function() {
   var username = element(by.id('username'));
   var password = element(by.id('password'));
   var login = element(by.css('#login-link a'));
   var wineList = element.all(by.repeater('data in vm.wines'));
 
-  beforeAll(function () {
+  beforeAll(function() {
     browser.get('/');
     login.click();
     username.sendKeys('admin');
@@ -14,21 +14,21 @@ describe('list page', function () {
     element(by.id('login-button')).click();
   });
 
-  it('should load list', function () {
+  it('should load list', function() {
     element(by.css('a[href="#/app/list"]')).click();
     expect(wineList.count()).toEqual(4);
   });
 
-  it('should delete wine', function () {
-    wineList.then(function (wines) {
+  it('should delete wine', function() {
+    wineList.then(function(wines) {
       switchAndClickBtn(wines, 'ion-option-button.ion-trash-b');
     });
     element(by.css('.popup-buttons .button-positive')).click();
     expect(wineList.count()).toEqual(3);
   });
 
-  it('should pin wine', function () {
-    wineList.then(function (wines) {
+  it('should pin wine', function() {
+    wineList.then(function(wines) {
       switchAndClickBtn(wines, 'ion-option-button.icon.ion-minus');
     });
     var okButton = element(by.css('.popup-buttons .button-positive'));
@@ -42,7 +42,7 @@ describe('list page', function () {
   });
 });
 
-function switchAndClickBtn (wines, btnClass) {
+function switchAndClickBtn(wines, btnClass) {
   browser.actions()
     .mouseDown(wines[0])
     .mouseMove({ x: -50, y: 0 })

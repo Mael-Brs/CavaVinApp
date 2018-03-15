@@ -10,20 +10,6 @@
         "localforage": true
     },
     "rules": {
-        "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error"
-        ]
+      "space-before-function-paren": [2, "never"]
     }
 }

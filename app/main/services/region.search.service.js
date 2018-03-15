@@ -1,17 +1,17 @@
+'use strict';
 (function() {
-    'use strict';
 
-    angular
-        .module('main')
-        .factory('RegionSearch', RegionSearch);
+  angular
+    .module('main')
+    .factory('RegionSearch', RegionSearch);
 
-    RegionSearch.$inject = ['$resource', 'Config'];
+  RegionSearch.$inject = ['$resource', 'Config'];
 
-    function RegionSearch($resource, Config) {
-        var resourceUrl =  Config.ENV.SERVER_URL + 'api/_search/regions/:id';
+  function RegionSearch($resource, Config) {
+    var resourceUrl = Config.ENV.SERVER_URL + 'api/_search/regions/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true}
-        });
-    }
+    return $resource(resourceUrl, {}, {
+      'query': { method: 'GET', isArray: true }
+    });
+  }
 })();

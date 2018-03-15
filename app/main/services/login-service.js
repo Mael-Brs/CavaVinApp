@@ -1,21 +1,21 @@
 'use strict';
-
-angular
+(function() {
+  angular
     .module('main')
     .factory('LoginService', LoginService);
 
-LoginService.$inject = ['$state'];
+  LoginService.$inject = ['$state'];
 
-function LoginService ($state) {
-
+  function LoginService($state) {
 
     var service = {
-        open: open
+      open: open
     };
 
     return service;
 
-    function open () {
-        $state.go('login');
+    function open() {
+      $state.go('login');
     }
-}
+  }
+})();

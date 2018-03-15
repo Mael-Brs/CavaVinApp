@@ -1,6 +1,6 @@
 'use strict';
 
-describe('module: main, service: CommonServices', function () {
+describe('module: main, service: CommonServices', function() {
 
   // load the service's module
   beforeEach(module('main'));
@@ -12,13 +12,13 @@ describe('module: main, service: CommonServices', function () {
   var CacheService;
   var cellar;
   var wineInCellar = [];
-  beforeEach(inject(function (_CommonServices_, _CacheService_) {
+  beforeEach(inject(function(_CommonServices_, _CacheService_) {
     CommonServices = _CommonServices_;
     CacheService = _CacheService_;
   }));
 
-  describe('init cache data', function () {
-    beforeEach(function () {
+  describe('init cache data', function() {
+    beforeEach(function() {
       cellar = { sumOfWine: null, wineByRegion: null, wineByColor: null, wineByYear: null};
       CacheService.put('activeCellar', cellar);
       wineInCellar.push(createWineInCellar(2017, 'Bordeaux', 'Rouge', 1));
@@ -27,7 +27,7 @@ describe('module: main, service: CommonServices', function () {
       CacheService.put('wineInCellars', wineInCellar);
     });
 
-    it('should update cellar in cache', function () {
+    it('should update cellar in cache', function() {
       expect(CacheService.get('activeCellar').sumOfWine).toBeNull();
       CommonServices.updateCellarDetails();
       expect(CacheService.get('activeCellar').sumOfWine).toEqual(7);
@@ -37,7 +37,7 @@ describe('module: main, service: CommonServices', function () {
     });
   });
 
-  function createWineInCellar (year, regionName, colorName, quantity) {
+  function createWineInCellar(year, regionName, colorName, quantity) {
     return {
       'quantity': quantity,
       'vintage': {

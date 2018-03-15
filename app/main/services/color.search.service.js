@@ -1,17 +1,17 @@
+'use strict';
 (function() {
-    'use strict';
 
-    angular
-        .module('main')
-        .factory('ColorSearch', ColorSearch);
+  angular
+    .module('main')
+    .factory('ColorSearch', ColorSearch);
 
-    ColorSearch.$inject = ['$resource', 'Config'];
+  ColorSearch.$inject = ['$resource', 'Config'];
 
-    function ColorSearch($resource, Config) {
-        var resourceUrl =  Config.ENV.SERVER_URL + 'api/_search/colors/:id';
+  function ColorSearch($resource, Config) {
+    var resourceUrl = Config.ENV.SERVER_URL + 'api/_search/colors/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true}
-        });
-    }
+    return $resource(resourceUrl, {}, {
+      'query': { method: 'GET', isArray: true }
+    });
+  }
 })();

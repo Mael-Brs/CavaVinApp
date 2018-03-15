@@ -1,8 +1,8 @@
+'use strict';
 (function() {
-    'use strict';
-    angular
+  angular
     .module('main')
     .factory('CacheService', ['$cacheFactory', function($cacheFactory) {
-        return $cacheFactory('myCache');
+      return $cacheFactory('myCache');
     }]);
 })();

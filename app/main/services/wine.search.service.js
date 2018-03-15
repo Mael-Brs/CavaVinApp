@@ -1,17 +1,17 @@
+'use strict';
 (function() {
-    'use strict';
 
-    angular
-        .module('main')
-        .factory('WineSearch', WineSearch);
+  angular
+    .module('main')
+    .factory('WineSearch', WineSearch);
 
-    WineSearch.$inject = ['$resource', 'Config'];
+  WineSearch.$inject = ['$resource', 'Config'];
 
-    function WineSearch($resource, Config) {
-        var resourceUrl =  Config.ENV.SERVER_URL + 'api/_search/wines/:id';
+  function WineSearch($resource, Config) {
+    var resourceUrl = Config.ENV.SERVER_URL + 'api/_search/wines/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true}
-        });
-    }
+    return $resource(resourceUrl, {}, {
+      'query': { method: 'GET', isArray: true }
+    });
+  }
 })();

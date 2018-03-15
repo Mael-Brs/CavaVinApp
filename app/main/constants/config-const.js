@@ -5,7 +5,7 @@ angular.module('main')
   // gulp environment: injects environment vars
   ENV: {
     /*inject-env*/
-    'SERVER_URL': '',
+    'SERVER_URL': 'https://cellar-manager.herokuapp.com/',
     'SOME_OTHER_URL': ''
     /*endinject*/
   },

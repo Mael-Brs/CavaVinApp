@@ -6,3 +6,4 @@
 app/bower_components
 # todo change to ignore just JHipster files
 app/main/jhipster
+app/i18n

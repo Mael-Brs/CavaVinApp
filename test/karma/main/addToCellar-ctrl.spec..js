@@ -1,6 +1,6 @@
 'use strict';
 
-describe('module: main, controller: addToCellarCtrl', function () {
+describe('module: main, controller: addToCellarCtrl', function() {
 
   // load the controller's module
   beforeEach(module('main'));
@@ -9,15 +9,15 @@ describe('module: main, controller: addToCellarCtrl', function () {
 
   // instantiate controller
   var addToCellarCtrl;
-  beforeEach(inject(function (_$controller_, _$rootScope_) {
+  beforeEach(inject(function(_$controller_, _$rootScope_) {
     var $controller = _$controller_;
     var $rootScope = _$rootScope_;
     var $scope = $rootScope.$new();
     addToCellarCtrl = $controller('addToCellarCtrl', {$scope: $scope});
   }));
 
-  describe('init', function () {
-    it('Controller should be set', function () {
+  describe('init', function() {
+    it('Controller should be set', function() {
       expect(addToCellarCtrl).toBeDefined();
     });
   });
