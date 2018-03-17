@@ -26,6 +26,11 @@
     });
 
     function submit() {
+      vm.result = [];
+      search();
+    }
+
+    function search() {
       WineSearch.query({
         query: vm.query,
         page: vm.page,
@@ -93,7 +98,7 @@
      */
     function loadPage(page) {
       vm.page = page;
-      vm.submit();
+      search();
     }
 
   }

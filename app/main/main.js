@@ -133,6 +133,7 @@ angular.module('main', [
             $translatePartialLoader.addPart('wineInCellar');
             $translatePartialLoader.addPart('wine');
             $translatePartialLoader.addPart('wineInCellarFullEdit');
+            $translatePartialLoader.addPart('wineInCellarEdit');
             return $translate.refresh();
           }]
         }
