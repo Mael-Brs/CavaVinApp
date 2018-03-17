@@ -161,8 +161,8 @@
      */
     function addPinnedWineInCache(pinnedWine) {
       var pinnedWines = CacheService.get('pinnedWines');
-      if (!pinnedWines) {
-        pinnedWines.put(pinnedWine);
+      if (pinnedWines) {
+        pinnedWines.push(pinnedWine);
         CacheService.put('pinnedWines', pinnedWines);
       }
     }
