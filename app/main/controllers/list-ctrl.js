@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
   angular
     .module('main')
@@ -24,9 +24,9 @@
     vm.yearRatio = (date.getMonth() + 1) / 12;
     var cellar;
 
-    $scope.$on('$ionicView.enter', function () {
+    $scope.$on('$ionicView.enter', function() {
       $ionicListDelegate.closeOptionButtons();
-      CommonServices.getCellar().then(function (result) {
+      CommonServices.getCellar().then(function(result) {
         cellar = result;
         loadAll();
       });
@@ -48,30 +48,31 @@
     * Fonction de suppression du vin au click sur le bouton
     * @param  {number} id id du vin
     */
-    vm.removeWine = function (id) {
+    vm.removeWine = function(id) {
       var confirmPopup = $ionicPopup.confirm({
         title: $translate.instant('list.deleteTitle'),
         template: $translate.instant('list.deleteMessage'),
         cancelText: $translate.instant('entity.action.cancel'),
         okText: $translate.instant('entity.action.delete')
       });
-      confirmPopup.then(function (res) {
+      confirmPopup.then(function(res) {
         if (res) {
           WineInCellar.delete({ id: id }, function successCallback() {
             CacheService.remove('wineInCellars');
             loadAll();
-          }, function () {
+          }, function() {
             CommonServices.showAlert('error.deleteWine');
           });
         }
       });
     };
 
-    vm.editWine = function (wineInCellar) {
+    vm.editWine = function(wineInCellar) {
       if (wineInCellar.vintage.wine.creatorId === cellar.userId) {
-        $state.go('form', { wineId: wineInCellar.id });
+        $state.go('wineInCellarFullEdit', { wineId: wineInCellar.id });
       } else {
-        $state.go('editWine', { wineId: wineInCellar.id });
+        CacheService.put('selectedWineInCellar', wineInCellar);
+        $state.go('wineInCellarEdit', { wineId: wineInCellar.id });
       }
     };
 
@@ -83,7 +84,7 @@
           pinWine(wineInCellar);
 
         } else {
-          WineInCellar.update(wineInCellar, function (wineInCellar) {
+          WineInCellar.update(wineInCellar, function(wineInCellar) {
             var wineInCellars = CacheService.get('wineInCellars');
 
             if (wineInCellars) {
@@ -93,7 +94,7 @@
               getWineInCellars();
             }
 
-          }, function () {
+          }, function() {
             CommonServices.showAlert('error.updateWine');
           });
 
@@ -105,13 +106,13 @@
      * Appelle le ws getWinInCellars et les met en cache
      */
     function getWineInCellars() {
-      Cellar.wineInCellars({ id: cellar.id }, function (wineInCellars) {
+      Cellar.wineInCellars({ id: cellar.id }, function(wineInCellars) {
         CacheService.put('wineInCellars', wineInCellars);
         //Update cache
         CommonServices.updateCellarDetails();
         //Update view
         vm.wines = wineInCellars;
-      }, function () {
+      }, function() {
         CommonServices.showAlert('error.getWines');
       });
     }
@@ -122,7 +123,7 @@
     $ionicModal.fromTemplateUrl('main/templates/wineInCellarDetails.html', {
       scope: $scope,
       animation: 'slide-in-up'
-    }).then(function (modal) {
+    }).then(function(modal) {
       vm.modal = modal;
     });
 
@@ -163,7 +164,7 @@
         cancelText: $translate.instant('entity.action.cancel'),
         okText: $translate.instant('entity.action.pin')
       });
-      confirmPopup.then(function (res) {
+      confirmPopup.then(function(res) {
         if (res) {
           savePinnedWine(wineInCellar);
         } else {
@@ -173,21 +174,14 @@
     }
 
     /**
-     * Appelle le ws getPinnedWines et les met en cache
+     * Sauvegarde le nouveau vin épinglé
+     * @param {le vin à épingler} wineInCellar 
      */
-    function getPinnedWines() {
-      User.pinnedWines({ ref: cellar.userId }, function (pinnedWines) {
-        CacheService.put('pinnedWines', pinnedWines);
-      }, function () {
-        CommonServices.showAlert('error.getWines');
-      });
-    }
-
     function savePinnedWine(wineInCellar) {
-      PinnedWine.save({ wine: wineInCellar.vintage.wine, userId: cellar.userId }, function successCallback() {
-        getPinnedWines();
+      PinnedWine.save({ wine: wineInCellar.vintage.wine, userId: cellar.userId }, function successCallback(result) {
         vm.removeWine(wineInCellar.id);
-      }, function () {
+        CommonServices.addPinnedWineInCache(result);
+      }, function() {
         CommonServices.showAlert('error.createPinnedWine');
       });
     }

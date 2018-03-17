@@ -1,0 +1,8 @@
+{
+    "wineInCellarEdit": {
+        "title": {
+          "create": "Add to cellar",
+          "edit": "Edit winein cellar"
+        }
+    }
+}

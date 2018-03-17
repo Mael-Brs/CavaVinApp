@@ -1,0 +1,8 @@
+{
+    "wineInCellarEdit": {
+        "title": {
+          "create": "Ajouter à la cave",
+          "edit": "Editer le vin en cave"
+        }
+    }
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-describe('module: main, controller: addToCellarCtrl', function() {
+describe('module: main, controller: wineInCellarEditCtrl', function() {
 
   // load the controller's module
   beforeEach(module('main'));
@@ -8,17 +8,17 @@ describe('module: main, controller: addToCellarCtrl', function() {
   beforeEach(module('ngHtml2Js'));
 
   // instantiate controller
-  var addToCellarCtrl;
+  var wineInCellarEditCtrl;
   beforeEach(inject(function(_$controller_, _$rootScope_) {
     var $controller = _$controller_;
     var $rootScope = _$rootScope_;
     var $scope = $rootScope.$new();
-    addToCellarCtrl = $controller('addToCellarCtrl', {$scope: $scope});
+    wineInCellarEditCtrl = $controller('wineInCellarEditCtrl', {$scope: $scope});
   }));
 
   describe('init', function() {
     it('Controller should be set', function() {
-      expect(addToCellarCtrl).toBeDefined();
+      expect(wineInCellarEditCtrl).toBeDefined();
     });
   });
 

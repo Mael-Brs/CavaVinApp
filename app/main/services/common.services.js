@@ -4,14 +4,16 @@
     .module('main')
     .factory('CommonServices', CommonServices);
 
-  CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q'];
+  CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q', 'User'];
 
-  function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q) {
+  function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q, User) {
     var services = {
       updateCellarDetails: updateCellarDetails,
       updateWineInCellar: updateWineInCellar,
       showAlert: showAlert,
-      getCellar: getCellar
+      getCellar: getCellar,
+      getPinnedWines: getPinnedWines,
+      addPinnedWineInCache: addPinnedWineInCache
     };
     return services;
 
@@ -130,6 +132,39 @@
         deferred.resolve(cellar);
       }
       return deferred.promise;
+    }
+
+    /**
+     * Retourne les vins épinglés depuis le cache ou le back
+     * @param {Identifiant de l'utilisateur} userId
+     */
+    function getPinnedWines(userId) {
+      var deferred = $q.defer();
+      var pinnedWines = CacheService.get('pinnedWines');
+
+      if (!pinnedWines) {
+        User.pinnedWines({ ref: userId }, function(result) {
+          pinnedWines = result;
+          deferred.resolve(pinnedWines);
+        }, function() {
+          this.showAlert('error.getWines');
+        });
+      } else {
+        deferred.resolve(pinnedWines);
+      }
+      return deferred.promise;
+    }
+
+    /**
+     * Ajoute un nouveau vin épinglé en cache si le cache existe
+     * @param {Vin épinglé} pinnedWine
+     */
+    function addPinnedWineInCache(pinnedWine) {
+      var pinnedWines = CacheService.get('pinnedWines');
+      if (!pinnedWines) {
+        pinnedWines.put(pinnedWine);
+        CacheService.put('pinnedWines', pinnedWines);
+      }
     }
   }
 })();

@@ -116,23 +116,23 @@ angular.module('main', [
         }
       })
 
-      .state('form', {
+      .state('wineInCellarFullEdit', {
         parent: 'app',
-        url: '/form/:wineId',
+        url: '/wineInCellarFullEdit/:wineId',
         data: {
           authorities: ['ROLE_USER']
         },
         views: {
           'pageContent': {
-            templateUrl: 'main/templates/form.html',
-            controller: 'FormCtrl as vm'
+            templateUrl: 'main/templates/wineInCellarFullEdit.html',
+            controller: 'WineInCellarFullEditCtrl as vm'
           }
         },
         resolve: {
           translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
             $translatePartialLoader.addPart('wineInCellar');
             $translatePartialLoader.addPart('wine');
-            $translatePartialLoader.addPart('form');
+            $translatePartialLoader.addPart('wineInCellarFullEdit');
             return $translate.refresh();
           }]
         }
@@ -157,30 +157,30 @@ angular.module('main', [
           }]
         }
       })
-      .state('addToCellar', {
+      .state('wineInCellarEdit', {
         parent: 'app',
-        url: '/addToCellar',
+        url: '/wineInCellarEdit/:wineId',
         data: {
           authorities: ['ROLE_USER']
         },
         views: {
           'pageContent': {
-            templateUrl: 'main/templates/addToCellar.html',
-            controller: 'addToCellarCtrl as vm'
+            templateUrl: 'main/templates/wineInCellarEdit.html',
+            controller: 'WineInCellarEditCtrl as vm'
           }
         },
         resolve: {
           translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
             $translatePartialLoader.addPart('wineInCellar');
             $translatePartialLoader.addPart('wine');
-            $translatePartialLoader.addPart('addToCellar');
+            $translatePartialLoader.addPart('wineInCellarEdit');
             return $translate.refresh();
           }]
         }
       })
       .state('selectVintage', {
         parent: 'app',
-        url: '/selectVintage/:wineId',
+        url: '/selectVintage/:wineId/:from',
         data: {
           authorities: ['ROLE_USER']
         },
@@ -194,27 +194,6 @@ angular.module('main', [
           translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
             $translatePartialLoader.addPart('selectVintage');
             $translatePartialLoader.addPart('wine');
-            return $translate.refresh();
-          }]
-        }
-      })
-      .state('editWine', {
-        parent: 'app',
-        url: '/editWine/:wineId',
-        data: {
-          authorities: ['ROLE_USER']
-        },
-        views: {
-          'pageContent': {
-            templateUrl: 'main/templates/editWine.html',
-            controller: 'editWineCtrl as vm'
-          }
-        },
-        resolve: {
-          translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
-            $translatePartialLoader.addPart('wineInCellar');
-            $translatePartialLoader.addPart('wine');
-            $translatePartialLoader.addPart('form');
             return $translate.refresh();
           }]
         }

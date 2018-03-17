@@ -1,7 +1,7 @@
 {
     "selectVintage": {
         "title": "Wine details",
-        "addToCellar": "Add to cellar",
+        "wineInCellarEdit": "Add to cellar",
         "pinWine": "Pin this wine",
         "modal": {
         	"title": "Add vintage"

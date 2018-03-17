@@ -3,7 +3,7 @@
 
   angular
     .module('main')
-    .controller('FormCtrl', ['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', '$stateParams', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color, $stateParams, Vintage, CacheService, CommonServices, Cellar) {
+    .controller('WineInCellarFullEditCtrl', ['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', '$stateParams', 'Vintage', 'CacheService', 'CommonServices', 'Cellar', function ($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color, $stateParams, Vintage, CacheService, CommonServices, Cellar) {
       var vm = this;
       var cellar;
       vm.activeWineId;

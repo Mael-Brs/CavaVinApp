@@ -53,12 +53,12 @@
     }
 
     vm.createWine = function (id) {
-      $state.go('form', { wineId: id });
+      $state.go('wineInCellarFullEdit', { wineId: id });
     };
 
     vm.selectVintage = function (wine) {
       CacheService.put('selectedWine', wine);
-      $state.go('selectVintage', { wineId: wine.id });
+      $state.go('selectVintage', { wineId: wine.id, from: 'wineCatalog' });
     };
 
     /**

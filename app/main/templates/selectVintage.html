@@ -28,7 +28,7 @@
                     <span>{{vm.wine.color.colorName}}</span>
                     </label>
                 </div>	
-                <button ng-click="vm.pinWine()" ng-disabled="!vm.wine" class="button button-full button-positive" translate="selectVintage.pinWine">Pin</button>
+                <button ng-if="vm.from === 'wineCatalog'" ng-click="vm.pinWine()" ng-disabled="!vm.wine" class="button button-full button-positive" translate="selectVintage.pinWine">Pin</button>
                 <div class="item item-divider"  translate="selectVintage.selectVintage">
                         Select vintage
                 </div>
@@ -46,7 +46,7 @@
                     <i class="icon ion-plus-round"></i>
                     {{'selectVintage.newVintage' | translate}}
                 </ion-item>
-                <button ng-click="vm.addToCellar()" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.addToCellar">Add to cellar</button>
+                <button ng-click="vm.wineInCellarEdit()" ng-disabled="form.$invalid || !vm.selectedVintage" class="button button-full button-positive" translate="selectVintage.wineInCellarEdit">Add to cellar</button>
             </form>
         </ion-list>
 	</ion-content>

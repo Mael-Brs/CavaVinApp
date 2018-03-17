@@ -15,7 +15,7 @@
     vm.sortReverse = false;
     vm.openFilter = openFilter;
     vm.removePinned = removePinned;
-    vm.addToCellar = addToCellar;
+    vm.wineInCellarEdit = wineInCellarEdit;
 
     var user;
 
@@ -32,12 +32,11 @@
      * Set les variables du scope
      */
     function loadAll() {
-      vm.wines = CacheService.get('pinnedWines');
-      if (!vm.wines) {
-        getPinnedWines();
-      } else {
+      CommonServices.getPinnedWines(user.id).then(function (pinnedWines){
+        vm.wines = pinnedWines;
+        CacheService.put('pinnedWines', pinnedWines);
         buildFilterOptions();
-      }
+      });
     }
 
     /**
@@ -63,24 +62,18 @@
       });
     }
 
-    function addToCellar(pinnedWine) {
+    /**
+     * Ouvre l'écran de sélection d'un millésime
+     * @param {vin à ajouter à la cave} pinnedWine
+     */
+    function wineInCellarEdit(pinnedWine) {
       CacheService.put('selectedWine', pinnedWine.wine);
-      $state.go('selectVintage', { wineId: pinnedWine.wine.id });
+      $state.go('selectVintage', { wineId: pinnedWine.wine.id, from: 'pinnedList' });
     }
 
     /**
-     * Appelle le ws getPinnedWines et les met en cache
+     * Ouvre la popup de filtrage dela lsite
      */
-    function getPinnedWines() {
-      User.pinnedWines({ ref: user.id }, function (pinnedWines) {
-        CacheService.put('pinnedWines', pinnedWines);
-        vm.wines = pinnedWines;
-        buildFilterOptions();
-      }, function () {
-        CommonServices.showAlert('error.getWines');
-      });
-    }
-
     function openFilter() {
       $ionicPopup.show({
         templateUrl: 'main/templates/filterPopup.html',
@@ -95,6 +88,9 @@
       });
     }
 
+    /**
+     * Construitles options de la popup de filtrage
+     */
     function buildFilterOptions() {
       vm.wineByRegion = [];
       vm.wineByColor = [];
