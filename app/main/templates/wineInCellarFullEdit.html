@@ -47,7 +47,7 @@
           <input type="text" placeholder="Nom couleur" ng-model="vm.newColor.colorName" ng-required="vm.userWine.vintage.wine.color.colorName=='Autre'"
           />
         </label>
-        <ion-toggle ng-if="vm.creationMode" ng-model="vm.addToCellar" >{{'wineInCellarEdit.title.create' | translate}}</ion-toggle>
+        <ion-toggle ng-if="vm.creationMode" toggle-class="toggle-positive" ng-model="vm.addToCellar" >{{'wineInCellarEdit.title.create' | translate}}</ion-toggle>
 
         <div ng-if="!vm.creationMode || (vm.creationMode && vm.addToCellar)" >
           <label class="item item-input">
