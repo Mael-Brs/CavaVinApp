@@ -8,7 +8,7 @@
   function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar) {
     var vm = this;
     vm.account = null;
-    vm.isAuthenticated = Principal.isAuthenticated;
+    vm.isAuthenticated= null;
     vm.login = LoginService.open;
     vm.register = register;
     vm.cellar = null;
@@ -16,6 +16,7 @@
     vm.save = saveCellar;
 
     $scope.$on('$ionicView.enter', function () {
+      vm.isAuthenticated = Principal.isAuthenticated();
       getAccount();
       getCellarDetails();
     });

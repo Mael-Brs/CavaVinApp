@@ -65,7 +65,7 @@
         </label>
 
       </div>
-      <button type="button" ng-click="vm.submit()" ng-disabled="form.$invalid || !vm.userWine.quantity" class="button button-block button-positive"
+      <button type="button" ng-click="vm.submit()" ng-disabled="form.$invalid || !vm.userWine.quantity || vm.isProcessing" class="button button-block button-positive"
         translate="entity.action.add">Ajouter</button>
     </form>
   </ion-content>

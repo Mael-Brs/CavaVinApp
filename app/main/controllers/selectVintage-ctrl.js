@@ -9,6 +9,7 @@
   function SelectVintage($scope, $state, Vintage, Wine, Principal, $stateParams, $ionicModal, CacheService, PinnedWine, CommonServices) {
     var vm = this;
     var user;
+    vm.isProcessing = false;
     vm.wineInCellarEdit = wineInCellarEdit;
     vm.createVintage = createVintage;
     vm.pinWine = pinWine;
@@ -41,17 +42,21 @@
     }
 
     function createVintage() {
+      vm.isProcessing = true;
       var newVintage = new Vintage({ year: vm.newYear, wine: { id: vm.wineId }, bareCode: vm.bareCode });
       newVintage.$save(function () {
         vm.modal.hide();
         vm.vintages = Wine.vintages({ id: vm.wineId });
+        vm.isProcessing = false;
       });
 
     }
 
     function pinWine() {
+      vm.isProcessing = true;
       PinnedWine.save({ wine: vm.wine, userId: user.id }, function (result) {
         CommonServices.addPinnedWineInCache(result);
+        vm.isProcessing = false;
         $state.go('pinnedList');
       }, function () {
         CommonServices.showAlert('error.createPinnedWine');

@@ -15,6 +15,7 @@
     vm.userWine = {};
     vm.submit = submit;
     vm.addToCellar;
+    vm.isProcessing = false;
 
     $scope.$on('$ionicView.enter', function() {
       activeWineId = $stateParams.wineId;
@@ -102,6 +103,7 @@
 
 
     function submit() {
+      vm.isProcessing = true;
       if (!$scope.form.$invalid) {
         if (vm.userWine.vintage.wine.region.regionName === 'Autre') {
           addRegion(vm.newRegion);
@@ -124,6 +126,7 @@
     function createAll(newWine, newVintage, newWineInCellar) {
       WineInCellar.saveAll(newWineInCellar, function(wineInCellar) {
         var wineInCellars = CacheService.get('wineInCellars');
+
         if (wineInCellars) {
           wineInCellars.push(wineInCellar);
           CacheService.put('wineInCellars', wineInCellars);
@@ -132,11 +135,7 @@
           getWineInCellars();
         }
 
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
-
-        $state.go('list');
+        closeForm();
       }, function() {
         CommonServices.showAlert('error.createWine');
       });
@@ -145,6 +144,7 @@
     function createWine(newWine) {
       var wine = new Wine(newWine);
       wine.$save(function() {
+        vm.isProcessing = false;
         $state.go('home');
       });
     }
@@ -160,11 +160,7 @@
           getWineInCellars();
         }
 
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
-
-        $state.go('list');
+        closeForm();
       }, function() {
         CommonServices.showAlert('error.updateWine');
       });
@@ -178,6 +174,14 @@
       }, function() {
         CommonServices.showAlert('error.getWines');
       });
+    }
+
+    function closeForm(){
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+      vm.isProcessing = false;
+      $state.go('list');
     }
 
   }

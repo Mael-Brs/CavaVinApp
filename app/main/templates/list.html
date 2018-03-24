@@ -1,6 +1,7 @@
 <ion-view class="cave-list-view" view-title="{{'list.title' | translate}}">
     <ion-content>
         <ion-list>
+            <ion-spinner ng-if="vm.isLoading === true"></ion-spinner>
             <ion-item ng-repeat="data in vm.wines | orderBy:vm.sortWine:vm.sortReverse | filter:vm.searchWine | filter:vm.searchRegion | filter:vm.searchColor track by data.id">
                 <div class="winAttributes" on-tap=vm.openModal(data)>
                   <span class="year">{{data.vintage.year}}</span>

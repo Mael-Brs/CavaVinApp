@@ -15,6 +15,7 @@
     vm.sortWine = 'apogee'; // set the default sort color
     vm.sortReverse = false;
     vm.isWineInCellarFilter = true;
+    vm.isLoading = true;
 
     vm.openModal = openModal;
     vm.openFilter = openFilter;
@@ -41,6 +42,8 @@
       vm.wines = CacheService.get('wineInCellars');
       if (!vm.wines) {
         getWineInCellars();
+      } else {
+        vm.isLoading = false;
       }
     }
 
@@ -112,6 +115,7 @@
         CommonServices.updateCellarDetails();
         //Update view
         vm.wines = wineInCellars;
+        vm.isLoading = false;
       }, function() {
         CommonServices.showAlert('error.getWines');
       });

@@ -19,7 +19,7 @@
                     </div>
                     <input type="text" ng-model="vm.bareCode">
                 </label>
-                <button type="submit" ng-disabled="form.$invalid || !vm.newYear" class="button button-full button-positive" translate="entity.action.save">Save</button>
+                <button type="submit" ng-disabled="form.$invalid || !vm.newYear || vm.isProcessing" class="button button-full button-positive" translate="entity.action.save">Save</button>
             </ion-item>
             </form>
         </ion-list>

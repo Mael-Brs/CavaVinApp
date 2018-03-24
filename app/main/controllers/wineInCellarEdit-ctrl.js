@@ -13,6 +13,7 @@
     vm.submit = submit;
     vm.userWine = {};
     vm.activeWineId;
+    vm.isProcessing = false;
 
     $scope.$on('$ionicView.enter', function() {
       vm.activeWineId = $stateParams.wineId;
@@ -45,6 +46,7 @@
     }
 
     function submit() {
+      vm.isProcessing = true;
       if (!$scope.form.$invalid) {
         var newWineInCellar = new WineInCellar(vm.userWine);
 
@@ -65,7 +67,7 @@
           $ionicHistory.nextViewOptions({
             disableBack: true
           });
-
+          vm.isProcessing = false;
           $state.go('home');
         }, function() {
           CommonServices.showAlert('error.createWine');

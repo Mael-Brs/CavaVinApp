@@ -28,7 +28,7 @@
                     <span>{{vm.wine.color.colorName}}</span>
                     </label>
                 </div>	
-                <button ng-if="vm.from === 'wineCatalog'" ng-click="vm.pinWine()" ng-disabled="!vm.wine" class="button button-full button-positive" translate="selectVintage.pinWine">Pin</button>
+                <button ng-if="vm.from === 'wineCatalog'" ng-click="vm.pinWine()" ng-disabled="!vm.wine || vm.isProcessing" class="button button-full button-positive" translate="selectVintage.pinWine">Pin</button>
                 <div class="item item-divider"  translate="selectVintage.selectVintage">
                         Select vintage
                 </div>

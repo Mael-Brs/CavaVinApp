@@ -1,62 +1,62 @@
 <ion-view view-title="{{'global.menu.home' | translate}}">
-    <ion-content>
-        <ion-list>
-            <div ng-if="vm.isAuthenticated()">
-                <div class="card">
-                    <div class="item item-divider">
-                        <span translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}"> Welcome, {{vm.account.login}}!</span>
-                    </div>
-                    <div class="item item-text-wrap" ng-if="!vm.cellar">
-                        <div translate="home.cellar.undefined" translate-compile >
-                            <a class="alert-link" href="" ng-click="vm.openModal()" >Create your CavaVin</a>
-                        </div>
-                    </div>
-                    <div ng-if="vm.cellar">
-                        <div class="item item-text-wrap">
-                          <span class="badge badge-assertive">{{vm.sum}}</span>
-                          Vin dans votre cave
-                        </div>
-                    </div>
-                </div>
-                <div class="list card" ng-if="vm.cellar">
-                    <div class="item item-divider">
-                        <span translate="home.actions.title">Voulez vous ?</span>
-                    </div>
-                    <a href="#/app/wineInCellarFullEdit/-1" class="item item-icon-left">
-                        <i class="icon ion-plus-round"></i>
-                        {{'home.actions.add' | translate}}
-                    </a>
-                    <a href="#/app/list" class="item item-icon-left">
-                        <i class="icon ion-android-clipboard"></i>
-                        {{'home.actions.my-wines' | translate}}
-                    </a>
-                    <a href="#/app/wineCatalog" class="item item-icon-left">
-                        <i class="icon ion-android-archive"></i>
-                        {{'home.actions.wineCatalog' | translate}}
-                    </a>
-                    <a href="#/app/cellarDetails" class="item item-icon-left">
-                        <i class="icon ion-stats-bars"></i>
-                        {{'home.actions.cellar' | translate}}
-                    </a>
+  <ion-content>
+    <ion-list>
+      <ion-spinner ng-if="vm.isAuthenticated === null"></ion-spinner>
 
-                </div>
-            </div> 
-            <div ng-if="!vm.isAuthenticated()">
-                <div class="card">
-                    <div class="item item-divider">
-                        <span translate="home.title">Welcome to your CavaVin !</span>
-                    </div>
-                    <div class="item item-text-wrap">
-                        <div id="login-link" class="alert alert-warning" translate="global.messages.info.authenticated" translate-compile>
-                            <a class="alert-link" href="" ng-click="vm.login()">Sign in</a>
-                        </div>
+      <div class="card" ng-if="vm.isAuthenticated === true">
+        <div class="item item-divider">
+          <span translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}"> Welcome, {{vm.account.login}}!</span>
+        </div>
+        <div class="item item-text-wrap" ng-if="!vm.cellar">
+          <div translate="home.cellar.undefined" translate-compile>
+            <a class="alert-link" href="" ng-click="vm.openModal()">Create your CavaVin</a>
+          </div>
+        </div>
+        <div ng-if="vm.cellar">
+          <div class="item item-text-wrap">
+            <span class="badge badge-assertive">{{vm.sum}}</span>
+            Vin dans votre cave
+          </div>
+        </div>
+      </div>
+      
+      <div class="list card" ng-if="vm.cellar">
+        <div class="item item-divider">
+          <span translate="home.actions.title">Voulez vous ?</span>
+        </div>
+        <a href="#/app/wineInCellarFullEdit/-1" class="item item-icon-left">
+          <i class="icon ion-plus-round"></i>
+          {{'home.actions.add' | translate}}
+        </a>
+        <a href="#/app/list" class="item item-icon-left">
+          <i class="icon ion-android-clipboard"></i>
+          {{'home.actions.my-wines' | translate}}
+        </a>
+        <a href="#/app/wineCatalog" class="item item-icon-left">
+          <i class="icon ion-android-archive"></i>
+          {{'home.actions.wineCatalog' | translate}}
+        </a>
+        <a href="#/app/cellarDetails" class="item item-icon-left">
+          <i class="icon ion-stats-bars"></i>
+          {{'home.actions.cellar' | translate}}
+        </a>
+      </div>
 
-                        <div class="alert alert-warning" translate="global.messages.info.register" translate-compile>
-                            <a class="alert-link" ui-sref="register">Register a new account</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </ion-list>
-    </ion-content>
+      <div class="card" ng-if="vm.isAuthenticated === false">
+        <div class="item item-divider">
+          <span translate="home.title">Welcome to your CavaVin !</span>
+        </div>
+        <div class="item item-text-wrap">
+          <div id="login-link" class="alert alert-warning" translate="global.messages.info.authenticated" translate-compile>
+            <a class="alert-link" href="" ng-click="vm.login()">Sign in</a>
+          </div>
+
+          <div class="alert alert-warning" translate="global.messages.info.register" translate-compile>
+            <a class="alert-link" ui-sref="register">Register a new account</a>
+          </div>
+        </div>
+      </div>
+
+    </ion-list>
+  </ion-content>
 </ion-view>

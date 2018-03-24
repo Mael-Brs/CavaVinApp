@@ -106,3 +106,11 @@ input.ng-invalid, select.ng-invalid{
 .item-input.search-popup, .formList .item-input{
   padding: 6px 5px 5px 5px;
 }
+
+ion-spinner{
+  margin-top: 50%;
+  margin-bottom: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
