@@ -7,7 +7,7 @@
   CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q', 'User'];
 
   function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q, User) {
-    var services = {
+    const services = {
       updateCellarDetails: updateCellarDetails,
       updateWineInCellar: updateWineInCellar,
       showAlert: showAlert,
@@ -21,24 +21,24 @@
      * Met à jour les stats de la cave dans le cache
      */
     function updateCellarDetails() {
-      var wineInCellars = CacheService.get('wineInCellars');
-      var cellar = CacheService.get('activeCellar');
+      const wineInCellars = CacheService.get('wineInCellars');
+      const cellar = CacheService.get('activeCellar');
 
       if (cellar && wineInCellars) {
-        var sumOfWine = 0;
-        var wineByRegion = [];
-        var wineByColor = [];
-        var wineByYear = [];
-        var sumByRegion = {};
-        var sumByColor = {};
-        var sumByYear = {};
+        let sumOfWine = 0;
+        const wineByRegion = [];
+        const wineByColor = [];
+        const wineByYear = [];
+        const sumByRegion = {};
+        const sumByColor = {};
+        const sumByYear = {};
 
 
-        for (var i = 0; i < wineInCellars.length; i++) {
-          var quantity = wineInCellars[i].quantity;
-          var region = wineInCellars[i].vintage.wine.region.regionName;
-          var color = wineInCellars[i].vintage.wine.color.colorName;
-          var year = wineInCellars[i].vintage.year;
+        for (let i = 0; i < wineInCellars.length; i++) {
+          const quantity = wineInCellars[i].quantity;
+          const region = wineInCellars[i].vintage.wine.region.regionName;
+          const color = wineInCellars[i].vintage.wine.color.colorName;
+          const year = wineInCellars[i].vintage.year;
 
           sumOfWine += quantity;
 
@@ -61,19 +61,19 @@
           }
         }
 
-        for (var regionName in sumByRegion) {
+        for (const regionName in sumByRegion) {
           if (sumByRegion.hasOwnProperty(regionName)) {
             wineByRegion.push({ region: regionName, sum: sumByRegion[regionName] });
           }
         }
 
-        for (var colorName in sumByColor) {
+        for (const colorName in sumByColor) {
           if (sumByColor.hasOwnProperty(colorName)) {
             wineByColor.push({ color: colorName, sum: sumByColor[colorName] });
           }
         }
 
-        for (var yearNumber in sumByYear) {
+        for (const yearNumber in sumByYear) {
           if (sumByYear.hasOwnProperty(yearNumber)) {
             wineByYear.push({ year: yearNumber, sum: sumByYear[yearNumber] });
           }
@@ -92,9 +92,9 @@
      * @param  {WineInCellar} wineInCellar vin
      */
     function updateWineInCellar(wineInCellar) {
-      var wineInCellars = CacheService.get('wineInCellars');
+      const wineInCellars = CacheService.get('wineInCellars');
 
-      for (var i = 0; i < wineInCellars.length; i++) {
+      for (let i = 0; i < wineInCellars.length; i++) {
         if (wineInCellars[i].id === wineInCellar.id) {
           wineInCellars[i] = wineInCellar;
           break;
@@ -103,7 +103,7 @@
       CacheService.put('wineInCellars', wineInCellars);
     }
 
-		/**
+    /**
 		 * Fonction affichant une popup d'alerte
 		 * @param  {String} alertMessage message à afficher
 		 */
@@ -118,8 +118,8 @@
      * Renvoie la cave depuis le cache ou le back
      */
     function getCellar() {
-      var deferred = $q.defer();
-      var cellar = CacheService.get('activeCellar');
+      const deferred = $q.defer();
+      let cellar = CacheService.get('activeCellar');
 
       if (!cellar) {
         Cellar.query(function(result) {
@@ -139,8 +139,8 @@
      * @param {Identifiant de l'utilisateur} userId
      */
     function getPinnedWines(userId) {
-      var deferred = $q.defer();
-      var pinnedWines = CacheService.get('pinnedWines');
+      const deferred = $q.defer();
+      let pinnedWines = CacheService.get('pinnedWines');
 
       if (!pinnedWines) {
         User.pinnedWines({ ref: userId }, function(result) {
@@ -160,7 +160,7 @@
      * @param {Vin épinglé} pinnedWine
      */
     function addPinnedWineInCache(pinnedWine) {
-      var pinnedWines = CacheService.get('pinnedWines');
+      const pinnedWines = CacheService.get('pinnedWines');
       if (pinnedWines) {
         pinnedWines.push(pinnedWine);
         CacheService.put('pinnedWines', pinnedWines);

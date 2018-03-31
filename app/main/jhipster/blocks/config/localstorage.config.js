@@ -1,14 +1,14 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .config(localStorageConfig);
+  angular
+    .module('main')
+    .config(localStorageConfig);
 
-    localStorageConfig.$inject = ['$localStorageProvider', '$sessionStorageProvider'];
+  localStorageConfig.$inject = ['$localStorageProvider', '$sessionStorageProvider'];
 
-    function localStorageConfig($localStorageProvider, $sessionStorageProvider) {
-        $localStorageProvider.setKeyPrefix('jhi-');
-        $sessionStorageProvider.setKeyPrefix('jhi-');
-    }
+  function localStorageConfig($localStorageProvider, $sessionStorageProvider) {
+    $localStorageProvider.setKeyPrefix('jhi-');
+    $sessionStorageProvider.setKeyPrefix('jhi-');
+  }
 })();

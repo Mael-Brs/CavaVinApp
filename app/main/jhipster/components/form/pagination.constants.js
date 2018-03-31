@@ -1,9 +1,9 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .constant('paginationConstants', {
-            'itemsPerPage': 20
-        });
+  angular
+    .module('main')
+    .constant('paginationConstants', {
+      'itemsPerPage': 20
+    });
 })();

@@ -1,5 +1,5 @@
 (function() {
-  'use strict';
+
 
   angular
     .module('main')
@@ -8,9 +8,9 @@
   WineInCellarFullEditCtrl.$inject = ['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', '$stateParams', 'Vintage', 'CacheService', 'CommonServices', 'Cellar'];
 
   function WineInCellarFullEditCtrl($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color, $stateParams, Vintage, CacheService, CommonServices, Cellar) {
-    var vm = this;
-    var cellar;
-    var activeWineId;
+    const vm = this;
+    let cellar;
+    let activeWineId;
     vm.creationMode;
     vm.userWine = {};
     vm.submit = submit;
@@ -125,7 +125,7 @@
 
     function createAll(newWine, newVintage, newWineInCellar) {
       WineInCellar.saveAll(newWineInCellar, function(wineInCellar) {
-        var wineInCellars = CacheService.get('wineInCellars');
+        const wineInCellars = CacheService.get('wineInCellars');
 
         if (wineInCellars) {
           wineInCellars.push(wineInCellar);
@@ -142,7 +142,7 @@
     }
 
     function createWine(newWine) {
-      var wine = new Wine(newWine);
+      const wine = new Wine(newWine);
       wine.$save(function() {
         vm.isProcessing = false;
         $state.go('home');
@@ -151,7 +151,7 @@
 
     function update(newWine, newVintage, newWineInCellar) {
       WineInCellar.updateAll(newWineInCellar, function(wineInCellar) {
-        var wineInCellars = CacheService.get('wineInCellars');
+        const wineInCellars = CacheService.get('wineInCellars');
 
         if (wineInCellars) {
           CommonServices.updateWineInCellar(wineInCellar);
@@ -176,7 +176,7 @@
       });
     }
 
-    function closeForm(){
+    function closeForm() {
       $ionicHistory.nextViewOptions({
         disableBack: true
       });

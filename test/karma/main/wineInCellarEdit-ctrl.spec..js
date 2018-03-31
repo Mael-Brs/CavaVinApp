@@ -8,11 +8,11 @@ describe('module: main, controller: WineInCellarEditCtrl', function() {
   beforeEach(module('ngHtml2Js'));
 
   // instantiate controller
-  var WineInCellarEditCtrl;
+  let WineInCellarEditCtrl;
   beforeEach(inject(function(_$controller_, _$rootScope_) {
-    var $controller = _$controller_;
-    var $rootScope = _$rootScope_;
-    var $scope = $rootScope.$new();
+    const $controller = _$controller_;
+    const $rootScope = _$rootScope_;
+    const $scope = $rootScope.$new();
     WineInCellarEditCtrl = $controller('WineInCellarEditCtrl', {$scope: $scope});
   }));
 

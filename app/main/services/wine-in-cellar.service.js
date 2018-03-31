@@ -7,7 +7,7 @@
   WineInCellar.$inject = ['$resource', 'Config'];
 
   function WineInCellar($resource, Config) {
-    var resourceUrl = Config.ENV.SERVER_URL + 'api/wine-in-cellars/:id/:subResource';
+    const resourceUrl = Config.ENV.SERVER_URL + 'api/wine-in-cellars/:id/:subResource';
 
     return $resource(resourceUrl, {}, {
       'query': { method: 'GET', isArray: true },

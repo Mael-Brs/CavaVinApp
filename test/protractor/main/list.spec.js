@@ -1,10 +1,10 @@
 'use strict';
 
 describe('list page', function() {
-  var username = element(by.id('username'));
-  var password = element(by.id('password'));
-  var login = element(by.css('#login-link a'));
-  var wineList = element.all(by.repeater('data in vm.wines'));
+  const username = element(by.id('username'));
+  const password = element(by.id('password'));
+  const login = element(by.css('#login-link a'));
+  const wineList = element.all(by.repeater('data in vm.wines'));
 
   beforeAll(function() {
     browser.get('/');
@@ -31,7 +31,7 @@ describe('list page', function() {
     wineList.then(function(wines) {
       switchAndClickBtn(wines, 'ion-option-button.icon.ion-minus');
     });
-    var okButton = element(by.css('.popup-buttons .button-positive'));
+    const okButton = element(by.css('.popup-buttons .button-positive'));
     okButton.click();
     okButton.click();
     expect(wineList.count()).toEqual(2);
@@ -48,8 +48,8 @@ function switchAndClickBtn(wines, btnClass) {
     .mouseMove({ x: -50, y: 0 })
     .mouseUp()
     .perform();
-  var EC = protractor.ExpectedConditions;
-  var btn = wines[0].element(by.css(btnClass));
+  const EC = protractor.ExpectedConditions;
+  const btn = wines[0].element(by.css(btnClass));
   browser.wait(EC.elementToBeClickable(btn), 3000);
   btn.click();
 }

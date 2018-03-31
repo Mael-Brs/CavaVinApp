@@ -1,5 +1,5 @@
 (function() {
-  'use strict';
+
 
   angular
     .module('main')
@@ -8,8 +8,8 @@
   WineInCellarEditCtrl.$inject = ['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'Cellar', 'Principal', '$stateParams', 'CacheService', 'CommonServices', 'Cellar'];
 
   function WineInCellarEditCtrl($ionicHistory, $scope, $state, Vintage, WineInCellar, User, Principal, $stateParams, CacheService, CommonServices, Cellar) {
-    var vm = this;
-    var cellar;
+    const vm = this;
+    let cellar;
     vm.submit = submit;
     vm.userWine = {};
     vm.activeWineId;
@@ -30,7 +30,7 @@
 
     /**********Functions**********/
     function inputInit() {
-      if (vm.activeWineId == -1) {
+      if (vm.activeWineId === '-1') {
         vm.userWine = {
           id: '',
           quantity: '',
@@ -48,10 +48,10 @@
     function submit() {
       vm.isProcessing = true;
       if (!$scope.form.$invalid) {
-        var newWineInCellar = new WineInCellar(vm.userWine);
+        const newWineInCellar = new WineInCellar(vm.userWine);
 
         newWineInCellar.$save(function(wineInCellar) {
-          var wineInCellars = CacheService.get('wineInCellars');
+          const wineInCellars = CacheService.get('wineInCellars');
 
           if (wineInCellars) {
             wineInCellars.push(wineInCellar);

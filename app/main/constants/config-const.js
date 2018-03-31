@@ -1,19 +1,19 @@
 'use strict';
 angular.module('main')
-.constant('Config', {
+  .constant('Config', {
 
   // gulp environment: injects environment vars
-  ENV: {
+    ENV: {
     /*inject-env*/
-    'SERVER_URL': '',
+      'SERVER_URL': '',
     'SOME_OTHER_URL': ''
-    /*endinject*/
-  },
+      /*endinject*/
+    },
 
-  // gulp build-vars: injects build vars
-  BUILD: {
+    // gulp build-vars: injects build vars
+    BUILD: {
     /*inject-build*/
     /*endinject*/
-  }
+    }
 
-});
+  });

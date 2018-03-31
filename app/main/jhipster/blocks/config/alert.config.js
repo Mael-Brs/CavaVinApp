@@ -1,14 +1,14 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .config(alertServiceConfig);
+  angular
+    .module('main')
+    .config(alertServiceConfig);
 
-    alertServiceConfig.$inject = ['AlertServiceProvider'];
+  alertServiceConfig.$inject = ['AlertServiceProvider'];
 
-    function alertServiceConfig(AlertServiceProvider) {
-        // set below to true to make alerts look like toast
-        AlertServiceProvider.showAsToast(false);
-    }
+  function alertServiceConfig(AlertServiceProvider) {
+    // set below to true to make alerts look like toast
+    AlertServiceProvider.showAsToast(false);
+  }
 })();

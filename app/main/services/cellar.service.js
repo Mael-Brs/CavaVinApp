@@ -7,7 +7,7 @@
   Cellar.$inject = ['$resource', 'Config'];
 
   function Cellar($resource, Config) {
-    var resourceUrl = Config.ENV.SERVER_URL + 'api/cellars/:id/:subResource';
+    const resourceUrl = Config.ENV.SERVER_URL + 'api/cellars/:id/:subResource';
 
     return $resource(resourceUrl, {}, {
       'query': { method: 'GET', isArray: true },

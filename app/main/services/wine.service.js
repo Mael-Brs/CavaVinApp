@@ -7,7 +7,7 @@
   Wine.$inject = ['$resource', 'Config'];
 
   function Wine($resource, Config) {
-    var resourceUrl = Config.ENV.SERVER_URL + 'api/wines/:id/:subResource';
+    const resourceUrl = Config.ENV.SERVER_URL + 'api/wines/:id/:subResource';
 
     return $resource(resourceUrl, {}, {
       'query': { method: 'GET', isArray: true },

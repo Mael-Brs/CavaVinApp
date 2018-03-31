@@ -1,5 +1,5 @@
-(function () {
-  'use strict';
+(function() {
+
   angular
     .module('main')
     .controller('pinnedListCtrl', pinnedListCtrl);
@@ -8,7 +8,7 @@
 
 
   function pinnedListCtrl($translate, $scope, $state, PinnedWine, Principal, $ionicPopup, User, CacheService, $ionicListDelegate, CommonServices) {
-    var vm = this;
+    const vm = this;
     vm.wines = null;
     vm.isWineInCellarFilter = false;
     vm.sortWine = 'wine.name'; // set the default sort color
@@ -17,12 +17,12 @@
     vm.removePinned = removePinned;
     vm.wineInCellarEdit = wineInCellarEdit;
 
-    var user;
+    let user;
 
-    $scope.$on('$ionicView.enter', function () {
+    $scope.$on('$ionicView.enter', function() {
       $ionicListDelegate.closeOptionButtons();
 
-      Principal.identity().then(function (account) {
+      Principal.identity().then(function(account) {
         user = account;
         loadAll();
       });
@@ -32,7 +32,7 @@
      * Set les variables du scope
      */
     function loadAll() {
-      CommonServices.getPinnedWines(user.id).then(function (pinnedWines){
+      CommonServices.getPinnedWines(user.id).then(function(pinnedWines) {
         vm.wines = pinnedWines;
         CacheService.put('pinnedWines', pinnedWines);
         buildFilterOptions();
@@ -44,18 +44,18 @@
      * @param  {number} id id du vin
      */
     function removePinned(id) {
-      var confirmPopup = $ionicPopup.confirm({
+      const confirmPopup = $ionicPopup.confirm({
         title: 'Supprimer le vin',
         template: 'Etes-vous sûr de vouloir supprimer ce vin ?',
         cancelText: $translate.instant('entity.action.cancel'),
         okText: $translate.instant('entity.action.delete')
       });
-      confirmPopup.then(function (res) {
+      confirmPopup.then(function(res) {
         if (res) {
           PinnedWine.delete({ id: id }, function successCallback() {
             CacheService.remove('pinnedWines');
             loadAll();
-          }, function () {
+          }, function() {
             CommonServices.showAlert('error.deleteWine');
           });
         }
@@ -95,11 +95,11 @@
       vm.wineByRegion = [];
       vm.wineByColor = [];
 
-      for (var i = 0; i < vm.wines.length; i++) {
-        var region = vm.wines[i].wine.region.regionName;
-        var color = vm.wines[i].wine.color.colorName;
-        var regions = {};
-        var colors = {};
+      for (let i = 0; i < vm.wines.length; i++) {
+        const region = vm.wines[i].wine.region.regionName;
+        const color = vm.wines[i].wine.color.colorName;
+        const regions = {};
+        const colors = {};
 
         if (!regions[region]) {
           regions[region] = true;

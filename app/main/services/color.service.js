@@ -7,7 +7,7 @@
   Color.$inject = ['$resource', 'Config'];
 
   function Color($resource, Config) {
-    var resourceUrl = Config.ENV.SERVER_URL + 'api/colors/:id';
+    const resourceUrl = Config.ENV.SERVER_URL + 'api/colors/:id';
 
     return $resource(resourceUrl, {}, {
       'query': { method: 'GET', isArray: true },

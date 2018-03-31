@@ -1,5 +1,5 @@
-(function () {
-  'use strict';
+(function() {
+
   angular
     .module('main')
     .controller('SelectVintage', SelectVintage);
@@ -7,22 +7,22 @@
   SelectVintage.$inject = ['$scope', '$state', 'Vintage', 'Wine', 'Principal', '$stateParams', '$ionicModal', 'CacheService', 'PinnedWine', 'CommonServices'];
 
   function SelectVintage($scope, $state, Vintage, Wine, Principal, $stateParams, $ionicModal, CacheService, PinnedWine, CommonServices) {
-    var vm = this;
-    var user;
+    const vm = this;
+    let user;
     vm.isProcessing = false;
     vm.wineInCellarEdit = wineInCellarEdit;
     vm.createVintage = createVintage;
     vm.pinWine = pinWine;
     vm.openCreateVintage = openCreateVintage;
 
-    $scope.$on('$ionicView.enter', function () {
+    $scope.$on('$ionicView.enter', function() {
       vm.wineId = $stateParams.wineId;
       vm.from = $stateParams.from;
       getWine();
       vm.vintages = Wine.vintages({ id: vm.wineId });
-      Principal.identity().then(function (account) {
+      Principal.identity().then(function(account) {
         user = account;
-      }, function () {
+      }, function() {
         CommonServices.showAlert('error.getCellar');
       });
     });
@@ -30,7 +30,7 @@
     function getWine() {
       vm.wine = CacheService.get('selectedWine');
       if (!vm.wine) {
-        Wine.get({ id: vm.wineId }, function (result) {
+        Wine.get({ id: vm.wineId }, function(result) {
           vm.wine = result;
         });
       }
@@ -43,8 +43,8 @@
 
     function createVintage() {
       vm.isProcessing = true;
-      var newVintage = new Vintage({ year: vm.newYear, wine: { id: vm.wineId }, bareCode: vm.bareCode });
-      newVintage.$save(function () {
+      const newVintage = new Vintage({ year: vm.newYear, wine: { id: vm.wineId }, bareCode: vm.bareCode });
+      newVintage.$save(function() {
         vm.modal.hide();
         vm.vintages = Wine.vintages({ id: vm.wineId });
         vm.isProcessing = false;
@@ -54,11 +54,11 @@
 
     function pinWine() {
       vm.isProcessing = true;
-      PinnedWine.save({ wine: vm.wine, userId: user.id }, function (result) {
+      PinnedWine.save({ wine: vm.wine, userId: user.id }, function(result) {
         CommonServices.addPinnedWineInCache(result);
         vm.isProcessing = false;
         $state.go('pinnedList');
-      }, function () {
+      }, function() {
         CommonServices.showAlert('error.createPinnedWine');
       });
     }
@@ -66,7 +66,7 @@
     $ionicModal.fromTemplateUrl('main/templates/createVintageModal.html', {
       scope: $scope,
       animation: 'slide-in-up'
-    }).then(function (modal) {
+    }).then(function(modal) {
       vm.modal = modal;
     });
 

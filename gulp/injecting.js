@@ -8,6 +8,7 @@ var $ = require('gulp-load-plugins')();
 // modules
 var wiredep = require('wiredep');
 var mainBowerFiles = require('main-bower-files');
+var babel = require('gulp-babel');
 
 // inject app/**/*.js, bower components, css into index.html
 // inject environment variables into config.js constant
@@ -19,6 +20,7 @@ gulp.task('inject-all', ['styles', 'wiredep', 'bower-fonts', 'environment', 'bui
         gulp.src(paths.jsFiles)
           .pipe($.plumber()) // use plumber so watch can start despite js errors
           .pipe($.naturalSort())
+          .pipe(babel()) // use babel to convert
           .pipe($.angularFilesort()),
         {relative: true}))
     .pipe(

@@ -1,5 +1,5 @@
 (function() {
-  'use strict';
+
   angular
     .module('main')
     .controller('ListCtrl', ListCtrl);
@@ -8,7 +8,7 @@
 
 
   function ListCtrl($scope, $translate, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine) {
-    var vm = this;
+    const vm = this;
     vm.wines;
     vm.showForm = false;
     //paramètres de tri
@@ -20,10 +20,10 @@
     vm.openModal = openModal;
     vm.openFilter = openFilter;
     vm.updateQuantity = updateQuantity;
-    var date = new Date();
+    const date = new Date();
     vm.thisYear = date.getFullYear();
     vm.yearRatio = (date.getMonth() + 1) / 12;
-    var cellar;
+    let cellar;
 
     $scope.$on('$ionicView.enter', function() {
       $ionicListDelegate.closeOptionButtons();
@@ -52,7 +52,7 @@
     * @param  {number} id id du vin
     */
     vm.removeWine = function(id) {
-      var confirmPopup = $ionicPopup.confirm({
+      const confirmPopup = $ionicPopup.confirm({
         title: $translate.instant('list.deleteTitle'),
         template: $translate.instant('list.deleteMessage'),
         cancelText: $translate.instant('entity.action.cancel'),
@@ -88,7 +88,7 @@
 
         } else {
           WineInCellar.update(wineInCellar, function(wineInCellar) {
-            var wineInCellars = CacheService.get('wineInCellars');
+            const wineInCellars = CacheService.get('wineInCellars');
 
             if (wineInCellars) {
               CommonServices.updateWineInCellar(wineInCellar);
@@ -162,7 +162,7 @@
      * @param  {WineInCellar} wineInCellar vin sélectionné dans la liste
      */
     function pinWine(wineInCellar) {
-      var confirmPopup = $ionicPopup.confirm({
+      const confirmPopup = $ionicPopup.confirm({
         title: $translate.instant('list.pinTitle'),
         template: $translate.instant('list.pinWine'),
         cancelText: $translate.instant('entity.action.cancel'),
@@ -179,7 +179,7 @@
 
     /**
      * Sauvegarde le nouveau vin épinglé
-     * @param {le vin à épingler} wineInCellar 
+     * @param {le vin à épingler} wineInCellar
      */
     function savePinnedWine(wineInCellar) {
       PinnedWine.save({ wine: wineInCellar.vintage.wine, userId: cellar.userId }, function successCallback(result) {

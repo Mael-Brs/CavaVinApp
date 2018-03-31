@@ -1,28 +1,28 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .factory('translationStorageProvider', translationStorageProvider);
+  angular
+    .module('main')
+    .factory('translationStorageProvider', translationStorageProvider);
 
-    translationStorageProvider.$inject = ['$cookies', '$log', 'LANGUAGES'];
+  translationStorageProvider.$inject = ['$cookies', '$log', 'LANGUAGES'];
 
-    function translationStorageProvider($cookies, $log, LANGUAGES) {
-        return {
-            get: get,
-            put: put
-        };
+  function translationStorageProvider($cookies, $log, LANGUAGES) {
+    return {
+      get: get,
+      put: put
+    };
 
-        function get(name) {
-            if (LANGUAGES.indexOf($cookies.getObject(name)) === -1) {
-                $log.info('Resetting invalid cookie language "' + $cookies.getObject(name) + '" to preferred language "fr"');
-                $cookies.putObject(name, 'fr');
-            }
-            return $cookies.getObject(name);
-        }
-
-        function put(name, value) {
-            $cookies.putObject(name, value);
-        }
+    function get(name) {
+      if (LANGUAGES.indexOf($cookies.getObject(name)) === -1) {
+        $log.info('Resetting invalid cookie language "' + $cookies.getObject(name) + '" to preferred language "fr"');
+        $cookies.putObject(name, 'fr');
+      }
+      return $cookies.getObject(name);
     }
+
+    function put(name, value) {
+      $cookies.putObject(name, value);
+    }
+  }
 })();
