@@ -1,3 +1,4 @@
+/* eslint indent: off */
 'use strict';
 angular.module('main')
   .constant('Config', {
