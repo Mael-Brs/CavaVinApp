@@ -8,7 +8,7 @@
   ColorSearch.$inject = ['$resource', 'Config'];
 
   function ColorSearch($resource, Config) {
-    var resourceUrl = Config.ENV.SERVER_URL + 'api/_search/colors/:id';
+    const resourceUrl = Config.ENV.SERVER_URL + 'api/_search/colors/:id';
 
     return $resource(resourceUrl, {}, {
       'query': { method: 'GET', isArray: true }

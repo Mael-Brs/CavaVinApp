@@ -8,11 +8,11 @@ describe('module: main, controller: ListCtrl', function() {
   beforeEach(module('ngHtml2Js'));
 
   // instantiate controller
-  var ListCtrl;
+  let ListCtrl;
   beforeEach(inject(function(_$controller_, _$rootScope_) {
-    var $controller = _$controller_;
-    var $rootScope = _$rootScope_;
-    var $scope = $rootScope.$new();
+    const $controller = _$controller_;
+    const $rootScope = _$rootScope_;
+    const $scope = $rootScope.$new();
     ListCtrl = $controller('ListCtrl', {$scope: $scope});
   }));
 

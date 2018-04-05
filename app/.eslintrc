@@ -2,7 +2,8 @@
     "extends": "../.eslintrc",
     "env": {
         "node": false,
-        "browser": true
+        "browser": true,
+        "es6": true
     },
     "globals": {
         "angular": true,
@@ -10,6 +11,8 @@
         "localforage": true
     },
     "rules": {
-      "space-before-function-paren": [2, "never"]
+      "space-before-function-paren": [2, "never"],
+      "prefer-const": ["error"],
+      "no-var": ["error"]
     }
 }

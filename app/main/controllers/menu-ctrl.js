@@ -1,8 +1,8 @@
-(function () {
-  'use strict';
+(function() {
+
   angular.module('main')
-    .controller('MenuCtrl', function ($log, Auth, $state, Principal, LoginService, CacheService) {
-      var vm = this;
+    .controller('MenuCtrl', function($log, Auth, $state, Principal, LoginService, CacheService) {
+      const vm = this;
       vm.login = LoginService.open;
       vm.isAuthenticated = Principal.isAuthenticated;
       vm.isCellar = isCellar;

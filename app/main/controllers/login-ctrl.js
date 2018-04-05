@@ -1,5 +1,5 @@
-(function () {
-  'use strict';
+(function() {
+
 
   angular
     .module('main')
@@ -8,7 +8,7 @@
   LoginCtrl.$inject = ['$log', '$ionicHistory', '$scope', '$rootScope', '$window', '$state', '$timeout', 'Auth', '$ionicModal'];
 
   function LoginCtrl($log, $ionicHistory, $scope, $rootScope, $window, $state, $timeout, Auth, $ionicModal) {
-    var vm = this;
+    const vm = this;
 
     vm.authenticationError = false;
     vm.credentials = {};
@@ -41,7 +41,7 @@
         username: vm.username,
         password: vm.password,
         rememberMe: vm.rememberMe
-      }).then(function () {
+      }).then(function() {
         vm.authenticationError = false;
         vm.hideModal();
         if ($state.current.name === 'register' || $state.current.name === 'activate' ||
@@ -57,7 +57,7 @@
         } else {
           $rootScope.$broadcast('authenticationSuccess');
         }
-      }).catch(function (response) {
+      }).catch(function(response) {
         vm.authenticationError = true;
         if (response.status === 401) {
           vm.errorMessage = 'error.authentificationError';
@@ -77,11 +77,11 @@
       $state.go('requestReset');
     }
 
-    $scope.$on('$stateChangeSuccess', function (event, toState) {
-      if (toState.name == 'login') {
+    $scope.$on('$stateChangeSuccess', function(event, toState) {
+      if (toState.name === 'login') {
         $ionicModal.fromTemplateUrl('main/templates/login.html', {
           scope: $scope
-        }).then(function (modal) {
+        }).then(function(modal) {
           vm.modal = modal;
           vm.modal.show();
         });

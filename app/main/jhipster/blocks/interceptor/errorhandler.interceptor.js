@@ -1,24 +1,24 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .factory('errorHandlerInterceptor', errorHandlerInterceptor);
+  angular
+    .module('main')
+    .factory('errorHandlerInterceptor', errorHandlerInterceptor);
 
-    errorHandlerInterceptor.$inject = ['$q', '$rootScope'];
+  errorHandlerInterceptor.$inject = ['$q', '$rootScope'];
 
-    function errorHandlerInterceptor ($q, $rootScope) {
-        var service = {
-            responseError: responseError
-        };
+  function errorHandlerInterceptor($q, $rootScope) {
+    const service = {
+      responseError: responseError
+    };
 
-        return service;
+    return service;
 
-        function responseError (response) {
-            if (!(response.status === 401 && (response.data === '' || (response.data.path && response.data.path.indexOf('/api/account') === 0 )))) {
-                $rootScope.$emit('cavavinApp.httpError', response);
-            }
-            return $q.reject(response);
-        }
+    function responseError(response) {
+      if (!(response.status === 401 && (response.data === '' || (response.data.path && response.data.path.indexOf('/api/account') === 0 )))) {
+        $rootScope.$emit('cavavinApp.httpError', response);
+      }
+      return $q.reject(response);
     }
+  }
 })();

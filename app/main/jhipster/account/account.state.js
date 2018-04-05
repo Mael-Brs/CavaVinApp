@@ -1,16 +1,16 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .config(stateConfig);
+  angular
+    .module('main')
+    .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
+  stateConfig.$inject = ['$stateProvider'];
 
-    function stateConfig($stateProvider) {
-        $stateProvider.state('account', {
-            abstract: true,
-            parent: 'app'
-        });
-    }
+  function stateConfig($stateProvider) {
+    $stateProvider.state('account', {
+      abstract: true,
+      parent: 'app'
+    });
+  }
 })();

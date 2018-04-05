@@ -8,7 +8,7 @@
 
   function LoginService($state) {
 
-    var service = {
+    const service = {
       open: open
     };
 

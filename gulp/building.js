@@ -8,6 +8,7 @@ var $ = require('gulp-load-plugins')();
 // modules
 var del = require('del');
 var vinylPaths = require('vinyl-paths');
+var uglify = require('gulp-uglify-es').default;
 
 var buildDependencies = [
     options['force-build'] ? 'linting' : 'linting-throw',
@@ -44,7 +45,7 @@ gulp.task('build-app', ['clean', 'inject-all'], function () {
                 add: true,
                 sourcemap: true
             }))
-            .pipe($.uglify())
+            .pipe(uglify())
             .pipe(jsFilter.restore)
             .pipe(cssFilter)
             .pipe($.csso())

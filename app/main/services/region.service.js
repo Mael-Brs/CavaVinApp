@@ -7,7 +7,7 @@
   Region.$inject = ['$resource', 'Config'];
 
   function Region($resource, Config) {
-    var resourceUrl = Config.ENV.SERVER_URL + 'api/regions/:id';
+    const resourceUrl = Config.ENV.SERVER_URL + 'api/regions/:id';
 
     return $resource(resourceUrl, {}, {
       'query': { method: 'GET', isArray: true },

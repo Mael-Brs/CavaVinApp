@@ -1,30 +1,30 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .directive('pageRibbon', pageRibbon);
+  angular
+    .module('main')
+    .directive('pageRibbon', pageRibbon);
 
-    pageRibbon.$inject = ['ProfileService', '$rootScope', '$translate'];
+  pageRibbon.$inject = ['ProfileService', '$rootScope', '$translate'];
 
-    function pageRibbon(ProfileService, $rootScope, $translate) {
-        var directive = {
-            replace : true,
-            restrict : 'AE',
-            template : '<div class="ribbon hidden"><a href="" data-translate="global.ribbon.{{ribbonEnv}}">{{ribbonEnv}}</a></div>',
-            link : linkFunc
-        };
+  function pageRibbon(ProfileService, $rootScope, $translate) {
+    const directive = {
+      replace: true,
+      restrict: 'AE',
+      template: '<div class="ribbon hidden"><a href="" data-translate="global.ribbon.{{ribbonEnv}}">{{ribbonEnv}}</a></div>',
+      link: linkFunc
+    };
 
-        return directive;
+    return directive;
 
-        function linkFunc(scope, element, attrs) {
-            ProfileService.getProfileInfo().then(function(response) {
-                if (response.ribbonEnv) {
-                    scope.ribbonEnv = response.ribbonEnv;
-                    element.addClass(response.ribbonEnv);
-                    element.removeClass('hidden');
-                }
-            });
+    function linkFunc(scope, element, attrs) {
+      ProfileService.getProfileInfo().then(function(response) {
+        if (response.ribbonEnv) {
+          scope.ribbonEnv = response.ribbonEnv;
+          element.addClass(response.ribbonEnv);
+          element.removeClass('hidden');
         }
+      });
     }
+  }
 })();

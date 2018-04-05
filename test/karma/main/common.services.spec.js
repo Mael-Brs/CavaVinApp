@@ -8,10 +8,10 @@ describe('module: main, service: CommonServices', function() {
   beforeEach(module('ngHtml2Js'));
 
   // instantiate service
-  var CommonServices;
-  var CacheService;
-  var cellar;
-  var wineInCellar = [];
+  let CommonServices;
+  let CacheService;
+  let cellar;
+  const wineInCellar = [];
   beforeEach(inject(function(_CommonServices_, _CacheService_) {
     CommonServices = _CommonServices_;
     CacheService = _CacheService_;

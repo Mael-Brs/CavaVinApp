@@ -1,27 +1,27 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .filter('words', words);
+  angular
+    .module('main')
+    .filter('words', words);
 
-    function words() {
-        return wordsFilter;
+  function words() {
+    return wordsFilter;
 
-        function wordsFilter(input, words) {
-            if (isNaN(words)) {
-                return input;
-            }
-            if (words <= 0) {
-                return '';
-            }
-            if (input) {
-                var inputWords = input.split(/\s+/);
-                if (inputWords.length > words) {
-                    input = inputWords.slice(0, words).join(' ') + '...';
-                }
-            }
-            return input;
+    function wordsFilter(input, words) {
+      if (isNaN(words)) {
+        return input;
+      }
+      if (words <= 0) {
+        return '';
+      }
+      if (input) {
+        const inputWords = input.split(/\s+/);
+        if (inputWords.length > words) {
+          input = inputWords.slice(0, words).join(' ') + '...';
         }
+      }
+      return input;
     }
+  }
 })();

@@ -1,21 +1,21 @@
-(function () {
-  'use strict';
+(function() {
+
   angular.module('main')
     .controller('HomeCtrl', HomeCtrl);
 
   HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService', 'Cellar'];
 
   function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar) {
-    var vm = this;
+    const vm = this;
     vm.account = null;
-    vm.isAuthenticated= null;
+    vm.isAuthenticated = null;
     vm.login = LoginService.open;
     vm.register = register;
     vm.cellar = null;
     vm.openModal = openModal;
     vm.save = saveCellar;
 
-    $scope.$on('$ionicView.enter', function () {
+    $scope.$on('$ionicView.enter', function() {
       vm.isAuthenticated = Principal.isAuthenticated();
       getAccount();
       getCellarDetails();
@@ -31,13 +31,13 @@
     }
 
     function getAccount() {
-      Principal.identity().then(function (account) {
+      Principal.identity().then(function(account) {
         vm.account = account;
       });
     }
 
     function getCellar() {
-      Cellar.query(function (result) {
+      Cellar.query(function(result) {
         vm.cellar = result[0];
         if (vm.cellar) {
           vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
@@ -53,7 +53,7 @@
     $ionicModal.fromTemplateUrl('main/templates/createCellar.html', {
       scope: $scope,
       animation: 'slide-in-up'
-    }).then(function (modal) {
+    }).then(function(modal) {
       vm.modal = modal;
     });
 

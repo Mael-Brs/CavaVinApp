@@ -1,36 +1,36 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('main')
-        .factory('ProfileService', ProfileService);
+  angular
+    .module('main')
+    .factory('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$q', '$http', 'Config'];
+  ProfileService.$inject = ['$q', '$http', 'Config'];
 
-    function ProfileService($q, $http, Config) {
+  function ProfileService($q, $http, Config) {
 
-        var dataPromise;
+    let dataPromise;
 
-        var service = {
-            getProfileInfo : getProfileInfo
-        };
+    const service = {
+      getProfileInfo: getProfileInfo
+    };
 
-        return service;
+    return service;
 
-        function getProfileInfo() {
-            if (angular.isUndefined(dataPromise)) {
-                dataPromise = $http.get(Config.ENV.SERVER_URL + 'api/profile-info').then(function(result) {
-                    if (result.data.activeProfiles) {
-                        var response = {};
-                        response.activeProfiles = result.data.activeProfiles;
-                        response.ribbonEnv = result.data.ribbonEnv;
-                        response.inProduction = result.data.activeProfiles.indexOf("prod") !== -1;
-                        response.swaggerDisabled = result.data.activeProfiles.indexOf("no-swagger") !== -1;
-                        return response;
-                    }
-                });
-            }
-            return dataPromise;
-        }
+    function getProfileInfo() {
+      if (angular.isUndefined(dataPromise)) {
+        dataPromise = $http.get(Config.ENV.SERVER_URL + 'api/profile-info').then(function(result) {
+          if (result.data.activeProfiles) {
+            const response = {};
+            response.activeProfiles = result.data.activeProfiles;
+            response.ribbonEnv = result.data.ribbonEnv;
+            response.inProduction = result.data.activeProfiles.indexOf('prod') !== -1;
+            response.swaggerDisabled = result.data.activeProfiles.indexOf('no-swagger') !== -1;
+            return response;
+          }
+        });
+      }
+      return dataPromise;
     }
+  }
 })();

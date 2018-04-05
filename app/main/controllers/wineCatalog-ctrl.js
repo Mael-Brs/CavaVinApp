@@ -1,5 +1,5 @@
-(function () {
-  'use strict';
+(function() {
+
   angular
     .module('main')
     .controller('WineCatalogCtrl', WineCatalogCtrl);
@@ -7,7 +7,7 @@
   WineCatalogCtrl.$inject = ['$log', '$scope', '$state', '$translate', 'WineSearch', '$ionicPopup', 'CacheService', 'CommonServices'];
 
   function WineCatalogCtrl($log, $scope, $state, $translate, WineSearch, $ionicPopup, CacheService, CommonServices) {
-    var vm = this;
+    const vm = this;
 
     vm.submit = submit;
     vm.openSearch = openSearch;
@@ -16,9 +16,9 @@
     vm.itemsPerPage = 20;
     vm.sort = '_score,asc';
     vm.lastPage = 0;
-    var regExp = new RegExp(/(?:page=)(\d)/);
+    const regExp = new RegExp(/(?:page=)(\d)/);
 
-    $scope.$on('$ionicView.enter', function () {
+    $scope.$on('$ionicView.enter', function() {
       vm.query = '';
       vm.result = [];
       vm.noContent = false;
@@ -36,32 +36,32 @@
         page: vm.page,
         size: vm.itemsPerPage,
         sort: null
-      }, function (result, headers) {
+      }, function(result, headers) {
         getLastPage(headers('link'));
-        for (var i = 0; i < result.length; i++) {
+        for (let i = 0; i < result.length; i++) {
           vm.result.push(result[i]);
         }
         vm.noContent = vm.result.length === 0;
         $scope.$broadcast('scroll.infiniteScrollComplete');
-      }, function () {
+      }, function() {
         CommonServices.showAlert('error.searchWine');
       });
     }
 
     function getLastPage(header) {
-      var array = header.split(',');
-      for (var i = 0; i < array.length; i++) {
+      const array = header.split(',');
+      for (let i = 0; i < array.length; i++) {
         if (array[i].indexOf('last') > -1) {
           vm.lastPage = regExp.exec(array[i])[1];
         }
       }
     }
 
-    vm.createWine = function (id) {
+    vm.createWine = function(id) {
       $state.go('wineInCellarFullEdit', { wineId: id });
     };
 
-    vm.selectVintage = function (wine) {
+    vm.selectVintage = function(wine) {
       CacheService.put('selectedWine', wine);
       $state.go('selectVintage', { wineId: wine.id, from: 'wineCatalog' });
     };
@@ -79,7 +79,7 @@
           {
             text: $translate.instant('entity.action.search'),
             type: 'button-positive',
-            onTap: function (e) {
+            onTap: function(e) {
               if (!vm.query) {
                 //don't allow the user to close unless he enters an input
                 e.preventDefault();
