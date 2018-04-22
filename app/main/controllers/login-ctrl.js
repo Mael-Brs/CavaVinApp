@@ -20,6 +20,7 @@
     vm.password = null;
     vm.rememberMe = true;
     vm.username = null;
+    vm.isProcessing = false;
 
     function hideModal() {
       vm.modal.hide();
@@ -37,11 +38,13 @@
 
     function login(event) {
       event.preventDefault();
+      vm.isProcessing = true;
       Auth.login({
         username: vm.username,
         password: vm.password,
         rememberMe: vm.rememberMe
       }).then(function() {
+        vm.isProcessing = false;
         vm.authenticationError = false;
         vm.hideModal();
         if ($state.current.name === 'register' || $state.current.name === 'activate' ||
@@ -58,6 +61,7 @@
           $rootScope.$broadcast('authenticationSuccess');
         }
       }).catch(function(response) {
+        vm.isProcessing = false;
         vm.authenticationError = true;
         if (response.status === 401) {
           vm.errorMessage = 'error.authentificationError';

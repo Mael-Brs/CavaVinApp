@@ -31,7 +31,7 @@
                     </div>
                 </label>
             </div>
-            <button id="login-button" class="button button-full button-positive" ng-click="vm.login($event)" translate="login.form.button">Sign in</button>
+            <button id="login-button" class="button button-full button-positive" ng-click="vm.login($event)" ng-disabled="vm.isProcessing" translate="login.form.button">Sign in</button>
         </div>
 
         <a class="alert-link" href="" ng-click="vm.requestResetPassword()" translate="login.password.forgot">Forgot Password?</a>
