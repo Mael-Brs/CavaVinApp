@@ -11,7 +11,7 @@
       function logout() {
         Auth.logout();
         CacheService.removeAll();
-        $state.go('home');
+        $state.go('home', {}, {reload: true});
       }
 
       function isCellar() {
