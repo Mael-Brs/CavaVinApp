@@ -15,11 +15,8 @@
       }
 
       function isCellar() {
-        if (CacheService.get('activeCellar')) {
-          return true;
-        } else {
-          return false;
-        }
+        const activeCellar = CacheService.get('activeCellar');
+        return activeCellar !== null && typeof activeCellar !== 'undefined';
       }
 
     });

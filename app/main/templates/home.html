@@ -1,7 +1,7 @@
 <ion-view view-title="{{'global.menu.home' | translate}}">
   <ion-content>
     <ion-list>
-      <ion-spinner ng-if="vm.isAuthenticated === null"></ion-spinner>
+      <ion-spinner ng-if="vm.isAuthenticated === null || vm.isLoading === true"></ion-spinner>
 
       <div class="card" ng-if="vm.isAuthenticated === true">
         <div class="item item-divider">
@@ -17,29 +17,28 @@
             <span class="badge badge-assertive">{{vm.sum}}</span>
             Vin dans votre cave
           </div>
+          <div class="list card">
+            <div class="item item-divider">
+              <span translate="home.actions.title">Voulez vous ?</span>
+            </div>
+            <a href="#/app/wineInCellarFullEdit/-1" class="item item-icon-left">
+              <i class="icon ion-plus-round"></i>
+              {{'home.actions.add' | translate}}
+            </a>
+            <a href="#/app/list" class="item item-icon-left">
+              <i class="icon ion-android-clipboard"></i>
+              {{'home.actions.my-wines' | translate}}
+            </a>
+            <a href="#/app/wineCatalog" class="item item-icon-left">
+              <i class="icon ion-android-archive"></i>
+              {{'home.actions.wineCatalog' | translate}}
+            </a>
+            <a href="#/app/cellarDetails" class="item item-icon-left">
+              <i class="icon ion-stats-bars"></i>
+              {{'home.actions.cellar' | translate}}
+            </a>
+          </div>
         </div>
-      </div>
-      
-      <div class="list card" ng-if="vm.cellar">
-        <div class="item item-divider">
-          <span translate="home.actions.title">Voulez vous ?</span>
-        </div>
-        <a href="#/app/wineInCellarFullEdit/-1" class="item item-icon-left">
-          <i class="icon ion-plus-round"></i>
-          {{'home.actions.add' | translate}}
-        </a>
-        <a href="#/app/list" class="item item-icon-left">
-          <i class="icon ion-android-clipboard"></i>
-          {{'home.actions.my-wines' | translate}}
-        </a>
-        <a href="#/app/wineCatalog" class="item item-icon-left">
-          <i class="icon ion-android-archive"></i>
-          {{'home.actions.wineCatalog' | translate}}
-        </a>
-        <a href="#/app/cellarDetails" class="item item-icon-left">
-          <i class="icon ion-stats-bars"></i>
-          {{'home.actions.cellar' | translate}}
-        </a>
       </div>
 
       <div class="card" ng-if="vm.isAuthenticated === false">

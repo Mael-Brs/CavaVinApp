@@ -5,9 +5,9 @@
     .module('main')
     .controller('WineInCellarEditCtrl', WineInCellarEditCtrl);
 
-  WineInCellarEditCtrl.$inject = ['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'Cellar', 'Principal', '$stateParams', 'CacheService', 'CommonServices', 'Cellar'];
+  WineInCellarEditCtrl.$inject = ['$ionicHistory', '$scope', '$state', 'Vintage', 'WineInCellar', 'Cellar', 'Principal', '$stateParams', 'CacheService', 'CommonServices'];
 
-  function WineInCellarEditCtrl($ionicHistory, $scope, $state, Vintage, WineInCellar, User, Principal, $stateParams, CacheService, CommonServices, Cellar) {
+  function WineInCellarEditCtrl($ionicHistory, $scope, $state, Vintage, WineInCellar, User, Principal, $stateParams, CacheService, CommonServices) {
     const vm = this;
     let cellar;
     vm.submit = submit;
@@ -51,28 +51,25 @@
         const newWineInCellar = new WineInCellar(vm.userWine);
 
         newWineInCellar.$save(function(wineInCellar) {
-          const wineInCellars = CacheService.get('wineInCellars');
-
-          if (wineInCellars) {
-            wineInCellars.push(wineInCellar);
-            CacheService.put('wineInCellars', wineInCellars);
-            CommonServices.updateCellarDetails();
-          } else {
-            Cellar.wineInCellars({ id: cellar.id }, function(wines) {
-              CacheService.put('wineInCellars', wines);
-              CommonServices.updateCellarDetails();
-            });
-          }
-
-          $ionicHistory.nextViewOptions({
-            disableBack: true
-          });
-          vm.isProcessing = false;
-          $state.go('home');
+          updateCacheData(wineInCellar);
         }, function() {
           CommonServices.showAlert('error.createWine');
         });
       }
+    }
+
+    function updateCacheData(wineInCellar) {
+      CommonServices.getWinesInCellar().then(wineInCellars => {
+        if (wineInCellars) {
+          CommonServices.updateWineInCellar(wineInCellar);
+          CommonServices.updateCellarDetails();
+        }
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
+        vm.isProcessing = false;
+        $state.go('home');
+      });
     }
 
   }

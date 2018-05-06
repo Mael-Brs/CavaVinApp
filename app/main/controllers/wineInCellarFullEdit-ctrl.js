@@ -5,9 +5,9 @@
     .module('main')
     .controller('WineInCellarFullEditCtrl', WineInCellarFullEditCtrl);
 
-  WineInCellarFullEditCtrl.$inject = ['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', '$stateParams', 'Vintage', 'CacheService', 'CommonServices', 'Cellar'];
+  WineInCellarFullEditCtrl.$inject = ['$ionicHistory', '$scope', '$state', 'Wine', 'WineInCellar', 'Region', 'Color', '$stateParams', 'Vintage', 'CacheService', 'CommonServices'];
 
-  function WineInCellarFullEditCtrl($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color, $stateParams, Vintage, CacheService, CommonServices, Cellar) {
+  function WineInCellarFullEditCtrl($ionicHistory, $scope, $state, Wine, WineInCellar, Region, Color, $stateParams, Vintage, CacheService, CommonServices) {
     const vm = this;
     let cellar;
     let activeWineId;
@@ -125,17 +125,7 @@
 
     function createAll(newWine, newVintage, newWineInCellar) {
       WineInCellar.saveAll(newWineInCellar, function(wineInCellar) {
-        const wineInCellars = CacheService.get('wineInCellars');
-
-        if (wineInCellars) {
-          wineInCellars.push(wineInCellar);
-          CacheService.put('wineInCellars', wineInCellars);
-          CommonServices.updateCellarDetails();
-        } else {
-          getWineInCellars();
-        }
-
-        closeForm();
+        updateCacheData(wineInCellar);
       }, function() {
         CommonServices.showAlert('error.createWine');
       });
@@ -151,28 +141,20 @@
 
     function update(newWine, newVintage, newWineInCellar) {
       WineInCellar.updateAll(newWineInCellar, function(wineInCellar) {
-        const wineInCellars = CacheService.get('wineInCellars');
-
-        if (wineInCellars) {
-          CommonServices.updateWineInCellar(wineInCellar);
-          CommonServices.updateCellarDetails();
-        } else {
-          getWineInCellars();
-        }
-
-        closeForm();
+        updateCacheData(wineInCellar);
       }, function() {
         CommonServices.showAlert('error.updateWine');
       });
     }
 
-    function getWineInCellars() {
-      Cellar.wineInCellars({ id: cellar.id }, function(wineInCellars) {
-        CacheService.put('wineInCellars', wineInCellars);
-        //Update cache
-        CommonServices.updateCellarDetails();
-      }, function() {
-        CommonServices.showAlert('error.getWines');
+    function updateCacheData(wineInCellar) {
+      CommonServices.getWinesInCellar().then(wineInCellars => {
+        if (wineInCellars) {
+          CommonServices.updateWineInCellar(wineInCellar);
+          CommonServices.updateCellarDetails();
+        }
+        vm.isProcessing = false;
+        closeForm();
       });
     }
 

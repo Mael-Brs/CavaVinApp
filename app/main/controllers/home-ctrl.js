@@ -3,12 +3,13 @@
   angular.module('main')
     .controller('HomeCtrl', HomeCtrl);
 
-  HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService', 'Cellar'];
+  HomeCtrl.$inject = ['$scope', '$rootScope', 'Auth', '$state', 'Principal', 'LoginService', '$ionicModal', 'User', 'CacheService', 'Cellar', 'CommonServices'];
 
-  function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar) {
+  function HomeCtrl($scope, $rootScope, Auth, $state, Principal, LoginService, $ionicModal, User, CacheService, Cellar, CommonServices) {
     const vm = this;
     vm.account = null;
     vm.isAuthenticated = null;
+    vm.isLoading = false;
     vm.login = LoginService.open;
     vm.register = register;
     vm.cellar = null;
@@ -17,32 +18,27 @@
 
     $scope.$on('$ionicView.enter', function() {
       vm.isAuthenticated = Principal.isAuthenticated();
-      getAccount();
-      getCellarDetails();
+      if (vm.isAuthenticated === true) {
+        getAccount();
+        getCellarDetails();
+      }
     });
 
     function getCellarDetails() {
-      vm.cellar = CacheService.get('activeCellar');
-      if (vm.cellar) {
-        vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
-      } else {
-        getCellar();
-      }
+      vm.isLoading = true;
+      CommonServices.getCellar().then(cellar => {
+        vm.cellar = cellar;
+        vm.isLoading = false;
+        if (vm.cellar) {
+          vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
+          CommonServices.getWinesInCellar();
+        }
+      });
     }
 
     function getAccount() {
       Principal.identity().then(function(account) {
         vm.account = account;
-      });
-    }
-
-    function getCellar() {
-      Cellar.query(function(result) {
-        vm.cellar = result[0];
-        if (vm.cellar) {
-          vm.sum = vm.cellar.sumOfWine !== null ? vm.cellar.sumOfWine : 0;
-          CacheService.put('activeCellar', vm.cellar);
-        }
       });
     }
 
@@ -69,7 +65,7 @@
     function onSaveSuccess() {
       vm.success = 'OK';
       vm.modal.hide();
-      getCellar();
+      getCellarDetails();
     }
 
     function onSaveError() {

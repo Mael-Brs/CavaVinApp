@@ -20,12 +20,7 @@
           return data;
         }
       },
-      'update': { method: 'PUT' },
-      'wineInCellars': {  // Get all the wine for the specified id of cellar
-        params: { subResource: 'wine-in-cellars' },
-        method: 'GET',
-        isArray: true
-      }
+      'update': { method: 'PUT' }
     });
   }
 })();

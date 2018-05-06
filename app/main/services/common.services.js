@@ -4,16 +4,17 @@
     .module('main')
     .factory('CommonServices', CommonServices);
 
-  CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q', 'User'];
+  CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q', 'User', 'WineInCellar'];
 
-  function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q, User) {
+  function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q, User, WineInCellar) {
     const services = {
       updateCellarDetails: updateCellarDetails,
       updateWineInCellar: updateWineInCellar,
       showAlert: showAlert,
       getCellar: getCellar,
       getPinnedWines: getPinnedWines,
-      addPinnedWineInCache: addPinnedWineInCache
+      addPinnedWineInCache: addPinnedWineInCache,
+      getWinesInCellar: getWinesInCellar
     };
     return services;
 
@@ -93,12 +94,16 @@
      */
     function updateWineInCellar(wineInCellar) {
       const wineInCellars = CacheService.get('wineInCellars');
-
+      let found = false;
       for (let i = 0; i < wineInCellars.length; i++) {
         if (wineInCellars[i].id === wineInCellar.id) {
           wineInCellars[i] = wineInCellar;
+          found = true;
           break;
         }
+      }
+      if (found === false) {
+        wineInCellars.push(wineInCellar);
       }
       CacheService.put('wineInCellars', wineInCellars);
     }
@@ -124,9 +129,11 @@
       if (!cellar) {
         Cellar.query(function(result) {
           cellar = result[0];
+          CacheService.put('activeCellar', cellar);
           deferred.resolve(cellar);
         }, function() {
-          this.showAlert('error.getCellar');
+          showAlert('error.getCellar');
+          deferred.resolve();
         });
       } else {
         deferred.resolve(cellar);
@@ -136,7 +143,8 @@
 
     /**
      * Retourne les vins épinglés depuis le cache ou le back
-     * @param {Identifiant de l'utilisateur} userId
+     * @param userId identifiant de l'utilisateur
+     * @returns Promise
      */
     function getPinnedWines(userId) {
       const deferred = $q.defer();
@@ -147,7 +155,8 @@
           pinnedWines = result;
           deferred.resolve(pinnedWines);
         }, function() {
-          this.showAlert('error.getWines');
+          showAlert('error.getWines');
+          deferred.resolve();
         });
       } else {
         deferred.resolve(pinnedWines);
@@ -157,7 +166,7 @@
 
     /**
      * Ajoute un nouveau vin épinglé en cache si le cache existe
-     * @param {Vin épinglé} pinnedWine
+     * @param pinnedWine Vin épinglé
      */
     function addPinnedWineInCache(pinnedWine) {
       const pinnedWines = CacheService.get('pinnedWines');
@@ -165,6 +174,32 @@
         pinnedWines.push(pinnedWine);
         CacheService.put('pinnedWines', pinnedWines);
       }
+    }
+
+    /**
+     * Retourne les vins épinglés depuis le cache ou le back
+     * @returns Promise
+     */
+    function getWinesInCellar() {
+      const deferred = $q.defer();
+      let wines = CacheService.get('wineInCellars');
+
+      if (!wines) {
+        WineInCellar.query(null, function(result) {
+          wines = result;
+          CacheService.put('wineInCellars', wines);
+          //Update cache
+          updateCellarDetails();
+          //Update view
+          deferred.resolve(wines);
+        }, function() {
+          showAlert('error.getWines');
+          deferred.resolve();
+        });
+      } else {
+        deferred.resolve(wines);
+      }
+      return deferred.promise;
     }
   }
 })();
