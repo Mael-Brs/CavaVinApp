@@ -4,7 +4,7 @@
       </button>
     </ion-nav-buttons>
 
-	<ion-content>	
+	<ion-content>
 		<ion-list>
 		  <ion-item ng-repeat="wine in vm.result" on-tap="vm.selectVintage(wine)">
 		    <div class="winAttributes">
@@ -41,7 +41,6 @@
 		  on-infinite="vm.loadPage(vm.page + 1)">
 		</ion-infinite-scroll>
 
-				
 	</ion-content>
 	<ion-footer-bar>
 	    <button class="button icon ion-search button-positive pull-right" ng-click="vm.openSearch()"></button>

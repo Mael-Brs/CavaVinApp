@@ -4,9 +4,9 @@
     .module('main')
     .factory('CommonServices', CommonServices);
 
-  CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q', 'User', 'WineInCellar'];
+  CommonServices.$inject = ['CacheService', '$ionicPopup', '$translate', 'Cellar', '$q', 'User', 'WineInCellarSearch'];
 
-  function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q, User, WineInCellar) {
+  function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q, User, WineInCellarSearch) {
     const services = {
       updateCellarDetails: updateCellarDetails,
       updateWineInCellar: updateWineInCellar,
@@ -185,7 +185,7 @@
       let wines = CacheService.get('wineInCellars');
 
       if (!wines) {
-        WineInCellar.query(null, function(result) {
+        WineInCellarSearch.query({sort: 'apogee,asc', query: '*'}, function(result) {
           wines = result;
           CacheService.put('wineInCellars', wines);
           //Update cache

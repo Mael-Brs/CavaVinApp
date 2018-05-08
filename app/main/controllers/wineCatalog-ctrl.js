@@ -35,7 +35,7 @@
         query: vm.query,
         page: vm.page,
         size: vm.itemsPerPage,
-        sort: null
+        sort: vm.sort
       }, function(result, headers) {
         getLastPage(headers('link'));
         for (let i = 0; i < result.length; i++) {

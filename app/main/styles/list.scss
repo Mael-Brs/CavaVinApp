@@ -53,7 +53,7 @@
     }
   }
 
-  #filterTerm{
+  .filterTerm{
     margin:0 5px 0 5px;
   }
 
@@ -79,7 +79,7 @@
         background: #f0ad4e;
       }
 
-      &.apogee::-webkit-meter-optimum-value {    
+      &.apogee::-webkit-meter-optimum-value {
         background: #d9534f;
       }
 

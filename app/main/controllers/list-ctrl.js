@@ -4,26 +4,36 @@
     .module('main')
     .controller('ListCtrl', ListCtrl);
 
-  ListCtrl.$inject = ['$scope', '$translate', '$state', 'WineInCellar', 'Principal', '$ionicPopup', 'Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedWine'];
+  ListCtrl.$inject = ['$scope', '$translate', '$state', 'WineInCellar', 'Principal', '$ionicPopup', 'Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedWine', 'WineInCellarSearch'];
 
 
-  function ListCtrl($scope, $translate, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine) {
+  function ListCtrl($scope, $translate, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine, WineInCellarSearch) {
+    const date = new Date();
+    const regExp = new RegExp(/(?:page=)(\d)/);
     const vm = this;
-    vm.wines;
+    vm.wines = [];
     vm.showForm = false;
     //paramètres de tri
-    vm.sortWine = 'apogee'; // set the default sort color
+    vm.sortWine = vm.newSortWine = 'apogee'; // set the default sort color
     vm.sortReverse = false;
     vm.isWineInCellarFilter = true;
     vm.isLoading = true;
+    vm.page = 0;
+    vm.itemsPerPage = 20;
+    vm.lastPage = 0;
+    vm.thisYear = date.getFullYear();
+    vm.yearRatio = (date.getMonth() + 1) / 12;
+    vm.query = '';
+    vm.searchRegion = null;
+    vm.searchColor = null;
+    vm.searchWine = null;
+    let cellar;
 
     vm.openModal = openModal;
     vm.openFilter = openFilter;
     vm.updateQuantity = updateQuantity;
-    const date = new Date();
-    vm.thisYear = date.getFullYear();
-    vm.yearRatio = (date.getMonth() + 1) / 12;
-    let cellar;
+    vm.loadPage = loadPage;
+    vm.buildQuery = buildQuery;
 
     $scope.$on('$ionicView.enter', function() {
       $ionicListDelegate.closeOptionButtons();
@@ -147,7 +157,10 @@
         buttons: [
           {
             text: $translate.instant('entity.action.close'),
-            type: 'button-positive'
+            type: 'button-positive',
+            onTap: function() {
+              buildQuery(false);
+            }
           }
         ]
       });
@@ -175,7 +188,7 @@
 
     /**
      * Sauvegarde le nouveau vin épinglé
-     * @param {le vin à épingler} wineInCellar
+     * @param wineInCellar le vin à épingler
      */
     function savePinnedWine(wineInCellar) {
       PinnedWine.save({ wine: wineInCellar.vintage.wine, userId: cellar.userId }, function successCallback(result) {
@@ -184,6 +197,65 @@
       }, function() {
         CommonServices.showAlert('error.createPinnedWine');
       });
+    }
+
+    /**
+     * Charge la page en paramètre
+     * @param {Number} page Numero de la page à charger
+     */
+    function loadPage(page) {
+      vm.page = page;
+      search();
+    }
+
+    function search() {
+      WineInCellarSearch.query({
+        query: vm.query,
+        page: vm.page,
+        size: vm.itemsPerPage,
+        sort: vm.sortWine + (vm.sortReverse ? ',desc' : ',asc'),
+        cellarId: cellar.id
+      }, function(result, headers) {
+        getLastPage(headers('link'));
+        vm.wines = vm.wines.concat(result);
+
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }, function() {
+        CommonServices.showAlert('error.searchWine');
+      });
+    }
+
+    function getLastPage(header) {
+      const array = header.split(',');
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].indexOf('last') > -1) {
+          vm.lastPage = regExp.exec(array[i])[1];
+        }
+      }
+    }
+
+    /**
+     * Construit la query elasticSearch
+     * @param reload
+     */
+    function buildQuery(reload) {
+      const result = [];
+      if (vm.searchRegion) {
+        result.push(vm.searchRegion);
+      }
+      if (vm.searchColor) {
+        result.push(vm.searchColor);
+      }
+      if (vm.searchWine) {
+        result.push(vm.searchWine);
+      }
+      vm.query = result.join(' AND ');
+      if (vm.query || reload || vm.newSortWine !== vm.sortWine) {
+        vm.sortWine = vm.newSortWine;
+        vm.wines = [];
+        vm.query = vm.query ? vm.query : '*';
+        loadPage(0);
+      }
     }
 
   }
