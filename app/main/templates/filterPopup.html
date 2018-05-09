@@ -1,14 +1,13 @@
 <label class="item item-input">
     <i class="icon ion-search placeholder-icon"></i>
-    <input type="search" placeholder="Mot clé" ng-model="vm.searchWine">
+    <input type="search" placeholder="Mot clé" ng-model="vm.newSearchWine">
 </label>
 
 <label class="item item-input item-select">
     <div class="input-label" translate="cavaVinApp.wine.region">
         Région
     </div>
-    <select ng-model="vm.searchRegion" ng-options="stat.region as stat.region for stat in vm.wineByRegion">
-        <option value=""></option>
+    <select ng-model="vm.newSearchRegion" ng-options="stat.region as stat.region for stat in vm.wineByRegion">
     </select>
 </label>
 
@@ -16,8 +15,7 @@
     <div class="input-label" translate="cavaVinApp.wine.color">
         Couleur
     </div>
-    <select ng-model="vm.searchColor" ng-options="stat.color as stat.color for stat in vm.wineByColor">
-        <option value=""></option>
+    <select ng-model="vm.newSearchColor" ng-options="stat.color as stat.color for stat in vm.wineByColor">
     </select>
 </label>
 

@@ -103,7 +103,8 @@
             "close": "Fermer",
             "add": "Ajouter",
             "pin": "Epingler",
-            "search": "Rechercher"
+            "search": "Rechercher",
+            "filter": "Filtrer"
         },
         "detail": {
             "field": "Champs",

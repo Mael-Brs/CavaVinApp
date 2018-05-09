@@ -103,7 +103,8 @@
             "close": "Close",
             "add": "Add",
             "pin": "Pin",
-            "search": "Search"
+            "search": "Search",
+            "filter": "Filter"
         },
         "detail": {
             "field": "Field",

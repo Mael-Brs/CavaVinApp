@@ -10,6 +10,7 @@
   function ListCtrl($scope, $translate, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine, WineInCellarSearch) {
     const date = new Date();
     const regExp = new RegExp(/(?:page=)(\d)/);
+    let cellar;
     const vm = this;
     vm.wines = [];
     vm.showForm = false;
@@ -27,13 +28,15 @@
     vm.searchRegion = null;
     vm.searchColor = null;
     vm.searchWine = null;
-    let cellar;
 
     vm.openModal = openModal;
     vm.openFilter = openFilter;
     vm.updateQuantity = updateQuantity;
     vm.loadPage = loadPage;
-    vm.buildQuery = buildQuery;
+    vm.clearFilter = clearFilter;
+    vm.sort = sort;
+    vm.removeWine = removeWine;
+    vm.editWine = editWine;
 
     $scope.$on('$ionicView.enter', function() {
       $ionicListDelegate.closeOptionButtons();
@@ -59,7 +62,7 @@
     * Fonction de suppression du vin au click sur le bouton
     * @param  {number} id id du vin
     */
-    vm.removeWine = function(id) {
+    function removeWine(id) {
       const confirmPopup = $ionicPopup.confirm({
         title: $translate.instant('list.deleteTitle'),
         template: $translate.instant('list.deleteMessage'),
@@ -76,20 +79,20 @@
           });
         }
       });
-    };
+    }
 
     /**
      * Ouvre l'écran d'édition du vin
      * @param wineInCellar vin à mettre à jour
      */
-    vm.editWine = function(wineInCellar) {
+    function editWine(wineInCellar) {
       if (wineInCellar.vintage.wine.creatorId === cellar.userId) {
         $state.go('wineInCellarFullEdit', { wineId: wineInCellar.id });
       } else {
         CacheService.put('selectedWineInCellar', wineInCellar);
         $state.go('wineInCellarEdit', { wineId: wineInCellar.id });
       }
-    };
+    }
 
     /**
      * Met à jour la quantité du vin en cave
@@ -150,17 +153,24 @@
      * Ouvre la popup de filtrage de la liste
      */
     function openFilter() {
+      vm.newSearchColor = vm.searchColor;
+      vm.newSearchRegion = vm.searchRegion;
+      vm.newSearchWine = vm.searchWine;
+      vm.newSortWine = vm.sortWine;
       $ionicPopup.show({
         templateUrl: 'main/templates/filterPopup.html',
         title: 'Filtrer les vins',
         scope: $scope,
         buttons: [
           {
-            text: $translate.instant('entity.action.close'),
+            text: $translate.instant('entity.action.filter'),
             type: 'button-positive',
             onTap: function() {
-              buildQuery(false);
+              buildQuery();
             }
+          },
+          {
+            text: $translate.instant('entity.action.close')
           }
         ]
       });
@@ -208,6 +218,9 @@
       search();
     }
 
+    /**
+     * Lance la requête eleasticSearch
+     */
     function search() {
       WineInCellarSearch.query({
         query: vm.query,
@@ -225,6 +238,10 @@
       });
     }
 
+    /**
+     * Récupère l'index de la dernière page dans les headers
+     * @param header
+     */
     function getLastPage(header) {
       const array = header.split(',');
       for (let i = 0; i < array.length; i++) {
@@ -236,26 +253,49 @@
 
     /**
      * Construit la query elasticSearch
-     * @param reload
      */
-    function buildQuery(reload) {
+    function buildQuery() {
       const result = [];
-      if (vm.searchRegion) {
+      if (vm.newSearchRegion) {
+        vm.searchRegion = vm.newSearchRegion;
         result.push(vm.searchRegion);
       }
-      if (vm.searchColor) {
+      if (vm.newSearchColor) {
+        vm.searchColor = vm.newSearchColor;
         result.push(vm.searchColor);
       }
-      if (vm.searchWine) {
+      if (vm.newSearchWine) {
+        vm.searchWine = vm.newSearchWine;
         result.push(vm.searchWine);
       }
       vm.query = result.join(' AND ');
-      if (vm.query || reload || vm.newSortWine !== vm.sortWine) {
+      if (vm.query || vm.newSortWine !== vm.sortWine) {
         vm.sortWine = vm.newSortWine;
         vm.wines = [];
         vm.query = vm.query ? vm.query : '*';
         loadPage(0);
       }
+    }
+
+    /**
+     * Déclenche le changement du sens de tri
+     * @param sortReverse
+     */
+    function sort(sortReverse) {
+      vm.sortReverse = sortReverse;
+      vm.wines = [];
+      vm.query = vm.query ? vm.query : '*';
+      loadPage(0);
+    }
+
+    /**
+     * Efface les filtres actifs
+     */
+    function clearFilter() {
+      vm.searchRegion = vm.searchColor = vm.searchWine = '';
+      vm.query = '*';
+      vm.wines = [];
+      loadPage(0);
     }
 
   }

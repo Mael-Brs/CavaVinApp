@@ -75,14 +75,27 @@
      * Ouvre la popup de filtrage dela lsite
      */
     function openFilter() {
+      vm.newSearchColor = vm.searchColor;
+      vm.newSearchRegion = vm.searchRegion;
+      vm.newSearchWine = vm.searchWine;
+      vm.newSortWine = vm.sortWine;
       $ionicPopup.show({
         templateUrl: 'main/templates/filterPopup.html',
         title: 'Filtrer les vins',
         scope: $scope,
         buttons: [
           {
-            text: $translate.instant('entity.action.close'),
-            type: 'button-positive'
+            text: $translate.instant('entity.action.filter'),
+            type: 'button-positive',
+            onTap: function() {
+              vm.searchColor = vm.newSearchColor;
+              vm.searchRegion = vm.newSearchRegion;
+              vm.searchWine = vm.newSearchWine;
+              vm.sortWine = vm.newSortWine;
+            }
+          },
+          {
+            text: $translate.instant('entity.action.close')
           }
         ]
       });
