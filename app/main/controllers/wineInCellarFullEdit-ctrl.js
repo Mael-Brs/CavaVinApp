@@ -123,7 +123,7 @@
 
     function createAll(newWine, newVintage, newWineInCellar) {
       WineInCellar.saveAll(newWineInCellar, function(wineInCellar) {
-        updateCacheData(wineInCellar);
+        updateCacheData();
       }, function() {
         CommonServices.showAlert('error.createWine');
       });
