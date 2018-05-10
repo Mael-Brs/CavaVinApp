@@ -1,20 +1,21 @@
 {
     "home": {
-        "title": "Bienvenue dans votre CavaVin !",
+        "title": "Bienvenue sur Dans ma Cave !",
         "subtitle": "Ceci est votre page d'accueil",
         "logged": {
-            "message": "Bienvenue, \"{{username}}\" !"
+            "message": "Cave de {{username}}"
         },
         "cellar": {
             "undefined":"La capacité de votre cave n'est pas définie, <a class=\"alert-link\" href=\"\" ng-click=\"vm.openModal()\">définir la capacité</a>",
             "title" : "Définir la capacité de votre cave"
         },
+        "wineInCellar": "Vin(s) en cave",
         "actions":{
             "add": "Créer un nouveau vin",
             "my-wines": "Voir le contenu de vote cave",
             "wineCatalog": "Chercher un vin dans le catalogue",
             "cellar": "Voir les infos de votre cave",
-            "title": "Voulez-vous ?"
+            "title": "Que voulez-vous faire ?"
         }
     }
 }

@@ -13,6 +13,7 @@
     vm.login = LoginService.open;
     vm.register = register;
     vm.cellar = null;
+
     vm.openModal = openModal;
     vm.save = saveCellar;
 
@@ -54,15 +55,17 @@
     });
 
     function openModal() {
+      vm.newCellar = {};
       vm.modal.show();
     }
 
     function saveCellar() {
-      vm.cellar.userId = vm.account.id;
-      Cellar.save(vm.cellar, onSaveSuccess, onSaveError);
+      vm.newCellar.userId = vm.account.id;
+      Cellar.save(vm.newCellar, onSaveSuccess, onSaveError);
     }
 
-    function onSaveSuccess() {
+    function onSaveSuccess(cellar) {
+      vm.cellar = cellar;
       vm.success = 'OK';
       vm.modal.hide();
       getCellarDetails();

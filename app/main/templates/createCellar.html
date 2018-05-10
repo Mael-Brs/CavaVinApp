@@ -1,19 +1,24 @@
 <ion-modal-view>
-    <ion-header-bar class="bar bar-header bar-positive">
-        <h1 class="title" translate="home.cellar.title" >Create Cellar</h1>
-        <button class="button button-clear button-primary" ng-click="vm.modal.hide()" translate="entity.action.cancel">Cancel</button>
-    </ion-header-bar>
-    <ion-content class="padding">
-		<div class="list" >
-            <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation>		
+  <ion-header-bar class="bar bar-header bar-positive">
+    <h1 class="title" translate="home.cellar.title">Create Cellar</h1>
+    <button class="button button-clear button-primary" ng-click="vm.modal.hide()" translate="entity.action.cancel">
+      Cancel
+    </button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list formList">
+      <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation>
 
-				<label class="item item-input">
-                    <span class="input-label" translate="global.form.cellarCapacity">Cellar capacity</span>
-                    <input type="number" class="form-control" placeholder="{{'global.form.cellarCapacity.placeholder' | translate}}"
-                           ng-model="vm.cellar.capacity" required>
-                </label>
-                <button type="submit" ng-disabled="form.$invalid" class="button button-full button-positive" translate="entity.action.save">Save</button>
-            </form>
-        </div>
-	</ion-content>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" translate="global.form.cellarCapacity">Cellar capacity</span>
+          <input type="number" class="form-control"
+                 placeholder="{{'global.form.cellarCapacity.placeholder' | translate}}"
+                 ng-model="vm.newCellar.capacity" required>
+        </label>
+        <button type="submit" ng-disabled="form.$invalid" class="button button-full button-positive"
+                translate="entity.action.save">Save
+        </button>
+      </form>
+    </div>
+  </ion-content>
 </ion-modal-view>

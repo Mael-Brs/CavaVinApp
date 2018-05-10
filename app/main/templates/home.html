@@ -3,7 +3,7 @@
     <ion-list>
       <ion-spinner ng-if="vm.isAuthenticated === null || vm.isLoading === true"></ion-spinner>
 
-      <div class="card" ng-if="vm.isAuthenticated === true">
+      <div class="card" ng-if="vm.isAuthenticated === true && vm.isLoading === false">
         <div class="item item-divider">
           <span translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}"> Welcome, {{vm.account.login}}!</span>
         </div>
@@ -15,7 +15,7 @@
         <div ng-if="vm.cellar">
           <div class="item item-text-wrap">
             <span class="badge badge-assertive">{{vm.sum}}</span>
-            Vin dans votre cave
+            <span translate="home.wineInCellar">Vin(s) en cave</span>
           </div>
           <div class="list card">
             <div class="item item-divider">

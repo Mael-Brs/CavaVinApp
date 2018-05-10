@@ -6,20 +6,22 @@
     .controller('RegisterController', RegisterController);
 
 
-  RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService'];
+  RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService', '$scope'];
 
-  function RegisterController($translate, $timeout, Auth, LoginService) {
+  function RegisterController($translate, $timeout, Auth, LoginService, $scope) {
     const vm = this;
 
-    vm.doNotMatch = null;
-    vm.error = null;
-    vm.errorUserExists = null;
-    vm.login = LoginService.open;
     vm.register = register;
-    vm.registerAccount = {};
-    vm.success = null;
 
-    $timeout(function() {angular.element('#login').focus();});
+    $scope.$on('$ionicView.enter', function() {
+      vm.doNotMatch = null;
+      vm.error = null;
+      vm.errorUserExists = null;
+      vm.login = LoginService.open;
+      vm.success = null;
+      vm.registerAccount = {};
+      vm.confirmPassword = null;
+    });
 
     function register() {
       if (vm.registerAccount.password !== vm.confirmPassword) {

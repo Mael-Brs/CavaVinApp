@@ -1,20 +1,21 @@
 {
     "home": {
-        "title": "Welcome to your CavaVin !",
+        "title": "Welcome to Dans ma Cave !",
         "subtitle": "This is your homepage",
         "logged": {
-            "message": "Welcome, \"{{username}}\" !"
+            "message": "Cellar of {{username}}"
         },
         "cellar": {
             "undefined":"Your cellar capacity is undefined, <a class=\"alert-link\" href=\"\" ng-click=\"vm.openModal()\">Define cellar capacity</a> ",
             "title" : "Define your cellar capacity"
         },
+        "wineInCellar": "Wine(s) in cellar",
         "actions":{
             "add": "Create a new wine",
             "my-wines": "See the content of your cellar",
             "wineCatalog": "Find a wine in catalog",
             "cellar": "See your cellar details",
-            "title": "Would-you ?"
+            "title": "What do you want to do ?"
         }
     }
 }
