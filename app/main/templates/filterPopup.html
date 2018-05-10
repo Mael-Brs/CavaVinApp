@@ -8,6 +8,7 @@
         Région
     </div>
     <select ng-model="vm.newSearchRegion" ng-options="stat.region as stat.region for stat in vm.wineByRegion">
+      <option value=""></option>
     </select>
 </label>
 
@@ -16,21 +17,30 @@
         Couleur
     </div>
     <select ng-model="vm.newSearchColor" ng-options="stat.color as stat.color for stat in vm.wineByColor">
+      <option value=""></option>
     </select>
 </label>
 
 <label class="item item-input item-select">
-    <div class="input-label">
+    <div class="input-label" translate="list.sortBy">
         Trier par
     </div>
-    <select ng-model="vm.newSortWine">
-        <option value="vintage.wine.name">Nom</option>
-        <option value="vintage.wine.appellation">Appellation</option>
-        <option value="vintage.wine.producer">Domaine</option>
-        <option value="vintage.year">Année</option>
-        <option value="vintage.wine.region.regionName">Région</option>
-        <option value="vintage.wine.color.colorName">Couleur</option>
-        <option ng-if="vm.isWineInCellarFilter" value="quantity">Quantité</option>
-        <option ng-if="vm.isWineInCellarFilter" value="apogee">Apogée</option>
+    <select ng-if="!vm.isWineInCellarFilter" ng-model="vm.newSortWine">
+        <option value="wine.name">Nom</option>
+        <option value="wine.appellation">Appellation</option>
+        <option value="wine.producer">Domaine</option>
+        <option value="year">Année</option>
+        <option value="wine.region.regionName">Région</option>
+        <option value="wine.color.colorName">Couleur</option>
+    </select>
+    <select ng-if="vm.isWineInCellarFilter" ng-model="vm.newSortWine">
+      <option value="vintage.wine.name">Nom</option>
+      <option value="vintage.wine.appellation">Appellation</option>
+      <option value="vintage.wine.producer">Domaine</option>
+      <option value="vintage.year">Année</option>
+      <option value="vintage.wine.region.regionName">Région</option>
+      <option value="vintage.wine.color.colorName">Couleur</option>
+      <option value="quantity">Quantité</option>
+      <option value="apogee">Apogée</option>
     </select>
 </label>

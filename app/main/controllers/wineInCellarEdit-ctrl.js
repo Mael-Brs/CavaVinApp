@@ -12,11 +12,10 @@
     let cellar;
     vm.submit = submit;
     vm.userWine = {};
-    vm.activeWineId;
     vm.isProcessing = false;
 
     $scope.$on('$ionicView.enter', function() {
-      vm.activeWineId = $stateParams.wineId;
+      vm.creationMode = $stateParams.wineId === '-1';
       getCellar();
     });
 
@@ -30,7 +29,7 @@
 
     /**********Functions**********/
     function inputInit() {
-      if (vm.activeWineId === '-1') {
+      if (vm.creationMode) {
         vm.userWine = {
           id: '',
           quantity: '',
@@ -50,20 +49,17 @@
       if (!$scope.form.$invalid) {
         const newWineInCellar = new WineInCellar(vm.userWine);
 
-        newWineInCellar.$save(function(wineInCellar) {
-          updateCacheData(wineInCellar);
+        newWineInCellar.$save(function() {
+          updateCacheData();
         }, function() {
           CommonServices.showAlert('error.createWine');
         });
       }
     }
 
-    function updateCacheData(wineInCellar) {
-      CommonServices.getWinesInCellar().then(wineInCellars => {
-        if (wineInCellars) {
-          CommonServices.updateWineInCellar(wineInCellar);
-          CommonServices.updateCellarDetails();
-        }
+    function updateCacheData() {
+      CommonServices.getWinesInCellar(true);
+      CommonServices.getCellar(true).then(() => {
         $ionicHistory.nextViewOptions({
           disableBack: true
         });

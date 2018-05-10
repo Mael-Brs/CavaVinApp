@@ -18,9 +18,9 @@
     </ion-content>
     <ion-footer-bar>
         <button class="button icon button-positive" ng-class="vm.sortReverse ? 'ion-arrow-down-c' : 'ion-arrow-up-c'" ng-click="vm.sortReverse=!vm.sortReverse"></button>
-        <a id="filterTerm" class="button icon-right ion-close-round button-outline button-dark" ng-if="vm.searchWine" ng-click="vm.searchWine=''">{{vm.searchWine}}</a>
-        <a id="filterTerm" class="button icon-right ion-close-round button-outline button-dark" ng-if="vm.searchRegion" ng-click="vm.searchRegion=''">{{vm.searchRegion}}</a>
-        <a id="filterTerm" class="button icon-right ion-close-round button-outline button-dark" ng-if="vm.searchColor" ng-click="vm.searchColor=''">{{vm.searchColor}}</a>
+        <a class="button icon-right ion-close-round button-outline button-dark filterTerm" ng-if="vm.searchWine" ng-click="vm.searchWine=''">{{vm.searchWine}}</a>
+        <a class="button icon-right ion-close-round button-outline button-dark filterTerm" ng-if="vm.searchRegion" ng-click="vm.searchRegion=''">{{vm.searchRegion}}</a>
+        <a class="button icon-right ion-close-round button-outline button-dark filterTerm" ng-if="vm.searchColor" ng-click="vm.searchColor=''">{{vm.searchColor}}</a>
         <button class="button icon ion-android-options button-positive pull-right" ng-click="vm.openFilter()"></button>
     </ion-footer-bar>
 </ion-view>

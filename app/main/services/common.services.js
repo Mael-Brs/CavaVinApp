@@ -8,7 +8,6 @@
 
   function CommonServices(CacheService, $ionicPopup, $translate, Cellar, $q, User, WineInCellarSearch) {
     const services = {
-      updateCellarDetails: updateCellarDetails,
       updateWineInCellar: updateWineInCellar,
       showAlert: showAlert,
       getCellar: getCellar,
@@ -17,76 +16,6 @@
       getWinesInCellar: getWinesInCellar
     };
     return services;
-
-    /**
-     * Met à jour les stats de la cave dans le cache
-     */
-    function updateCellarDetails() {
-      const wineInCellars = CacheService.get('wineInCellars');
-      const cellar = CacheService.get('activeCellar');
-
-      if (cellar && wineInCellars) {
-        let sumOfWine = 0;
-        const wineByRegion = [];
-        const wineByColor = [];
-        const wineByYear = [];
-        const sumByRegion = {};
-        const sumByColor = {};
-        const sumByYear = {};
-
-
-        for (let i = 0; i < wineInCellars.length; i++) {
-          const quantity = wineInCellars[i].quantity;
-          const region = wineInCellars[i].vintage.wine.region.regionName;
-          const color = wineInCellars[i].vintage.wine.color.colorName;
-          const year = wineInCellars[i].vintage.year;
-
-          sumOfWine += quantity;
-
-          if (!sumByRegion[region]) {
-            sumByRegion[region] = quantity;
-          } else {
-            sumByRegion[region] += quantity;
-          }
-
-          if (!sumByColor[color]) {
-            sumByColor[color] = quantity;
-          } else {
-            sumByColor[color] += quantity;
-          }
-
-          if (!sumByYear[year]) {
-            sumByYear[year] = quantity;
-          } else {
-            sumByYear[year] += quantity;
-          }
-        }
-
-        for (const regionName in sumByRegion) {
-          if (sumByRegion.hasOwnProperty(regionName)) {
-            wineByRegion.push({ region: regionName, sum: sumByRegion[regionName] });
-          }
-        }
-
-        for (const colorName in sumByColor) {
-          if (sumByColor.hasOwnProperty(colorName)) {
-            wineByColor.push({ color: colorName, sum: sumByColor[colorName] });
-          }
-        }
-
-        for (const yearNumber in sumByYear) {
-          if (sumByYear.hasOwnProperty(yearNumber)) {
-            wineByYear.push({ year: yearNumber, sum: sumByYear[yearNumber] });
-          }
-        }
-
-        cellar.sumOfWine = sumOfWine;
-        cellar.wineByRegion = wineByRegion;
-        cellar.wineByColor = wineByColor;
-        cellar.wineByYear = wineByYear;
-        CacheService.put('activeCellar', cellar);
-      }
-    }
 
     /**
      * Recherche et met à jour le vin dans le cache
@@ -121,12 +50,14 @@
 
     /**
      * Renvoie la cave depuis le cache ou le back
+     * @param reload booléen force l'appel au back
+     * @returns Promise
      */
-    function getCellar() {
+    function getCellar(reload) {
       const deferred = $q.defer();
       let cellar = CacheService.get('activeCellar');
 
-      if (!cellar) {
+      if (!cellar || reload) {
         Cellar.query(function(result) {
           cellar = result[0];
           CacheService.put('activeCellar', cellar);
@@ -178,18 +109,17 @@
 
     /**
      * Retourne les vins épinglés depuis le cache ou le back
+     * @param reload booléen force l'appel au back
      * @returns Promise
      */
-    function getWinesInCellar() {
+    function getWinesInCellar(reload) {
       const deferred = $q.defer();
       let wines = CacheService.get('wineInCellars');
 
-      if (!wines) {
+      if (!wines || reload) {
         WineInCellarSearch.query({sort: 'apogee,asc', query: '*'}, function(result) {
           wines = result;
           CacheService.put('wineInCellars', wines);
-          //Update cache
-          updateCellarDetails();
           //Update view
           deferred.resolve(wines);
         }, function() {

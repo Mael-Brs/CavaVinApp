@@ -107,8 +107,8 @@
           pinWine(wineInCellar);
 
         } else {
-          WineInCellar.update(wineInCellar, function(wineInCellar) {
-            updateCacheData(wineInCellar);
+          WineInCellar.update(wineInCellar, function() {
+            updateCacheData();
           }, function() {
             CommonServices.showAlert('error.updateWine');
           });
@@ -119,15 +119,10 @@
 
     /**
      * Met à jour les données de vin en cache
-     * @param wineInCellar vin mis à jour
      */
-    function updateCacheData(wineInCellar) {
-      CommonServices.getWinesInCellar().then(wineInCellars => {
-        if (wineInCellars) {
-          CommonServices.updateWineInCellar(wineInCellar);
-          CommonServices.updateCellarDetails();
-        }
-      });
+    function updateCacheData() {
+      CommonServices.getWinesInCellar(true);
+      CommonServices.getCellar(true);
     }
 
     /**

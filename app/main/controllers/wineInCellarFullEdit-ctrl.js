@@ -11,10 +11,8 @@
     const vm = this;
     let cellar;
     let activeWineId;
-    vm.creationMode;
     vm.userWine = {};
     vm.submit = submit;
-    vm.addToCellar;
     vm.isProcessing = false;
 
     $scope.$on('$ionicView.enter', function() {
@@ -140,19 +138,16 @@
     }
 
     function update(newWine, newVintage, newWineInCellar) {
-      WineInCellar.updateAll(newWineInCellar, function(wineInCellar) {
-        updateCacheData(wineInCellar);
+      WineInCellar.updateAll(newWineInCellar, function() {
+        updateCacheData();
       }, function() {
         CommonServices.showAlert('error.updateWine');
       });
     }
 
-    function updateCacheData(wineInCellar) {
-      CommonServices.getWinesInCellar().then(wineInCellars => {
-        if (wineInCellars) {
-          CommonServices.updateWineInCellar(wineInCellar);
-          CommonServices.updateCellarDetails();
-        }
+    function updateCacheData() {
+      CommonServices.getWinesInCellar(true);
+      CommonServices.getCellar(true).then(() => {
         vm.isProcessing = false;
         closeForm();
       });
@@ -162,8 +157,7 @@
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
-      vm.isProcessing = false;
-      $state.go('list');
+      $state.go('home');
     }
 
   }

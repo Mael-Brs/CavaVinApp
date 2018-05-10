@@ -9,6 +9,7 @@
         "pinWine": "Voulez-vous épingler ce vin pour vous en rappelez ?",
         "pinTitle": "Epingler le vin",
         "deleteTitle": "Supprimer le vin",
-        "deleteMessage": "Voulez-vous supprimer ce vin ?"
+        "deleteMessage": "Voulez-vous supprimer ce vin ?",
+        "sortBy": "Trier par"
     }
 }

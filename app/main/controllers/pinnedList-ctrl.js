@@ -64,7 +64,7 @@
 
     /**
      * Ouvre l'écran de sélection d'un millésime
-     * @param {vin à ajouter à la cave} pinnedWine
+     * @param pinnedWine vin à ajouter à la cave
      */
     function wineInCellarEdit(pinnedWine) {
       CacheService.put('selectedWine', pinnedWine.wine);
@@ -88,9 +88,9 @@
             text: $translate.instant('entity.action.filter'),
             type: 'button-positive',
             onTap: function() {
-              vm.searchColor = vm.newSearchColor;
-              vm.searchRegion = vm.newSearchRegion;
-              vm.searchWine = vm.newSearchWine;
+              vm.searchColor = vm.newSearchColor ? vm.newSearchColor : vm.searchColor;
+              vm.searchRegion = vm.newSearchRegion ? vm.newSearchRegion : vm.searchRegion;
+              vm.searchWine = vm.newSearchWine ? vm.newSearchWine : vm.searchWine;
               vm.sortWine = vm.newSortWine;
             }
           },

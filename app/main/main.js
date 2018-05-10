@@ -215,6 +215,7 @@ angular.module('main', [
           translatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
             $translatePartialLoader.addPart('wineInCellar');
             $translatePartialLoader.addPart('wine');
+            $translatePartialLoader.addPart('list');
             return $translate.refresh();
           }]
         }
