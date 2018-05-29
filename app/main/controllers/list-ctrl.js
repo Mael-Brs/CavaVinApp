@@ -4,10 +4,10 @@
     .module('main')
     .controller('ListCtrl', ListCtrl);
 
-  ListCtrl.$inject = ['$scope', '$translate', '$state', 'WineInCellar', 'Principal', '$ionicPopup', 'Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedWine', 'WineInCellarSearch'];
+  ListCtrl.$inject = ['$scope', '$translate', '$state', 'WineInCellar', 'Principal', '$ionicPopup', 'Cellar', 'User', 'CacheService', '$ionicModal', '$ionicListDelegate', 'CommonServices', 'PinnedWine'];
 
 
-  function ListCtrl($scope, $translate, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine, WineInCellarSearch) {
+  function ListCtrl($scope, $translate, $state, WineInCellar, Principal, $ionicPopup, Cellar, User, CacheService, $ionicModal, $ionicListDelegate, CommonServices, PinnedWine) {
     const date = new Date();
     const regExp = new RegExp(/(?:page=)(\d)/);
     let cellar;
@@ -217,12 +217,14 @@
      * Lance la requête eleasticSearch
      */
     function search() {
-      WineInCellarSearch.query({
-        query: vm.query,
-        page: vm.page,
-        size: vm.itemsPerPage,
-        sort: vm.sortWine + (vm.sortReverse ? ',desc' : ',asc'),
-        cellarId: cellar.id
+      WineInCellar.query({
+        'keywords': vm.searchWine,
+        'region.equals': vm.searchRegion,
+        'color.equals': vm.searchColor,
+        'page': vm.page,
+        'size': vm.itemsPerPage,
+        'sort': vm.sortWine + (vm.sortReverse ? ',desc' : ',asc'),
+        'cellarId.equals': cellar.id
       }, function(result, headers) {
         getLastPage(headers('link'));
         vm.wines = vm.wines.concat(result);
@@ -250,24 +252,22 @@
      * Construit la query elasticSearch
      */
     function buildQuery() {
-      const result = [];
+      let isNewSearch = false;
       if (vm.newSearchRegion) {
+        isNewSearch = true;
         vm.searchRegion = vm.newSearchRegion;
-        result.push(vm.searchRegion);
       }
       if (vm.newSearchColor) {
+        isNewSearch = true;
         vm.searchColor = vm.newSearchColor;
-        result.push(vm.searchColor);
       }
       if (vm.newSearchWine) {
+        isNewSearch = true;
         vm.searchWine = vm.newSearchWine;
-        result.push(vm.searchWine);
       }
-      vm.query = result.join(' AND ');
-      if (vm.query || vm.newSortWine !== vm.sortWine) {
+      if (isNewSearch || vm.newSortWine !== vm.sortWine) {
         vm.sortWine = vm.newSortWine;
         vm.wines = [];
-        vm.query = vm.query ? vm.query : '*';
         loadPage(0);
       }
     }
@@ -279,7 +279,6 @@
     function sort(sortReverse) {
       vm.sortReverse = sortReverse;
       vm.wines = [];
-      vm.query = vm.query ? vm.query : '*';
       loadPage(0);
     }
 
@@ -287,8 +286,7 @@
      * Efface les filtres actifs
      */
     function clearFilter() {
-      vm.searchRegion = vm.searchColor = vm.searchWine = '';
-      vm.query = '*';
+      vm.searchRegion = vm.searchColor = vm.searchWine = null;
       vm.wines = [];
       loadPage(0);
     }
