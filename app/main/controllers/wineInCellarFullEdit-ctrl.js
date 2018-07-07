@@ -110,7 +110,7 @@
         } else {
           if (vm.creationMode) {
             if (vm.addToCellar) {
-              createAll(vm.userWine.vintage.wine, vm.userWine.vintage, vm.userWine);
+              createAll(vm.userWine);
             } else {
               createWine(vm.userWine.vintage.wine);
             }
@@ -121,7 +121,9 @@
       }
     }
 
-    function createAll(newWine, newVintage, newWineInCellar) {
+    function createAll(newWineInCellar) {
+      newWineInCellar.vintage.childYear = newWineInCellar.childYear;
+      newWineInCellar.vintage.apogeeYear = newWineInCellar.apogeeYear;
       WineInCellar.saveAll(newWineInCellar, function() {
         updateCacheData();
       }, function() {
