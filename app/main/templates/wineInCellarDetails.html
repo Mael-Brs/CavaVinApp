@@ -4,10 +4,10 @@
         <button class="button button-clear icon ion-close-circled" ng-click="vm.modal.hide()"></button>
     </ion-header-bar>
     <ion-content class="padding">
-		
+
         <div class="card list">
             <label class="item" >
-                <span translate="cavaVinApp.wine.name">Nom</span> : 
+                <span translate="cavaVinApp.wine.name">Nom</span> :
                 <span>{{vm.selected.vintage.wine.name}}</span>
             </label>
 
@@ -37,18 +37,13 @@
             </label>
 
              <label class="item">
-                <span translate="cavaVinApp.wine.minKeep">Garde minimale</span> :
-                <span>{{vm.selected.minKeep}}</span>
+                <span translate="cavaVinApp.wine.childYear">Garde minimale</span> :
+                <span>{{vm.selected.childYear}}</span>
             </label>
 
              <label class="item">
-                <span translate="cavaVinApp.wine.maxKeep">Garde maximale</span> :
-                <span>{{vm.selected.maxKeep}}</span>
-            </label>
-
-            <label class="item">
-                <span translate="cavaVinApp.wineInCellar.apogee">Apogée</span> :
-                <span>{{vm.selected.apogee}}</span>
+                <span translate="cavaVinApp.wine.apogeeYear">Garde maximale</span> :
+                <span>{{vm.selected.apogeeYear}}</span>
             </label>
 
              <label class="item">

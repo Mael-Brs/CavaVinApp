@@ -117,7 +117,7 @@
       let wines = CacheService.get('wineInCellars');
 
       if (!wines || reload) {
-        WineInCellar.query({sort: 'apogee,asc'}, function(result) {
+        WineInCellar.query({sort: 'apogeeYear,asc'}, function(result) {
           wines = result;
           CacheService.put('wineInCellars', wines);
           //Update view

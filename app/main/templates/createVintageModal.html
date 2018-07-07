@@ -1,27 +1,42 @@
 <ion-modal-view>
-    <ion-header-bar class="bar bar-header bar-positive">
-        <h1 class="title" translate="selectVintage.modal.title">Create vintage</h1>
-        <button class="button button-clear button-primary" ng-click="vm.modal.hide()" translate="entity.action.cancel">Cancel</button>
-    </ion-header-bar>
-    <ion-content class="padding">
-		<ion-list>
-            <form name="form" role="form" novalidate ng-submit="vm.createVintage()" show-validation>	
-            <ion-item>	
-				<label class="item item-input item-select">
-                    <div class="input-label">
-                      Année
-                    </div>
-                    <input type="number" step="1" ng-model="vm.newYear" ng-pattern="/^\d{4}$/" required>
-                </label>
-                <label class="item item-input">
-                    <div class="input-label">
-                      Code barre
-                    </div>
-                    <input type="text" ng-model="vm.bareCode">
-                </label>
-                <button type="submit" ng-disabled="form.$invalid || !vm.newYear || vm.isProcessing" class="button button-full button-positive" translate="entity.action.save">Save</button>
-            </ion-item>
-            </form>
-        </ion-list>
-	</ion-content>
+  <ion-header-bar class="bar bar-header bar-positive">
+    <h1 class="title" translate="selectVintage.modal.title">Create vintage</h1>
+    <button class="button button-clear button-primary" ng-click="vm.modal.hide()" translate="entity.action.cancel">
+      Cancel
+    </button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <ion-list>
+      <form name="form" role="form" novalidate ng-submit="vm.createVintage()" show-validation>
+        <ion-item>
+          <label class="item item-input item-select">
+            <div class="input-label"  translate="cavaVinApp.wine.year">
+              Année
+            </div>
+            <input type="number" step="1" ng-model="vm.newYear" ng-pattern="/^\d{4}$/" required>
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label" translate="cavaVinApp.wine.childYear">Garde minimale</span>
+            <input type="number" step="1" ng-model="vm.childYear" ng-pattern="/^\d{4}$/">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label" translate="cavaVinApp.wine.apogeeYear">Garde maximale</span>
+            <input type="number" step="1" ng-model="vm.apogeeYear" ng-pattern="/^\d{4}$/">
+          </label>
+
+          <label class="item item-input">
+            <div class="input-label">
+              Code barre
+            </div>
+            <input type="text" ng-model="vm.bareCode">
+          </label>
+          <button type="submit" ng-disabled="form.$invalid || !vm.newYear || vm.isProcessing"
+                  class="button button-full button-positive" translate="entity.action.save">Save
+          </button>
+        </ion-item>
+      </form>
+    </ion-list>
+  </ion-content>
 </ion-modal-view>

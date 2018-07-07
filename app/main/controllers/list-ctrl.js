@@ -15,7 +15,7 @@
     vm.wines = [];
     vm.showForm = false;
     //paramètres de tri
-    vm.sortWine = vm.newSortWine = 'apogee'; // set the default sort color
+    vm.sortWine = vm.newSortWine = 'apogeeYear'; // set the default sort color
     vm.sortReverse = false;
     vm.isWineInCellarFilter = true;
     vm.isLoading = true;

@@ -24,8 +24,8 @@
             "appellation": "Appellation",
             "producer": "Producteur",
             "year": "Année",
-            "maxKeep": "Garde max",
-            "minKeep": "Garde min",
+            "apogeeYear": "Apogée",
+            "childYear": "Bon à partir de",
             "region": "Region",
             "color": "Couleur"
         }

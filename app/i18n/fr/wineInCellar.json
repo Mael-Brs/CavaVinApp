@@ -20,7 +20,8 @@
             "quantity": "Quantité",
             "cellar": "Cave",
             "comments": "Commentaires",
-            "apogee": "Apogée",
+            "apogeeYear": "Apogée",
+            "childYear": "Bon à partir de",
             "location": "Emplacement",
             "wine": "Wine"
         }

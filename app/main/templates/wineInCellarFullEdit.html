@@ -58,13 +58,13 @@
           </label>
 
           <label class="item item-input">
-            <span class="input-label" translate="cavaVinApp.wine.minKeep">Garde minimale</span>
-            <input type="number" step="1" ng-model="vm.userWine.minKeep">
+            <span class="input-label" translate="cavaVinApp.wine.childYear">Garde minimale</span>
+            <input type="number" step="1" ng-model="vm.userWine.childYear" ng-pattern="/^\d{4}$/">
           </label>
 
           <label class="item item-input">
-            <span class="input-label" translate="cavaVinApp.wine.maxKeep">Garde maximale</span>
-            <input type="number" step="1" ng-model="vm.userWine.maxKeep">
+            <span class="input-label" translate="cavaVinApp.wine.apogeeYear">Garde maximale</span>
+            <input type="number" step="1" ng-model="vm.userWine.apogeeYear" ng-pattern="/^\d{4}$/">
           </label>
 
           <label class="item item-input">

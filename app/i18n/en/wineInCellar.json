@@ -20,7 +20,8 @@
             "quantity": "Quantity",
             "cellar": "Cellar",
             "comments": "Comments",
-            "apogee": "Apogee",
+            "apogeeYear": "Apogee",
+            "childYear": "childYear",
             "location": "Location",
             "wine": "Wine"
         }

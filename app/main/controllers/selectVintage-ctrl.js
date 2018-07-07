@@ -43,7 +43,7 @@
 
     function createVintage() {
       vm.isProcessing = true;
-      const newVintage = new Vintage({ year: vm.newYear, wine: { id: vm.wineId }, bareCode: vm.bareCode });
+      const newVintage = new Vintage({ year: vm.newYear, wine: { id: vm.wineId }, childYear: vm.childYear, apogeeYear: vm.apogeeYear, bareCode: vm.bareCode });
       newVintage.$save(function() {
         vm.modal.hide();
         vm.vintages = Wine.vintages({ id: vm.wineId });

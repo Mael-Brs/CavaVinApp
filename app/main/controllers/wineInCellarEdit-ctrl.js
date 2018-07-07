@@ -39,6 +39,8 @@
           cellarId: cellar.id
         };
         vm.userWine.vintage = CacheService.get('selectedVintage');
+        vm.userWine.childYear = vm.userWine.vintage.childYear;
+        vm.userWine.apogeeYear = vm.userWine.vintage.apogeeYear;
       } else {
         vm.userWine = CacheService.get('selectedWineInCellar');
       }
